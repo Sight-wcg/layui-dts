@@ -21,6 +21,12 @@ function colorpicker() {
               console.log(color);
               // 譬如你可以在回调中把得到的 color 赋值给表单
           },
+          cancel: function(){
+              this.size = 'lg';
+          },
+          close: function(){
+            this.size = 'lg';
+        },
       });
       colorpicker.index === 0;
       colorpicker.set({

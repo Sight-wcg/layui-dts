@@ -10,7 +10,7 @@ function code() {
           className: 'layui-bg-black',
           code:`123`,
           codeRender(code, opts) {
-            
+              opts.encode = true;
               return '<pre>' + code.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</pre>'
           },
           codeStyle: '2',
