@@ -4,7 +4,7 @@ interface Layui {
     carousel: Layui.Carousel;
     code: Layui.Code;
     colorpicker: Layui.ColorPicker;
-    dropdown: Layui.DropDown;
+    dropdown: Layui.Dropdown;
     element: Layui.Element;
     flow: Layui.Flow;
     form: Layui.Form;

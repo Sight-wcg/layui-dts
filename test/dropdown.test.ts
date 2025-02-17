@@ -8,6 +8,7 @@ function dropdown() {
                   title: 'menu item 1',
                   id: 100,
                   href: '#',
+                  disabled: true, // 禁用该项
               },
               {
                   title: 'menu item 2',
@@ -94,7 +95,7 @@ function dropdown() {
           ],
           id: 'demo1',
           // 菜单被点击的事件
-          click: (data, othis) => {
+          click(data, othis){
               console.log(data); // 得到当前所点击的菜单项对应的数据
               console.log(othis); // 得到当前所点击的菜单项 DOM 对象
               // console.log(this.elem); // 得到当前组件绑定的原始 DOM 对象，批量绑定中常用。
@@ -102,6 +103,16 @@ function dropdown() {
           ready: (elemPanel, elem) => {
               console.log(elemPanel[0]); // 得到组件面板的 DOM 对象
               console.log(elem.hide()); // 得到基础参数 elem 所绑定的元素 DOM 对象
+          },
+          shade: 0.3, // 是否开启遮罩层
+          close(elem) {
+              
+          },
+          customName: {
+            child: 'children'
+          },
+          onClickOutside(e) {
+              return false
           },
       });
       ret.reload({ elem: '' });

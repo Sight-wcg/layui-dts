@@ -135,7 +135,7 @@ declare namespace Layui {
         carousel: Carousel;
         code: Code;
         colorpicker: ColorPicker;
-        dropdown: DropDown;
+        dropdown: Dropdown;
         element: Element;
         flow: Flow;
         form: Form;
