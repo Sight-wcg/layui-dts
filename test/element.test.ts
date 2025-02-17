@@ -13,7 +13,11 @@ function elementTest() {
           content: '选项卡的内容', // 支持传入html
           id: '选项卡标题的lay-id属性值',
       });
-      element.tabAdd('demo', {});
+      element.tabAdd('demo', {
+        title: '选项卡的标题',
+        content: '<div>选项卡的内容</div>', // 支持传入html
+        id: '选项卡标题的lay-id属性值',
+      });
       element.tabChange('demo', 'layid');
       element.tab({
           headerElem: '#tabHeader>li', // 指定tab头元素项
@@ -32,12 +36,19 @@ function elementTest() {
           // console.log(this); //  当前Tab标题所在的原始DOM元素
           console.log(data.index); //  得到当前Tab的所在下标
           console.log(data.elem); //  得到当前的Tab大容器
+          console.log(data.id);
+          
       });
       element.on('tabDelete(filter)', data => {
           // console.log(this); //  当前Tab标题所在的原始DOM元素
           console.log(data.index); //  得到当前Tab的所在下标
           console.log(data.elem); //  得到当前的Tab大容器
       });
+      element.on('tabBeforeChange(filter)', function(d){
+        d.elem
+        d.from.id
+        d.to.id
+      })
       element.on('nav(filter)', elem => {
           console.log(elem); //  得到当前点击的DOM对象
       });
