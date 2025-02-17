@@ -46,9 +46,12 @@ function formTest() {
       data.othis.find('');
       console.log(data);
   });
-  layui.form.val('filter', new Date());
+  //layui.form.val('filter', new Date());
   layui.form.val('filter', { a: 1, b: true });
 
   layui.form.config.autocomplete;
   layui.form.config.verify.date;
+  layui.form.submit('formDemo', function(d){
+
+  })
 }
