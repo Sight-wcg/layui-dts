@@ -3,7 +3,7 @@ function flowTest() {
       const flow = layui.flow;
       // 信息流
       flow.load({ elem: '' });
-      flow.load({ elem: '', scrollElem: '' });
+      flow.load({ elem: '', scrollElem: '', direction: 'bottom', moreText: '加载更多'});
 
       // 图片懒加载
       flow.lazyimg({});
