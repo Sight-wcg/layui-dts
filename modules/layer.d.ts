@@ -1,14 +1,14 @@
 declare namespace Layui {
   /**
    * 第一个按钮回调即yes回调
-   * @param [index] 当前层索引参数
-   * @param [layero] 当前层的jqDOM
+   * @param index 当前层索引参数
+   * @param layero 当前层的jqDOM
    */
   type LayerCallbackYes = (index: number, layero: JQuery) => boolean | Promise<boolean> | JQueryDeferred<boolean> | void;
   /**
    * 层关闭的回调,如果不想关闭，return false即可
-   * @param [index] 当前层索引参数
-   * @param [layero] 当前层的DOM对象
+   * @param index 当前层索引参数
+   * @param layero 当前层的DOM对象
    */
   type LayerCallbackCancel = (index: number, layero: JQuery) => boolean | void;
   type LayerCallbackEnd = () => void;
@@ -17,9 +17,9 @@ declare namespace Layui {
   type LayerCallbackRestore = (layero: JQuery) => void;
   /**
    * 输入层
-   * @param [value] 输入的值
-   * @param [index] 当前层实例的索引
-   * @param [layero] 当前层的jqDOM
+   * @param value 输入的值
+   * @param index 当前层实例的索引
+   * @param layero 当前层的jqDOM
    */
   type LayerCallbackPrompt = (value: string, index: number, layero: JQuery) => void;
   // https://www.layui.com/doc/modules/layer.html#base
@@ -262,9 +262,9 @@ declare namespace Layui {
     tipsMore?: boolean;
     /**
      * 层弹出后的成功回调方法
-     * @param [layero] 弹层的最外层元素的 jQuery 对象
-     * @param [index] 弹层的索引值
-     * @param [that] 弹层内部原型链中的 this, 当前弹层实例对象（2.8.0）
+     * @param layero 弹层的最外层元素的 jQuery 对象
+     * @param index 弹层的索引值
+     * @param that 弹层内部原型链中的 this, 当前弹层实例对象（2.8.0）
      */
     success?(layero?: JQuery, index?: number, that?: any): void;
     /**
@@ -429,8 +429,8 @@ declare namespace Layui {
 
     /**
      * 切换图片时触发
-     * @param [pic] 当前图片的一些信息
-     * @param [layero] 当前元素
+     * @param pic 当前图片的一些信息
+     * @param layero 当前元素
      */
     tab?(pic: LayerPhotosDataItem, layero: JQuery): void;
     /**
@@ -517,8 +517,8 @@ declare namespace Layui {
     // https://www.layui.com/doc/modules/layer.html#layer.config
     /**
      * 初始化全局配置
-     * @param [options]  基础参数
-     * @param [fn]  无用
+     * @param options  基础参数
+     * @param fn  无用
      */
     config(options: LayerConfigOptions, fn?: any): void;
 
@@ -526,38 +526,38 @@ declare namespace Layui {
      * 执行初始化，就绪后执行回调参数    <br/>&nbsp;
      * ready(path: string, callback: () => void): void; //兼容旧版？    <br/>&nbsp;
      * 初始化就绪 (CSS完成的回调),当你在页面一打开就要执行弹层时可放入回调中
-     * @param [callback] 就绪后回调
+     * @param callback 就绪后回调
      */
     ready(callback: () => void): void;
 
     /**
      * 原始核心方法
-     * @param [options]  基础参数
+     * @param options  基础参数
      */
     open(options?: LayerOptions): number;
 
     /**
      * 普通信息框
-     * @param [content] 内容
-     * @param [options] 基础参数
-     * @param [yes]  点击确定后的回调
+     * @param content 内容
+     * @param options 基础参数
+     * @param yes  点击确定后的回调
      */
     alert(content?: any, options?: LayerOptions, yes?: LayerCallbackYes): number;
 
     // 源码中会第三个参数代替第二个。单独定义一个方法。
     /**
      * 普通信息框
-     * @param [content] 内容
-     * @param [yes]  点击确定后的回调
+     * @param content 内容
+     * @param yes  点击确定后的回调
      */
     alert(content: any, yes: LayerCallbackYes): number;
 
     /**
      * 询问框
-     * @param [content]  提示内容
-     * @param [options]  参数
-     * @param [yes]  确认回调
-     * @param [cancel]  右上角关闭按钮触发的回调
+     * @param content  提示内容
+     * @param options  参数
+     * @param yes  确认回调
+     * @param cancel  右上角关闭按钮触发的回调
      * @example ```javascript
      * layer.confirm('is not?', {
      *    icon: 3,
@@ -579,9 +579,9 @@ declare namespace Layui {
 
     /**
      * 询问框
-     * @param [content]   提示内容
-     * @param [yes]   确认回调
-     * @param [cancel]    右上角关闭按钮触发的回调
+     * @param content   提示内容
+     * @param yes   确认回调
+     * @param cancel    右上角关闭按钮触发的回调
      * @example ```javascript
      * layer.confirm('is not?', (index,layero) => {
      *   // do something
@@ -596,63 +596,63 @@ declare namespace Layui {
     // https://www.layui.com/doc/modules/layer.html#layer.msg
     /**
      * 提示框
-     * @param [content] 提示内容
-     * @param [options] 参数
-     * @param [end] 自动关闭后的回调
+     * @param content 提示内容
+     * @param options 参数
+     * @param end 自动关闭后的回调
      */
     msg(content?: string, options?: LayerOptions, end?: LayerCallbackEnd): number;
 
     // https://www.layui.com/doc/modules/layer.html#layer.load
     /**
      *  提示框
-     * @param [content] 提示内容
-     * @param [end] 自动关闭后的回调
+     * @param content 提示内容
+     * @param end 自动关闭后的回调
      */
     msg(content: string, end?: LayerCallbackEnd): number;
 
     /**
      * 加载层
-     * @param [icon]  可用：0,1,2
-     * @param [options] 参数
+     * @param icon  可用：0,1,2
+     * @param options 参数
      */
     load(icon?: number, options?: LayerOptions): number;
 
     /**
      * 加载层
-     * @param [options] 参数
+     * @param options 参数
      */
     load(options: LayerOptions): number;
 
     // https://www.layui.com/doc/modules/layer.html#layer.tips
     /**
      *  tips层
-     * @param [content] 显示的内容
-     * @param [follow]  在那里显示
-     * @param [options] 参数
+     * @param content 显示的内容
+     * @param follow  在那里显示
+     * @param options 参数
      */
     tips(content?: string, follow?: string | HTMLElement | JQuery, options?: LayerOptions): number;
 
     /**
      * 关闭指定层
-     * @param [index] 层索引
-     * @param [callback] 关闭后的回调
+     * @param index 层索引
+     * @param callback 关闭后的回调
      */
     close(index: number, callback?: () => any): void;
 
     /**
      * 关闭所有层
-     * @param [type] 只想关闭某个类型的层,不传则关闭全部
+     * @param type 只想关闭某个类型的层,不传则关闭全部
      */
     /**
      * 闭所有层
-     * @param [type] 只想关闭某个类型(dialog,page,iframe,loading,tips)的层,不传则关闭全部
-     * @param [callback]  关闭所有层后执行回调
+     * @param type 只想关闭某个类型(dialog,page,iframe,loading,tips)的层,不传则关闭全部
+     * @param callback  关闭所有层后执行回调
      */
     closeAll(type?: 'dialog' | 'page' | 'iframe' | 'loading' | 'tips', callback?: () => any): void;
 
     /**
      *
-     * @param [callback]  关闭所有层后执行回调
+     * @param callback  关闭所有层后执行回调
      */
     closeAll(callback: () => any): void;
 
@@ -666,92 +666,92 @@ declare namespace Layui {
 
     /**
      * 重新定义层的样式
-     * @param [index]  层索引
-     * @param [options] 参数
-     * @param [limit]  影响宽度和高度
+     * @param index  层索引
+     * @param options 参数
+     * @param limit  影响宽度和高度
      */
     style(index: number, options: { [key: string]: string | number }, limit?: boolean): void;
 
     /**
      * 改变层的标题
-     * @param [title] 新标题
-     * @param [index]  层索引
+     * @param title 新标题
+     * @param index  层索引
      */
     title(title: string, index: number): void;
 
     /**
      * 获取iframe页的DOM
-     * @param [selector]
-     * @param [index]
+     * @param selector
+     * @param index
      */
     getChildFrame(selector: string | HTMLElement | JQuery, index: number): JQuery;
 
     /**
      * 获取特定iframe层的索引
-     * @param [windowName]  即window.name
+     * @param windowName  即window.name
      */
     getFrameIndex(windowName: string): number;
 
     /**
      * 指定iframe层自适应
-     * @param [index]  层索引
+     * @param index  层索引
      */
     iframeAuto(index: number): void;
 
     /**
      * 重置特定iframe url <br/>&nbsp;
      *   如：layer.iframeSrc(index, 'http://sentsin.com')
-     * @param [index] 层索引
-     * @param [url]
+     * @param index 层索引
+     * @param url
      */
     iframeSrc(index: number, url: string): void;
 
     /**
      * 置顶当前窗口
-     * @param [layero]
+     * @param layero
      */
     setTop(layero: JQuery): void;
 
     /**
      * 手工执行最大化
-     * @param [index] 层索引
+     * @param index 层索引
      */
     full(index: number): void;
 
     /**
      * 手工执行最小化
-     * @param [index] 层索引
+     * @param index 层索引
      */
     min(index: number): void;
 
     /**
      * 手工执行还原
-     * @param [index] 层索引
+     * @param index 层索引
      */
     restore(index: number): void;
 
     /**
      * 输入层
-     * @param [options] 参数
-     * @param [yes] 点击确定的回调，用该参数而不是用options的yes
+     * @param options 参数
+     * @param yes 点击确定的回调，用该参数而不是用options的yes
      */
     prompt(options?: LayerPromptOptions, yes?: LayerCallbackPrompt): number;
 
     /**
      * 输入层
-     * @param [yes] 点击确定的回调
+     * @param yes 点击确定的回调
      */
     prompt(yes: LayerCallbackPrompt): number;
 
     /**
      * tab层
-     * @param [options]  参数，一般配置area和tab
+     * @param options  参数，一般配置area和tab
      */
     tab(options?: LayerTabOptions): number;
 
     /**
      * 相册层
-     * @param [options] 参数
+     * @param options 参数
      */
     photos(options?: LayerPhotosOptions): number;
   }

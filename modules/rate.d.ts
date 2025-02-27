@@ -35,7 +35,7 @@ declare namespace Layui{
 
     /**
      * 自定义文本的回调
-     * @param [value]
+     * @param value
      */
     setText?(value: number): void;
 
@@ -52,20 +52,20 @@ interface Rate {
 
     /**
      *
-     * @param [event]
-     * @param [callback]
+     * @param event
+     * @param callback
      */
     on(event: string, callback: (obj: any) => any): any;
 
     /**
      * 核心方法
-     * @param [option] 基础参数
+     * @param option 基础参数
      */
     render(option: RateOption): Rate;
 
     /**
      * 设置全局参数
-     * @param [options] 基础参数
+     * @param options 基础参数
      */
     set(options?: RateOption): Rate;
 }

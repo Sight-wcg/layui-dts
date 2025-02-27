@@ -54,38 +54,38 @@ declare namespace Layui{
     interface Layedit {
         /**
          * 用于建立编辑器的核心方法
-         * @param [id] 实例元素（一般为textarea）的id值
-         * @param [options] 编辑器的可配置项
+         * @param id 实例元素（一般为textarea）的id值
+         * @param options 编辑器的可配置项
          */
         build(id: string, options?: EditOption): any;
 
         /**
          * 设置编辑器的全局属性
-         * @param [options]
+         * @param options
          */
         set(options: EditOption): Layedit;
 
         /**
          * 获得编辑器的内容
-         * @param [index] 即执行layedit.build返回的值
+         * @param index 即执行layedit.build返回的值
          */
         getContent(index: number): string;
 
         /**
          *  获得编辑器的纯文本内容
-         * @param [index] 即执行layedit.build返回的值
+         * @param index 即执行layedit.build返回的值
          */
         getText(index: number): string;
 
         /**
          *  用于同步编辑器内容到textarea（一般用于异步提交）
-         * @param [index] 即执行layedit.build返回的值
+         * @param index 即执行layedit.build返回的值
          */
         sync(index: number): void;
 
         /**
          * 获取编辑器选中的文本
-         * @param [index] 即执行layedit.build返回的值
+         * @param index 即执行layedit.build返回的值
          */
         getSelection(index: number): string;
     }

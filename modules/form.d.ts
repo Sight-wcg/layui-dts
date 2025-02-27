@@ -51,7 +51,7 @@ declare namespace Layui {
                 identity: [RegExp, string];
                 /**
                  * 验证数字，如果参数不是数字则返回"只能填写数字"，是数字则无返回值
-                 * @param [arg] 参数 比如 1,"1",-1
+                 * @param arg 参数 比如 1,"1",-1
                  */
                 number: (arg: any) => string | null;
                 /**
@@ -72,7 +72,7 @@ declare namespace Layui {
         /**
          * 取值，取出所有子元素是 `input,select,textarea` 且有 `name` 属性的表单元素值
          * @param filter 表单容器 `lay-filter=""` 属性的值
-         * @param [itemForm]  表单 field 子元素的父容器，没有则是第一个 `.layui-form` 作为父元素。实例：`$(".layui-form")`
+         * @param itemForm  表单 field 子元素的父容器，没有则是第一个 `.layui-form` 作为父元素。实例：`$(".layui-form")`
          */
         getValue(filter: string, itemForm?: JQuery): { [index: string]: string };
         /**
@@ -83,8 +83,8 @@ declare namespace Layui {
         on(event: string, callback: (data: LayFormData) => any): any;
         /**
          * 渲染元素，对动态插入的元素渲染
-         * @param [type] 对应表单组件类型，若不填，则指向所有类型
-         * @param [filter] 对应 class="layui-form" 所在元素的 lay-filter 属性值，用于指定需渲染的表单区域
+         * @param type 对应表单组件类型，若不填，则指向所有类型
+         * @param filter 对应 class="layui-form" 所在元素的 lay-filter 属性值，用于指定需渲染的表单区域
          */
         render(type?: 'input' | 'select' | 'checkbox' | 'radio' |  null, filter?: string): Form;
 
@@ -99,14 +99,14 @@ declare namespace Layui {
          * form.render($('#form-id')); // 渲染 id="form-id" 的表单域中的所有表单项
          * form.render($('#select-id')); // 仅渲染 id="select-id" 的表单项
          * ```
-         * @param [obj] 表单元素的 jQuery 对象
+         * @param obj 表单元素的 jQuery 对象
          * @since 2.7.0
          */
         render(obj?: JQuery): Form;
         /**
          * 提交方法，可以实现在任意位置对指定表单的主动提交
          * @param filter 表单域容器的 lay-filter 属性值
-         * @param [callback] 执行提交事件后的回调函数
+         * @param callback 执行提交事件后的回调函数
          * @since 2.7.0
          */
         submit(filter: string, callback?: (data: LayFormData) => any): any;
@@ -119,7 +119,7 @@ declare namespace Layui {
         /**
          * 表单赋值 / 取值
          * @param filter 单域容器的 lay-filter 属性值
-         * @param [obj] 要设置的值
+         * @param obj 要设置的值
          */
         val(filter: string, obj?: Record<string, any>): any;
         /**

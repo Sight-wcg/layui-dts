@@ -15,7 +15,7 @@ declare namespace Layui {
 
     /**
      * 用于对数据源进行格式解析
-     * @param [data]
+     * @param data
      */
     parseData?(data: any): any;
 
@@ -55,8 +55,8 @@ declare namespace Layui {
 
     /**
      * 左右数据穿梭时的回调
-     * @param [data] 数据
-     * @param [index] 索引
+     * @param data 数据
+     * @param index 索引
      */
     onchange?(data: any, index: number): void;
     /**
@@ -78,15 +78,15 @@ declare namespace Layui {
 
     /**
      * 重载实例  bug to fix
-     * @param [id]  实例唯一索引
-     * @param [options] 各项基础参数
+     * @param id  实例唯一索引
+     * @param options 各项基础参数
      */
     reload(id: string, options: TransferOption): void;
 
     /**
      * 设定全局默认参数  bug to fix
      *
-     * @param [options] 各项基础参数
+     * @param options 各项基础参数
      */
   }
 
@@ -100,35 +100,35 @@ declare namespace Layui {
 
     /**
      * 获得右侧数据
-     * @param [id] 实例唯一索引
+     * @param id 实例唯一索引
      */
     getData(id: string): any[];
 
     /**
      * 核心方法
      * bug to fix
-     * @param [option] 各项基础参数
+     * @param option 各项基础参数
      */
     render(option: TransferOption): TransferRendered;
 
     /**
      * 绑定事件，内部modName默认为transfer，绑定参考layui.onevent,触发参考layui.event
-     * @param [events]
-     * @param [callback]
+     * @param events
+     * @param callback
      */
     on(events: string, callback: (this: Layui, obj: any) => any): any;
 
     /**
      * 重载实例  bug to fix
-     * @param [id]  实例唯一索引
-     * @param [options] 各项基础参数
+     * @param id  实例唯一索引
+     * @param options 各项基础参数
      */
     reload(id: string, options: TransferOption): void;
 
     /**
      * 设定全局默认参数  bug to fix
      *
-     * @param [options] 各项基础参数
+     * @param options 各项基础参数
      */
     set(options: TransferOption): void;
   }

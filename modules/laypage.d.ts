@@ -103,8 +103,8 @@ declare namespace Layui{
 
     /**
      * 切换分页的回调
-     * @param [obj] 当前分页的所有选项值
-     * @param [first] 是否首次，一般用于初始加载的条件,true则会调用渲染
+     * @param obj 当前分页的所有选项值
+     * @param first 是否首次，一般用于初始加载的条件,true则会调用渲染
      */
     jump?(obj: PageOptionsForCallback, first: boolean): void;
 }

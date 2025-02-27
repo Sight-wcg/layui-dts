@@ -63,7 +63,7 @@ declare namespace Layui {
 
         /**
          * 图片懒加载
-         * @param [option] 参数
+         * @param option 参数
          */
         lazyimg(option: {
             /**

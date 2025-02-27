@@ -127,37 +127,37 @@ declare namespace Layui {
 
     /**
      * 复选框被点击的回调
-     * @param [obj]
+     * @param obj
      */
     oncheck?(obj: TreeCheckData): void;
 
     /**
      * 节点被点击的回调
-     * @param [obj]
+     * @param obj
      */
     click?(obj: TreeClickData): void;
 
     /**
      * 操作节点的回调
-     * @param [obj]
+     * @param obj
      */
     operate?(obj: TreeOperateData): void;
 
     /**
      * 节点过滤的回调
-     * @param [obj]
+     * @param obj
      */
     onsearch?(obj: { elem: any[] }): void;
 
     /**
      * 未知
-     * @param [args]
+     * @param args
      */
     dragstart?(...args: any): any;
 
     /**
      * 未知
-     * @param [args]
+     * @param args
      */
     dragend?(...args: any): any;
   }
@@ -174,7 +174,7 @@ declare namespace Layui {
 
     /**
      * 返回选中的节点数据数组
-     * @param [id]  render参数中的id ,注意data中需要有id属性才返回
+     * @param id  render参数中的id ,注意data中需要有id属性才返回
      */
     getChecked(id: string): TreeData[];
 
@@ -185,38 +185,38 @@ declare namespace Layui {
 
     /**
      * 绑定事件，内部modName默认为tree，绑定参考layui.onevent,触发参考layui.event
-     * @param [events]
-     * @param [callback]
+     * @param events
+     * @param callback
      */
     on(events: string, callback: (this: Layui, obj: any) => any): any;
 
     /**
      * 实例重载,重载一个已经创建的组件实例，覆盖基础属性
-     * @param [id] render参数中的id，保证id存在否则出js错误
-     * @param [options] 基础参数
+     * @param id render参数中的id，保证id存在否则出js错误
+     * @param options 基础参数
      */
     reload(id: string, options: TreeOption): TreeReloaded;
 
     /**
      * 核心方法
-     * @param [option] 基础参数
+     * @param option 基础参数
      */
     render(option: TreeOption): any;
 
     /**
      * 设置tree全局参数(预设基础参数值)
-     * @param [option]
+     * @param option
      */
     set(option?: TreeOption): Tree;
 
     /**
      * 设置节点勾选
-     * @param [id]
+     * @param id
      */
     /**
      * 设置节点勾选
-     * @param [id] render参数中的id，指明是哪个tree实例
-     * @param [nodeId]  树节点数据中的id 参考render->data->id
+     * @param id render参数中的id，指明是哪个tree实例
+     * @param nodeId  树节点数据中的id 参考render->data->id
      */
     setChecked(id: string, nodeId: any): void;
   }

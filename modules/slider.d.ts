@@ -65,18 +65,18 @@ declare namespace Layui{
 
     /**
      * 自定义提示文本
-     * @param [value] 滑块为范围模式是数组，否则是数字
+     * @param value 滑块为范围模式是数组，否则是数字
      */
     setTips?(value: number | number[]): string;
 
     /**
      * 数值改变的回调    <br/>&nbsp;
-     * @param [value] 滑块为范围模式是数组，否则是数字
+     * @param value 滑块为范围模式是数组，否则是数字
      */
     change?(value: number | number[]): void;
     /**
      * 滑块拖拽完毕的回调函数，滑块拖动过程中不会触发
-     * @param [value] 滑块当前值
+     * @param value 滑块当前值
      * @since 2.8.0
      */
     done?(value: number | number[]): void;
@@ -92,7 +92,7 @@ interface Slider {
 
     /**
      * 设置滑块的全局参数
-     * @param [options] 基础参数
+     * @param options 基础参数
      */
     set(options?: SliderOption): Slider;
 
@@ -101,14 +101,14 @@ interface Slider {
 
     /**
      * 核心方法
-     * @param [option] 参数
+     * @param option 参数
      */
     render(option: SliderOption): {
         config: SliderOption;
         /**
          * 改变指定滑块实例的数值
-         * @param [value]
-         * @param [index] 若滑块开启了范围（range: true） 则index需要0和1
+         * @param value
+         * @param index 若滑块开启了范围（range: true） 则index需要0和1
          */
         setValue(value: any, index?: number): void;
     };

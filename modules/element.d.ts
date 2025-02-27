@@ -115,14 +115,14 @@ declare namespace Layui {
          * 用于删除指定的Tab选项
          * @param filter tab 元素的 `lay-filter="value"` 过滤器的值
          * @param layid 选项卡标题列表的 lay-id 属性的值
-         * @param [force] 是否强制删除，默认为false。如果为true，则会直接删除，不会触发事件 2.9.21
+         * @param force 是否强制删除，默认为false。如果为true，则会直接删除，不会触发事件 2.9.21
          */
         tabDelete(filter: string, layid: string, force?: boolean): void;
         /**
          * 用于外部切换到指定的Tab项上
          * @param filter 对应容器 lay-filter 的属性值
          * @param layid 比如：lay-id="xx"中的 'xx'
-         * @param [force] 是否强制切换，默认为false。如果为true，则会直接切换，不会触发事件 2.9.15
+         * @param force 是否强制切换，默认为false。如果为true，则会直接切换，不会触发事件 2.9.15
          */
         tabChange(filter: string, layid: string, force?: boolean): void;
         /**
@@ -142,26 +142,26 @@ element.progress('demo', '30%')
         progress(filter: string, percent: string): void;
         /**
          * Element 渲染方法，用于重新渲染 Element 组件。
-         * @param [type] 渲染类型，未指定时将重新渲染页面内所有类型的 Element 组件
+         * @param type 渲染类型，未指定时将重新渲染页面内所有类型的 Element 组件
          * - `tab` 渲染 tab 选项卡
          * - `nav` 渲染导航栏目
          * - `breadcrumb` 渲染面包屑
          * - `progress` 渲染进度条
          * - `collapse` 渲染叠面板
-         * @param [filter] 元素的 `lay-filter=""` 的值，用于局部更新，
+         * @param filter 元素的 `lay-filter=""` 的值，用于局部更新，
          * @since 自 2.9.16+ {@link filter} 支持 jQuery 对象
          * @deprecated 已废弃，使用 {@link Element.render|render}
          */
         init(type?: 'tab' | 'nav' | 'breadcrumb' | 'progress' | 'collapse', filter?: string | JQuery): void;
         /**
          * Element 渲染方法，用于重新渲染 Element 组件。
-         * @param [type] 渲染类型，未指定时将重新渲染页面内所有类型的 Element 组件
+         * @param type 渲染类型，未指定时将重新渲染页面内所有类型的 Element 组件
          * - `tab` 渲染 tab 选项卡
          * - `nav` 渲染导航栏目
          * - `breadcrumb` 渲染面包屑
          * - `progress` 渲染进度条
          * - `collapse` 渲染叠面板
-         * @param [filter] 元素的 `lay-filter=""` 的值，用于局部更新，
+         * @param filter 元素的 `lay-filter=""` 的值，用于局部更新，
          * @since 自 2.9.16+ {@link filter} 支持 jQuery 对象
          */
         render(type?: 'tab' | 'nav' | 'breadcrumb' | 'progress' | 'collapse', filter?: string | JQuery): void;

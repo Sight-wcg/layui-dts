@@ -68,7 +68,7 @@ declare namespace Layui {
         trigger?: string;
         /**
          * 轮播切换后的回调函数
-         * @param [obj] 轮播条目对象
+         * @param obj 轮播条目对象
          * @since 2.7.0
          */
         change?: (obj: CarouselItem) => any;
@@ -169,20 +169,20 @@ declare namespace Layui {
 
         /**
          * 绑定切换事件
-         * @param [event]  事件
-         * @param [callback]  回调
+         * @param event  事件
+         * @param callback  回调
          */
         on(event: string, callback: (this: CarouselClass, obj: CarouselItem) => any): any;
 
         /**
          * 重置轮播
-         * @param [options] 基础参数
+         * @param options 基础参数
          */
         reload(options?: Partial<CarouselOptions>): void;
 
         /**
          * 设置轮播组件的全局参数
-         * @param [options] 基础参数
+         * @param options 基础参数
          */
         set(options?: Partial<CarouselOptions>): Carousel;
         /**

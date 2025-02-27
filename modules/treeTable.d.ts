@@ -329,23 +329,23 @@ declare namespace Layui {
   interface TreeTable extends Omit<Table, 'setRowChecked'> {
     /**
      * treeTable 组件渲染，核心方法
-     * @param [option] 基础参数
+     * @param option 基础参数
      * @since 2.8.0
      */
     render(option: TreeTableOption): TableRendered;
 
     /**
      * 树表完整重载
-     * @param [id] treeTable 的 id，唯一实例标识
-     * @param [option] 基础参数
+     * @param id treeTable 的 id，唯一实例标识
+     * @param option 基础参数
      * @since 2.8.0
      */
     reload(id: string, option?: Partial<TreeTableOption>): void;
 
     /**
      * 树表数据重载
-     * @param [id] treeTable 的 id，唯一实例标识
-     * @param [option] 基础参数
+     * @param id treeTable 的 id，唯一实例标识
+     * @param option 基础参数
      * @since 2.8.0
      */
     reloadData(id: string, option?: Partial<TreeTableOption>): void;
@@ -447,7 +447,7 @@ declare namespace Layui {
     /**
      *
      * @param id treeTable 渲染时的 id 属性值
-     * @param [includeHalfCheck=false] 是否包含半选状态的数据(2.8.4)
+     * @param includeHalfCheck 是否包含半选状态的数据(2.8.4)
      * @since 2.8.0
      */
     checkStatus(id: string, includeHalfCheck?: boolean): { data: []; isAll: boolean };

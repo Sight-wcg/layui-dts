@@ -113,47 +113,47 @@ declare namespace Layui {
 
     /**
      * 选择文件后的回调函数
-     * @param [obj] 回调参数(工具对象)
+     * @param obj 回调参数(工具对象)
      */
     choose?(this: UploadOptionThis, obj: UploadCallbackArg): void;
 
     /**
      * 文件提交上传前的回调，返回false则停止上传  实例:before:function(this,obj){}
      * 2.9.11+ 新增支持 Promise
-     * @param [obj]  回调参数(工具对象)
+     * @param obj  回调参数(工具对象)
      */
     before?(this: UploadOptionThis, obj: UploadCallbackArg): boolean | JQueryDeferred<boolean> | Promise<boolean>;
 
     /**
      * 上传后的回调
-     * @param [res]  服务端response json
-     * @param [index]  当前文件索引  (选择文件时自动生成的：new Date().getTime()+'-'+i)
-     * @param [upload]  上传函数
+     * @param res  服务端response json
+     * @param index  当前文件索引  (选择文件时自动生成的：new Date().getTime()+'-'+i)
+     * @param upload  上传函数
      */
     done?(this: UploadOptionThis, res: any, index: string, upload: (files?: Blob[]) => void): void;
 
     /**
      * 执行上传请求出现异常的回调（一般为网络异常、URL 404等）。    <br/>&nbsp;
      * 返回两个参数，分别为：index（当前文件的索引）、upload（重新上传的方法
-     * @param [index] 当前文件索引  (选择文件时自动生成的：new Date().getTime()+'-'+i)
-     * @param [upload] 上传函数
-     * @param [res] 返回值（纯文本）2.9.13+
-     * @param [xhr] jQuery xhr 对象 2.9.16+
+     * @param index 当前文件索引  (选择文件时自动生成的：new Date().getTime()+'-'+i)
+     * @param upload 上传函数
+     * @param res 返回值（纯文本）2.9.13+
+     * @param xhr jQuery xhr 对象 2.9.16+
      */
     error?(this: UploadOptionThis, index: string, upload: (files?: Blob[]) => void, res: string, xhr: jQXhr): void;
 
     /**
      *  当文件全部被提交后，才触发
-     * @param [obj] 回调参数
+     * @param obj 回调参数
      */
     allDone?(this: UploadOptionThis, obj: UploadAllDoneArg): void;
 
     /**
      * 进度回调
-     * @param [percent]  数字进度
-     * @param [elem]  render参数中的elem（即点击元素dom）
-     * @param [event] 事件
-     * @param [index] 当前文件索引  (选择文件时自动生成的：new Date().getTime()+'-'+i)
+     * @param percent  数字进度
+     * @param elem  render参数中的elem（即点击元素dom）
+     * @param event 事件
+     * @param index 当前文件索引  (选择文件时自动生成的：new Date().getTime()+'-'+i)
      */
     progress?(this: UploadOptionThis, percent: number, elem: HTMLElement, event: ProgressEvent, index: string): void;
   }
@@ -178,15 +178,15 @@ declare namespace Layui {
   interface UploadCallbackArg {
     /**
      *  预览
-     * @param [callback] index索引,file文件,result比如图片base64编码
+     * @param callback index索引,file文件,result比如图片base64编码
      */
     preview(callback: (index: string, file: File, result: any) => void): void;
 
     /**
      * 上传单个文件    <br/>&nbsp;
      * 对上传失败的单个文件重新上传，一般在某个事件中使用
-     * @param [index] 索引  (选择文件时自动生成的：new Date().getTime()+'-'+i)
-     * @param [file] 文件
+     * @param index 索引  (选择文件时自动生成的：new Date().getTime()+'-'+i)
+     * @param file 文件
      */
     upload(index: string, file: Blob): void;
 
@@ -197,9 +197,9 @@ declare namespace Layui {
 
     /**
      * 重置文件和文件名
-     * @param [index] 被重置的文件索引  (选择文件时自动生成的：new Date().getTime()+'-'+i)
-     * @param [file]  新的文件
-     * @param [filename] 新的名字
+     * @param index 被重置的文件索引  (选择文件时自动生成的：new Date().getTime()+'-'+i)
+     * @param file  新的文件
+     * @param filename 新的名字
      */
     resetFile(index: string, file: Blob, filename: any): void;
     /**
@@ -217,13 +217,13 @@ declare namespace Layui {
 
     /**
      * 重载该实例，支持重载全部基础参数
-     * @param [options] 基础参数
+     * @param options 基础参数
      */
     reload(options?: Partial<UploadOption>): void;
 
     /**
      * 重新上传的方法，一般在某个事件中使用
-     * @param [files] 需要上传的文件数组
+     * @param files 需要上传的文件数组
      */
     upload(files?: Blob[]): void;
   }
@@ -273,13 +273,13 @@ declare namespace Layui {
 
     /**
      * 核心方法
-     * @param [option] 基础参数
+     * @param option 基础参数
      */
     render(option: UploadOption): UploadRendered;
 
     /**
      * 设置upload全局参数(预设基础参数值)
-     * @param [option] 参数
+     * @param option 参数
      */
     set(option?: UploadOption): Upload;
   }

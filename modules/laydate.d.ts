@@ -246,52 +246,52 @@ interface DateOption {
     cellRender?(ymd: {year:number; month: number; date: number}, render: (val: string | HTMLElement | JQuery) => void, info: {type: 'year' | 'month' | 'date'}): void;
     /**
      * 控件初始打开的回调
-     * @param [date] 基础参数
+     * @param date 基础参数
      */
     ready?(dateParam: DateParam): void;
 
     /**
      * 日期时间被切换后的回调   this to test and elem
-     * @param [value] 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
-     * @param [date] 得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
-     * @param [endDate] 开启范围选择（range: true）才会返回。对象成员同上date
+     * @param value 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
+     * @param date 得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+     * @param endDate 开启范围选择（range: true）才会返回。对象成员同上date
      */
     change?(this: Required<DateOption>, value: string, date: DateParam, endDate: DateParam): void;
 
     /**
      * 控件选择完毕后的回调
-     * @param [value] 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
-     * @param [date] 得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
-     * @param [endDate] 开启范围选择（range: true）才会返回。对象成员同上date
+     * @param value 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
+     * @param date 得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+     * @param endDate 开启范围选择（range: true）才会返回。对象成员同上date
      */
     done?(value: string, date: DateParam, endDate: DateParam): void;
     /**
      * 点击底部栏「确定」按钮时的回调函数
-     * @param [value] 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
-     * @param [date] 得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
-     * @param [endDate] 开启范围选择（range: true）才会返回。对象成员同上date
+     * @param value 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
+     * @param date 得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+     * @param endDate 开启范围选择（range: true）才会返回。对象成员同上date
      * @since 2.8.0
      */
     onConfirm?(value: string, date: DateParam, endDate: DateParam): void;
     /**
      * 点击底部栏「现在」按钮时的回调函数
-     * @param [value] 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
-     * @param [date] 得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
-     * @param [endDate] 开启范围选择（range: true）才会返回。对象成员同上date
+     * @param value 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
+     * @param date 得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+     * @param endDate 开启范围选择（range: true）才会返回。对象成员同上date
      * @since 2.8.0
      */
     onNow?(value: string, date: DateParam, endDate: DateParam): void;
     /**
      * 点击底部栏「清空」按钮时的回调函数
-     * @param [value] 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
-     * @param [date] 得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
-     * @param [endDate] 开启范围选择（range: true）才会返回。对象成员同上date
+     * @param value 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
+     * @param date 得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+     * @param endDate 开启范围选择（range: true）才会返回。对象成员同上date
      * @since 2.8.0
      */
     onClear?(value: string, date: DateParam, endDate: DateParam): void;
     /**
      * 组件面板被完全关闭（移除）后触发的回调
-     * @param [this] 组件实例
+     * @param this 组件实例
      * @since 2.7.4
      */
     close?(this: any): void;
@@ -303,13 +303,13 @@ interface DateOption {
 interface Laydate {
     /**
      * 核心方法
-     * @param [options]  基础参数
+     * @param options  基础参数
      */
     render(options: DateOption): { config: DateOption; hint: (content: string) => void };
 
     /**
      * 设置全局参数
-     * @param [options]
+     * @param options
      */
     set(options?: DateOption): Laydate;
 
@@ -325,7 +325,7 @@ interface Laydate {
     /**
      * 在指定的日期面板弹出一个提示层
      * @param id 组件渲染时定义的 id 属性值
-     * @param [option] 弹出提示选项
+     * @param option 弹出提示选项
      * - option.content 提示内容
      * - option.ms 提示层自动消失所需的毫秒数
      * @since 2.8.0
@@ -334,7 +334,7 @@ interface Laydate {
 
     /**
      * 获取 laydate 对应 id 的实例
-     * @param [id] 组件渲染时定义的 id 属性值
+     * @param id 组件渲染时定义的 id 属性值
      * @since 2.8.0
      */
     getInst(id?: string): Laydate;
@@ -342,22 +342,22 @@ interface Laydate {
     /**
      * 解除实例绑定 
      * @remark 对目标元素对应的实例的完全解除，即触发元素事件时，不再执行组件渲染
-     * @param [id] 组件渲染时定义的 id 属性值
+     * @param id 组件渲染时定义的 id 属性值
      * @since 2.8.0
      */
     unbind(id?: string): void;
 
     /**
      * 关闭日期面板
-     * @param [id] 组件渲染时定义的 id 属性值。 若 id 参数不填，则关闭当前打开的日期面板
+     * @param id 组件渲染时定义的 id 属性值。 若 id 参数不填，则关闭当前打开的日期面板
      * @since 2.7.5
      */
     close(id?: string): Laydate;
 
     /**
      * 获取指定年月的最后一天
-     * @param [month]  month默认为当前月
-     * @param [year]  year默认为当前年
+     * @param month  month默认为当前月
+     * @param year  year默认为当前年
      */
     getEndDate(month?: number, year?: number): number;
 }

@@ -7,12 +7,12 @@ declare namespace Layui {
         /**
          * 添加 CSS 类
          * @param className  类名
-         * @param [remove] 是否是移除 `className`, 默认 `false`
+         * @param remove 是否是移除 `className`, 默认 `false`
          */
         addClass(className: string, remove?: boolean): this;
         /**
          * 追加内容
-         * @param [elem] html或者元素对象
+         * @param elem html或者元素对象
          */
         append(elem?: string | HTMLElement): this;
         /**
@@ -27,33 +27,33 @@ declare namespace Layui {
         attr(): string;
         /**
          * 添加 css style
-         * @param [key] 属性css
-         * @param [value] 值
+         * @param key 属性css
+         * @param value 值
          */
         css(key: string, value: any): this;
         /**
          * 获取 css style
-         * @param [key] 属性css
+         * @param key 属性css
          */
         css(key: string): string;
         /**
          * 对元素遍历
-         * @param [fn] (index,elem)
+         * @param fn (index,elem)
          */
         each(fn?: (this: HTMLElement, index: number, elem: HTMLElement) => any): this;
         /**
          * 查找子元素
-         * @param [selector] 选择器
+         * @param selector 选择器
          */
         find(selector: string | HTMLElement): this;
         /**
          * 是否包含 css 类
-         * @param [className] 类名
+         * @param className 类名
          */
         hasClass(className: string): boolean;
         /**
          * 设置高度
-         * @param [value] 元素宽度
+         * @param value 元素宽度
          */
         height(value: number | string): this;
         /**
@@ -62,7 +62,7 @@ declare namespace Layui {
         height(): number;
         /**
          * 设置元素的 `innerHTML`
-         * @param [html] html 字符串
+         * @param html html 字符串
          */
         html(html: string): this;
         /**
@@ -71,34 +71,34 @@ declare namespace Layui {
         html(): string;
         /**
          * 解除事件
-         * @param [eventName] 事件名
-         * @param [fn] 回调
+         * @param eventName 事件名
+         * @param fn 回调
          */
         off(eventName: keyof HTMLElementEventMap, fn: AnyFn): this;
         /**
          * 事件绑定，注意：只支持内置事件，不支持自定义事件
-         * @param [eventName] 事件名 比如click，自定事件会绑定失败
-         * @param [fn] 回调 (tip:this:any)
+         * @param eventName 事件名 比如click，自定事件会绑定失败
+         * @param fn 回调 (tip:this:any)
          */
         on(eventName: keyof HTMLElementEventMap, fn: AnyFn): this;
         /**
          * 移除元素
-         * @param [elem] 实际是 removeChild(elem)
+         * @param elem 实际是 removeChild(elem)
          */
         remove(elem: HTMLElement): this
         /**
          * 移除指定的 `attribute`
-         * @param [key] 是 attribute 的 key
+         * @param key 是 attribute 的 key
          */
         removeAttr(key: string): this;
         /**
          *  移除 className
-         * @param [className]
+         * @param className
          */
         removeClass(className: string): this;
         /**
          * 设置元素的value
-         * @param [value] 值
+         * @param value 值
          */
         val(value: any): this;
         /**
@@ -107,7 +107,7 @@ declare namespace Layui {
         val(): string;
         /**
          * 设置宽度
-         * @param [value] 元素宽度
+         * @param value 元素宽度
          */
         width(value: number | string): this;
         /**
@@ -146,15 +146,15 @@ declare namespace Layui {
     interface Lay {
         /**
          * 查找 DOM 作为返回实例的操作对象
-         * @param [selector] 选择器
+         * @param selector 选择器
          */
         (selector?: string | HTMLElement | JQuery): LAY;
 
         v: string;
         /**
          * 把多个对象深层复制到dest,返回也为dest
-         * @param [dest]
-         * @param [src]
+         * @param dest
+         * @param src
          */
         extend(dest: any, ...src: any): any;
         /**
@@ -229,7 +229,7 @@ lay.style({
          * 将元素定位到指定目标元素附近
          * @param target 目标元素
          * @param elem 定位元素
-         * @param [opts]
+         * @param opts
          * ```
          * opts
          * - position: 元素的定位模式，默认 absolute
@@ -276,8 +276,8 @@ lay.position(
         ): void;
         /**
          * 获取元素上的属性配置项
-         * @param [elem] HTML 元素
-         * @param [attr] 可配置的选项，string 类型指定属性名
+         * @param elem HTML 元素
+         * @param attr 可配置的选项，string 类型指定属性名
          * @example
 ```js
   <div id="testEl" lay-options="{color:red}" lay-toc="{hot: true}"></div>
@@ -295,7 +295,7 @@ lay.position(
         options(elem: string | HTMLElement | JQuery, attr?: string | Record<string, string>): any;
         /**
          * 元素是否属于顶级元素（document 或 body）
-         * @param [elem] HTML 元素
+         * @param elem HTML 元素
          */
         isTopElem(elem: any): boolean;
         /**

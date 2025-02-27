@@ -103,25 +103,25 @@ layui._typeof(new Date()); // date
      * 动态加载 CSS文件（相对路径）
      * @param filename 文件名，相对路径 例如 `a.css`，`./a/a.css`
      * @param callback CSS 文件加载成功后的回调，若加载出现异常则不会调用
-     * @param [cssname] 用于 id 标识，比如 `xx` 则生成 link 标签的 id 是 `layuicss-xx`，如果不传，则用文件名拼接，比如 layui.js 则 id 是 `layuicss-layuijs`
+     * @param cssname 用于 id 标识，比如 `xx` 则生成 link 标签的 id 是 `layuicss-xx`，如果不传，则用文件名拼接，比如 layui.js 则 id 是 `layuicss-layuijs`
      */
     addcss(filename: string, callback: () => void, cssname?: string): any;
     /**
      * 动态加载 CSS文件（相对路径）
      * @param filename 文件名，相对路径 例如 `a.css`，`./a/a.css`
-     * @param [cssname] 用于 id 标识，比如 `xx` 则生成 link 标签的 id 是 `layuicss-xx`，如果不传，则用文件名拼接，比如 layui.js 则 id 是 `layuicss-layuijs`
+     * @param cssname 用于 id 标识，比如 `xx` 则生成 link 标签的 id 是 `layuicss-xx`，如果不传，则用文件名拼接，比如 layui.js 则 id 是 `layuicss-layuijs`
      */
     addcss(filename: string, cssname?: string): any;
     /**
      * 全局配置，设置并返回（layui 级别配置，影响 layui.xx 模块配置）
-     * @param [options] 参数
+     * @param options 参数
      * @see https://layui.dev/docs/2/base.html#api
      */
     config(options?: Layui.GlobalConfigOptions): Layui;
     /**
      * 对 localStorage 的封装
      * @param tableName  key键，Storage 中的一个 key
-     * @param [settings] 存储的json对象数据
+     * @param settings 存储的json对象数据
      * @see https://layui.dev/docs/2/base.html#api
      * @example
 ```js
@@ -149,7 +149,7 @@ console.log(localTest.nickname); // 获得“张三”
     /**
      * 对 sessionStorage 的封装
      * @param tableName  key键，Storage 中的一个 key
-     * @param [settings] 存储的json对象数据
+     * @param settings 存储的json对象数据
      * @see https://layui.dev/docs/2/base.html#api
      * @example
 ```js
@@ -191,19 +191,19 @@ console.log(localTest.nickname); // 获得“张三”
     define(callback: Layui.ExportsCallback): any;
     /**
      * 获取浏览器信息：内置属性
-     * @param [key] 获取浏览器信息
+     * @param key 获取浏览器信息
      * @see https://layui.dev/docs/2/base.html#api
      */
     device(key: 'android' | 'ie' | 'ios' | 'mobile' | 'weixin'): boolean;
     /**
      * 获取浏览器信息:根据指定的key
-     * @param [key] 属性
+     * @param key 属性
      * @see https://layui.dev/docs/2/base.html#api
      */
     device(key: string): any;
     /**
      * 获取浏览器信息：系统
-     * @param [key]
+     * @param key
      * @see https://layui.dev/docs/2/base.html#api
      */
     device(key: 'os'): string;
@@ -251,8 +251,8 @@ console.log(localTest.nickname); // 获得“张三”
      * 执行自定义模块事件，搭配 onevent 使用
      * @param modName 模块名称，比如form
      * @param events 事件，比如：select(filter)
-     * @param [params] 回调参数，作为绑定的回调函数的参数
-     * @param [fn] 回调函数
+     * @param params 回调参数，作为绑定的回调函数的参数
+     * @param fn 回调函数
      * @see https://layui.dev/docs/2/base.html#api
      * @example
 ```js
@@ -301,8 +301,8 @@ layui.hint().error('出错啦','warn');
     /**
      * 图片预加载
      * @param url 图片地址直接作为 Image.src 值
-     * @param [callback] 回调函数
-     * @param [error]
+     * @param callback 回调函数
+     * @param error
      * @see https://layui.dev/docs/2/base.html#api
      */
     img(url: string, callback?: (img: HTMLImageElement) => void, error?: (e: Event | string) => void): any;
@@ -310,14 +310,14 @@ layui.hint().error('出错啦','warn');
      * 动态加载外部 CSS 文件
      * @param href css 文件的地址(绝对or相对)直接作为 link 的 href，如果要加载当前目录 `/css/aa.css` 可使用 `layui.addcss("aa.css")`
      * @param callback css 文件加载成功后的回调，错误则不会调用
-     * @param [cssname] 用于 id 标识，比如 `xx` 则生成 link 标签的 id 是 `layuicss-xx`，如果不传，则用文件名拼接，比如 layui.js 则 id 是 `layuicss-layuijs`
+     * @param cssname 用于 id 标识，比如 `xx` 则生成 link 标签的 id 是 `layuicss-xx`，如果不传，则用文件名拼接，比如 layui.js 则 id 是 `layuicss-layuijs`
      * @see https://layui.dev/docs/2/base.html#api
      */
     link(href: string, callback: () => void, cssname?: string): any;
     /**
      * 动态加载外部 CSS 文件
      * @param href css地址
-     * @param [cssname] 用于 id 标识，比如 `xx` 则生成 link 标签的 id 是 `layuicss-xx`，如果不传，则用文件名拼接，比如 layui.js 则 id 是 `layuicss-layuijs`
+     * @param cssname 用于 id 标识，比如 `xx` 则生成 link 标签的 id 是 `layuicss-xx`，如果不传，则用文件名拼接，比如 layui.js 则 id 是 `layuicss-layuijs`
      * @see https://layui.dev/docs/2/base.html#api
      */
     link(href: string, cssname?: string): any;
@@ -367,7 +367,7 @@ layui.on("select(filter)","form",console.log);
     onevent(modName: string, events: string, callback: (obj: any) => any): (...arg: any) => any;
     /**
      * 获得 `location.hash` 路由结构
-     * @param [hash]  默认 location.hash
+     * @param hash  默认 location.hash
      * @see https://layui.dev/docs/2/base.html#api
      */
     router(hash?: string): Layui.UrlHash;
@@ -375,19 +375,19 @@ layui.on("select(filter)","form",console.log);
      *  将数组中的对象按某个成员重新对该数组排序
      * @param obj 有比较key的对象数组
      * @param key 对象的一个属性，用于取值比较
-     * @param [desc] true则启用降序， 默认false即升序
+     * @param desc true则启用降序， 默认false即升序
      * @see https://layui.dev/docs/2/base.html#api
      */
     sort(obj: any[], key: string, desc?: boolean): any;
     /**
      * 阻止事件冒泡
-     * @param [event] 阻止的事件对象
+     * @param event 阻止的事件对象
      * @see https://layui.dev/docs/2/base.html#api
      */
     stope(event?: Event): void;
     /**
      *  用于将一段 URL 链接中的 `pathname、search、hash` 属性值进行对象化处理
-     * @param [href]  http(s)地址，若不传，则自动读取当前页面的 url（即：location.href）
+     * @param href  http(s)地址，若不传，则自动读取当前页面的 url（即：location.href）
      * @see https://layui.dev/docs/2/base.html#api
      */
     url(href?: string): {
@@ -399,7 +399,7 @@ layui.on("select(filter)","form",console.log);
      * 使用特定模块
      * @param mods 内置或自定模块名 (若模块不存在则抛 js 错误，callback 不会执行)
      * @param callback 回调函数
-     * @param [exports] 数组，存储对 mods 解析后加载的模块
+     * @param exports 数组，存储对 mods 解析后加载的模块
      */
     use<K extends keyof Layui.LayuiModuleMap>(
         mods: K,
@@ -410,7 +410,7 @@ layui.on("select(filter)","form",console.log);
      * 使用自定模块
      * @param mods 自定义模块，非内置模块
      * @param callback 回调函数
-     * @param [exports] 数组，存储对 mods解析后加载的模块
+     * @param exports 数组，存储对 mods解析后加载的模块
      */
     use(mods: string, callback: (this: Layui, module: any) => any, exports?: any[]): { v: string };
     /**
@@ -419,14 +419,14 @@ layui.on("select(filter)","form",console.log);
      * @param callback 回调函数
      * - 不建议 callback 中设置参数因为没有 TS 约束，可用 layui.xx 调用具体模块
      * - 手动在 callback 回调中指定类型比如 util:layui.Util
-     * @param [exports] 暴露出挂载的对象
+     * @param exports 暴露出挂载的对象
      */
     use(mods: string[], callback: (this: Layui, ...module: any) => any, exports?: any[]): { v: string };
 
     /**
      * 使用特定模块
      * @param callback 回调函数，从 layui 2.6 开始，首个参数是 callback 函数，则表示引用所有内置模块到 `layui.xx`
-     * @param [exports] 无任何用途，可不传
+     * @param exports 无任何用途，可不传
      */
     use(callback: (this: Layui, module: { config: object; time: number }) => any, exports?: any[]): { v: string };
 

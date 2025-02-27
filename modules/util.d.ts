@@ -84,7 +84,7 @@ declare namespace Layui{
     /**
      * 点击bar的回调，函数返回一个type参数，用于区分bar类型。    <br/>&nbsp;
      *  支持的类型有：bar1、bar2、top
-     * @param [type]  bar1、bar2、top
+     * @param type  bar1、bar2、top
      */
     click?(type: string | 'bar1' | 'bar2' | 'top'): void;
 }
@@ -160,15 +160,15 @@ interface UtilCountdownReturn{
 interface Util {
     /**
      * 固定块
-     * @param [option] 参数
+     * @param option 参数
      */
     fixbar(option?: UtilBarOption): void;
 
     /**
      * 倒计时
-     * @param [endTime]  结束时间戳或Date对象，如：4073558400000，或：new Date(2099,1,1).
-     * @param [serverTime]  当前服务器时间戳或Date对象
-     * @param [callback] 回调函数。如果倒计时尚在运行，则每一秒都会执行一次。并且返回三个参数：    <br/>&nbsp;
+     * @param endTime  结束时间戳或Date对象，如：4073558400000，或：new Date(2099,1,1).
+     * @param serverTime  当前服务器时间戳或Date对象
+     * @param callback 回调函数。如果倒计时尚在运行，则每一秒都会执行一次。并且返回三个参数：    <br/>&nbsp;
      *      date（包含天/时/分/秒的对象）、    <br/>&nbsp;
      *      serverTime（当前服务器时间戳或Date对象）,    <br/>&nbsp;
      *      timer（计时器返回的ID值，用于clearTimeout）
@@ -190,22 +190,22 @@ interface Util {
 
     /**
      * 某个时间在当前时间的多久前
-     * @param [time]   当前时间之前的时间戳或日期对象
-     * @param [onlyDate]  在超过30天后,true只返回日期字符，false不返回时分秒
+     * @param time   当前时间之前的时间戳或日期对象
+     * @param onlyDate  在超过30天后,true只返回日期字符，false不返回时分秒
      */
     timeAgo(time?: number | Date, onlyDate?: boolean): string;
 
     /**
      * 转化时间戳或日期对象为日期格式字符
-     * @param [time]  日期对象，也可以是毫秒数 ,默认:当前
-     * @param [format] 默认：yyyy-MM-dd HH:mm:ss
+     * @param time  日期对象，也可以是毫秒数 ,默认:当前
+     * @param format 默认：yyyy-MM-dd HH:mm:ss
      */
     toDateString(time?: number | Date, format?: string, option?: {customMeridiem: (hours: number, minutes: number) => string}): string;
 
     /**
      * 数字前置补零
-     * @param [num]  数字
-     * @param [length]  补0后的长度
+     * @param num  数字
+     * @param length  补0后的长度
      */
     digit(num?: any, length?: number): string;
 
@@ -223,8 +223,8 @@ interface Util {
 
     /**
      *  批量处理事件
-     * @param [attr]  绑定需要监听事件的元素属性
-     * @param [obj]  事件回调链
+     * @param attr  绑定需要监听事件的元素属性
+     * @param obj  事件回调链
      * @deprecated 2.9.0 已弃用,请使用 {@link Util.event|util.on} 代替
      * @see {@link Util.event|util.on}
      */
@@ -236,11 +236,11 @@ interface Util {
     openWin(options: UtilOpenWinOptions): void;
     /**
      * 
-     * @param [attr="lay-on"] 触发事件的元素属性名
+     * @param attr 触发事件的元素属性名，默认值 'lay-on'
      * @param events 事件集合
-     * @param [options]  参数的更多选项
-     * @param [options.elem="body"] 触发事件的委托元素
-     * @param [options.trigger="click"] 事件触发的方式
+     * @param options 参数的更多选项
+     * - elem 触发事件的委托元素，默认值 body
+     * - trigger 事件触发的方式，默认值 'click'
      * @returns 返回当前 events 参数设置的事件集合
      * @since 2.9.0
      */

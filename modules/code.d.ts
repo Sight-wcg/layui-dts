@@ -79,8 +79,8 @@ declare namespace Layui {
         tools?: Array<'full' | 'window' | { title: string[]; type: string; event: (obj: any) => void }>;
         /**
          * 点击工具栏的回调函数，函数返回 tools 设置的名称
-         * @param [othis] 当前图标元素对象
-         * @param [type] tools 中设置的对应值
+         * @param othis 当前图标元素对象
+         * @param type tools 中设置的对应值
          * @since 2.8.0
          */
         toolsEvent?(othis: JQuery, type: string): void;

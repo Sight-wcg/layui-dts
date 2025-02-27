@@ -378,18 +378,18 @@ declare namespace Layui {
 
     /**
      * 数据渲染完的回调。你可以借此做一些其它的操作
-     * @param [res] 1、如果是异步请求数据方式，res即为你接口返回的信息。<br/>&nbsp;
+     * @param res 1、如果是异步请求数据方式，res即为你接口返回的信息。<br/>&nbsp;
      *             2、如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
-     * @param [curr] 得到当前页码
-     * @param [count] 得到数据总量
+     * @param curr 得到当前页码
+     * @param count 得到数据总量
      * @param origin - 区分重载和重新渲染数据
      */
     done?(res: any, curr: number, count: number, origin?: string): void;
 
     /**
      *  数据请求失败的回调，返回两个参数：错误对象、内容
-     * @param [e]  错误对象 ,是jqXHR对象（对XHR扩展），不同jquery版本其格式不同
-     * @param [msg]  内容  比如 "error"
+     * @param e  错误对象 ,是jqXHR对象（对XHR扩展），不同jquery版本其格式不同
+     * @param msg  内容  比如 "error"
      */
     error?(e: any, msg: any): void;
 
@@ -493,7 +493,7 @@ declare namespace Layui {
 
     /**
      * 数据格式解析的回调函数，用于将返回的任意数据格式解析成 table 组件规定的数据格式。
-     * @param [res] 服务端返回的数据
+     * @param res 服务端返回的数据
      */
     parseData?(res: any): TableResponse;
 
@@ -588,7 +588,7 @@ declare namespace Layui {
     /**
      * 更新当前行
      * @param fields 要更新的列字段对象
-     * @param [related] 更新其他包含自定义模板并可能存在关联的列视图(2.7.4)
+     * @param related 更新其他包含自定义模板并可能存在关联的列视图(2.7.4)
      */
     update(fields: Record<string, any>, related?: boolean | ((field: string, index: string | number) => void)): void;
     /**
@@ -857,13 +857,13 @@ declare namespace Layui {
 
     /**
      * 获取表格选中行（。id 即为 id 参数对应的值
-     * @param [id]
+     * @param id
      */
     checkStatus(id: string): { data: []; isAll: boolean };
 
     /**
      * 清除临时Key (即：LAY_CHECKED和LAY_TABLE_INDEX)
-     * @param [data]
+     * @param data
      */
     clearCacheKey(data: object): object;
 
@@ -875,40 +875,40 @@ declare namespace Layui {
 
     /**
      * 遍历表头
-     * @param [id]  table参数中的id，无id则数字
-     * @param [callback]  回调
-     * @param [cols]
+     * @param id  table参数中的id，无id则数字
+     * @param callback  回调
+     * @param cols
      */
     eachCols(id: string, callback?: AnyFn, cols?: Array<Array<Required<TableColumnOption>>>): void;
 
     /**
      * 导出自定数据到文件
-     * @param [id]  table的id用于找到title当做下载文件名
-     * @param [data]  手动指定数据
-     * @param [type] 默认csv
+     * @param id  table的id用于找到title当做下载文件名
+     * @param data  手动指定数据
+     * @param type 默认csv
      */
     // exportFile(id: string, data: any[], type?: string): void;
     // exportFile(colName: any[], data: any[], type?: string): void;
     /**
      *  导出table中数据到文件
-     * @param [id]  table选项中的id，指定id后则下载的文件名为table中title <br/>&nbsp;
+     * @param id  table选项中的id，指定id后则下载的文件名为table中title <br/>&nbsp;
      *              若传入数组则是导出的文件的列标题colName
-     * @param [data]  传入数据则导出的是该数据，不传则用id从table找数据
-     * @param [type]   默认csv
+     * @param data  传入数据则导出的是该数据，不传则用id从table找数据
+     * @param type   默认csv
      */
     exportFile(id: string | any[], data?: any[] | null, type?: string): void;
 
     /**
      * 导出对应 table 的数据或任意自定义数据
      * @param id table 渲染时的 id 或 要导出的数据表头（当 id 为 array 类型时）
-     * @param [data] 要导出的自定义数据
-     * @param [opts] 导出数据时的属性可选项，支持：type, title(2.7.0)
+     * @param data 要导出的自定义数据
+     * @param opts 导出数据时的属性可选项，支持：type, title(2.7.0)
      */
     exportFile(id: string | any[], data?: any[] | null, opts?: { type?: 'csv' | 'xls'; title?: string }): void;
 
     /**
      * 获取表格当前页的所有行数据
-     * @param [id]  table参数中的id，无id则数字
+     * @param id  table参数中的id，无id则数字
      */
     getData(id: string): any[];
 
@@ -916,8 +916,8 @@ declare namespace Layui {
 
     /**
      * 初始化
-     * @param [filter]  lay-filter设定的值
-     * @param [option] 各项基础参数
+     * @param filter  lay-filter设定的值
+     * @param option 各项基础参数
      */
     init(filter: string, option?: TableOption): object;
 
@@ -945,24 +945,24 @@ declare namespace Layui {
 
     /**
      * 表格重载
-     * @param [id] table的id，唯一实例标识
-     * @param [option] 基础参数
-     * @param [deep]  true则深度复制
+     * @param id table的id，唯一实例标识
+     * @param option 基础参数
+     * @param deep  true则深度复制
      */
     reload(id: string, option?: TableOption, deep?: boolean): void;
 
     /**
      * 表格重载数据
-     * @param [id] table的id，唯一实例标识
-     * @param [option] 基础参数
-     * @param [deep]  true则深度复制
+     * @param id table的id，唯一实例标识
+     * @param option 基础参数
+     * @param deep  true则深度复制
      * @since 2.7.0
      */
     reloadData(id: string, option?: TableOption, deep?: boolean): void;
 
     /**
      * 核心入口
-     * @param [option] 基础参数
+     * @param option 基础参数
      */
     render(option: TableOption): TableRendered;
     /**
@@ -974,20 +974,20 @@ declare namespace Layui {
 
     /**
      * 重置表格尺寸结构
-     * @param [id]  如果指定表格唯一 id，则只执行该 id 对应的表格实例
+     * @param id  如果指定表格唯一 id，则只执行该 id 对应的表格实例
      */
     resize(id: string): void;
 
     /**
      * 设置table全局项
-     * @param [option] 基础参数
+     * @param option 基础参数
      */
     set(option?: TableOption): Table;
 
     /**
      * 设置行选中状态
      * @param id table 渲染时的 id 属性值
-     * @param [option]
+     * @param option
      * @since 2.8.0
      */
     setRowChecked(id: string, option?: TableSetRowCheckedOption): void;
