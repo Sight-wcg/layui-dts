@@ -22,10 +22,10 @@ function layTest() {
   ll.hasClass('abc');
   ll.css('');
   ll.css('', '');
-  const x = window.lay.each([0, 1])('div');
+  const x = (window.lay.each([0, 1], () => {}));
   x.selector;
-  window.lay.each({})('div').selector;
-  layui.lay.each([]);
+  window.lay.each
+  layui.lay.each({}, () => {});
   layui.lay('div').each((index, ele) => {
       // console.log(index+ele)
   })[0].title;
@@ -47,4 +47,7 @@ function layTest() {
           console.log(e);
       });
   }
+  lay.hasOwn(window, 'name')
+  lay.onClickOutside(document.body, (e) => {})
+  lay.clipboard.writeText('123')
 }
