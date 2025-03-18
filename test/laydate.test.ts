@@ -51,6 +51,7 @@ function laydateTest() {
               '2017-8-21': '发布',
           },
           ready: date => {
+            
               ins1.hint('打开'); // 在控件上弹出value值
               console.log(date); // 得到初始的日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
           },
@@ -64,8 +65,50 @@ function laydateTest() {
               console.log(date); // 得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
               console.log(endDate); // 得结束的日期时间对象，开启范围选择（range: true）才会返回。对象成员同上。
           },
+          disabledDate(date, type) {
+              
+          },
+          disabledTime(date){
+            return {
+                hours() {
+                    return []
+                },
+                minutes(hour){
+                    return []
+                },
+                seconds(h,m){
+                    return []
+                }
+            }
+          },
+          close(){
+
+          },
+          onClear(){
+
+          },
+          onNow(){
+
+          },
+          onConfirm(){
+
+          },
+          holidays(ymd, render){
+            console.log(ymd);
+            console.log(render('test'));
+            render([['2017-08-15']]);
+          },
       });
+      laydate.render({
+        elem: 'test',
+        mark(ymd, render){
+
+        }
+      })
       laydate.path = '/static/xxx/'; // laydate.js 所在目录
       layui.laydate.getEndDate();
+      laydate.hint('tesr');
+      laydate.getInst('test');
+      laydate.unbind('test');
   });
 }
