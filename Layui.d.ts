@@ -13,7 +13,7 @@ interface Layui {
      */
     global: {};
     jquery: JQueryStatic;
-    lay: Layui.Lay;
+    lay: Layui.LayStatic;
     laydate: Layui.Laydate;
     layedit: Layui.Layedit;
     layer: Layui.Layer;

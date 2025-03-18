@@ -1,5 +1,5 @@
 declare namespace Layui {
-    interface LAY<TElement = HTMLElement> extends ArrayLike<TElement>,Iterable<TElement> {
+    interface Lay<TElement = HTMLElement> extends ArrayLike<TElement>,Iterable<TElement> {
         /**
          * 当前的选择器
          */
@@ -143,12 +143,12 @@ declare namespace Layui {
         timeStart: Date;
     }
 
-    interface Lay {
+    interface LayStatic {
         /**
          * 查找 DOM 作为返回实例的操作对象
          * @param selector 选择器
          */
-        (selector?: string | HTMLElement | JQuery): LAY;
+        (selector?: string | HTMLElement | JQuery): Lay;
 
         v: string;
         /**
@@ -175,8 +175,8 @@ declare namespace Layui {
         * @param collection Array对象
         * @param callback 回调函数，返回 true 停止遍历，和 jQUery.each 相反
         */
-        each<T>(collection: ArrayLike<T>, callback: (this: T, indexInArray: number, value: T) => any): LAY;
-        each<T, K extends keyof T>(collection: T, callback: (this: T[K], propertyName: K, valueOfProperty: T[K]) => any): LAY;
+        each<T>(collection: ArrayLike<T>, callback: (this: T, indexInArray: number, value: T) => any): Lay;
+        each<T, K extends keyof T>(collection: T, callback: (this: T[K], propertyName: K, valueOfProperty: T[K]) => any): Lay;
         /**
          * 数字前置补零
          * @param num 原始数字
@@ -393,6 +393,6 @@ lay.getStyleRules($('#test')[0], function(rule, index){
          * @param obj 对象
          * @param key 属性名
          */
-        hasOwn(obj: object, key: string): boolean;
+        hasOwn<O, K extends PropertyKey, V = unknown>(o: O, p: K): o is O & Record<K, V>;
     }
 }

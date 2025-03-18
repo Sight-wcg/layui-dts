@@ -30,7 +30,7 @@
 /// <reference path="misc.d.ts" />
 
 declare const layui: Layui;
-declare const lay: Layui.Lay;
+declare const lay: Layui.LayStatic;
 declare const layer: Layui.Layer;
 /**
  * 动态加载等特殊场景设置 layui 目录
@@ -40,7 +40,7 @@ declare const LAYUI_GLOBAL: { dir: string };
 
 interface Window {
   layui: Layui;
-  lay: Layui.Lay;
+  lay: Layui.LayStatic;
   layer: Layui.Layer;
   /**
    * 动态加载等特殊场景设置 layui 目录

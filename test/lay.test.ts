@@ -47,7 +47,7 @@ function layTest() {
           console.log(e);
       });
   }
-  lay.hasOwn(window, 'name')
-  lay.onClickOutside(document.body, (e) => {})
+  var hasown = lay.hasOwn(window, 'name')
+  var stop = lay.onClickOutside(document.body, (e) => {})
   lay.clipboard.writeText('123')
 }

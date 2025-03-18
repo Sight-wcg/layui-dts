@@ -140,7 +140,7 @@ declare namespace Layui {
         flow: Flow;
         form: Form;
         jquery: JQueryStatic;
-        lay: Lay;
+        lay: LayStatic;
         laydate: Laydate;
         layedit: Layedit;
         layer: Layer;
