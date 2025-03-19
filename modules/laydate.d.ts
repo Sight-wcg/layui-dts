@@ -1,5 +1,5 @@
 declare namespace Layui {
-    interface DateParam {
+    interface LayDateCallbackParam {
         year?: number;
         month?: number;
         date?: number;
@@ -8,7 +8,7 @@ declare namespace Layui {
         seconds?: number;
     }
 
-    interface DateOptions {
+    interface LayDateOptions {
         /**
          * 绑定的元素
          */
@@ -317,21 +317,21 @@ formatToDisplay: function (value) {
          * 控件初始打开的回调
          * @param date 基础参数
          */
-        ready?(dateParam: DateParam): void;
+        ready?(dateParam: LayDateCallbackParam): void;
         /**
          * 日期时间被切换后的回调   this to test and elem
          * @param value 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
          * @param date 得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
          * @param endDate 开启范围选择（range: true）才会返回。对象成员同上date
          */
-        change?(value: string, date: DateParam, endDate: DateParam): void;
+        change?(value: string, date: LayDateCallbackParam, endDate: LayDateCallbackParam): void;
         /**
          * 控件选择完毕后的回调
          * @param value 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
          * @param date 得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
          * @param endDate 开启范围选择（range: true）才会返回。对象成员同上date
          */
-        done?(value: string, date: DateParam, endDate: DateParam): void;
+        done?(value: string, date: LayDateCallbackParam, endDate: LayDateCallbackParam): void;
         /**
          * 点击底部栏「确定」按钮时的回调函数
          * @param value 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
@@ -339,7 +339,7 @@ formatToDisplay: function (value) {
          * @param endDate 开启范围选择（range: true）才会返回。对象成员同上date
          * @since 2.8.0
          */
-        onConfirm?(value: string, date: DateParam, endDate: DateParam): void;
+        onConfirm?(value: string, date: LayDateCallbackParam, endDate: LayDateCallbackParam): void;
         /**
          * 点击底部栏「现在」按钮时的回调函数
          * @param value 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
@@ -347,7 +347,7 @@ formatToDisplay: function (value) {
          * @param endDate 开启范围选择（range: true）才会返回。对象成员同上date
          * @since 2.8.0
          */
-        onNow?(value: string, date: DateParam, endDate: DateParam): void;
+        onNow?(value: string, date: LayDateCallbackParam, endDate: LayDateCallbackParam): void;
         /**
          * 点击底部栏「清空」按钮时的回调函数
          * @param value 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
@@ -355,7 +355,7 @@ formatToDisplay: function (value) {
          * @param endDate 开启范围选择（range: true）才会返回。对象成员同上date
          * @since 2.8.0
          */
-        onClear?(value: string, date: DateParam, endDate: DateParam): void;
+        onClear?(value: string, date: LayDateCallbackParam, endDate: LayDateCallbackParam): void;
         /**
          * 组件面板被完全关闭（移除）后触发的回调
          * @param this 组件实例
@@ -373,12 +373,12 @@ formatToDisplay: function (value) {
          * 核心方法
          * @param options  基础参数
          */
-        render(options: DateOptions): { config: Required<DateOptions>; hint: (content: string) => void };
+        render(options: LayDateOptions): { config: Required<LayDateOptions>; hint: (content: string) => void };
         /**
          * 设置全局参数
          * @param options
          */
-        set(options?: Partial<DateOptions>): Laydate;
+        set(options?: Partial<LayDateOptions>): Laydate;
         /**
          * 配置基础路径
          *  如果你不是采用 layui 或者普通 script 标签方式加载的 laydate.js
