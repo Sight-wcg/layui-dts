@@ -114,6 +114,13 @@ function utilTest() {
           },
       });
 
+      util.fixbar({
+        bars: [{
+            type: 'QQ',
+            content: '',
+        }]
+      })
+
       // 示例
       const endTime = new Date(2099, 1, 1).getTime(); // 假设为结束日期
       const serverTime = new Date(); // .getTime(); // 假设为当前服务器时间，这里采用的是本地时间，实际使用一般是取服务端的
@@ -124,7 +131,11 @@ function utilTest() {
       });
 
       util.timeAgo(new Date(2099, 1, 1), true);
-      layui.util.toDateString(new Date(), 'yyyy-MM-dd HH:mm:ss');
+      layui.util.toDateString(new Date(), 'yyyy-MM-dd HH:mm:ss', {
+        customMeridiem(hours, minutes) {
+            return ''
+        },
+      });
       layui.util.toDateString(new Date());
 
       layui.util.digit(1, 4);
@@ -142,5 +153,20 @@ function utilTest() {
               alert('触发了事件3');
           },
       });
+      util.on({
+        e1: function(el, e){
+
+        },
+        e2: (el, e) => {
+
+        }
+      });
+      util.openWin({
+        target: ''
+      })
+      util.countdown({
+        data: 1,
+        now: 1
+      })
   });
 }
