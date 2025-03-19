@@ -84,7 +84,7 @@ declare namespace Layui {
          * 延迟关闭的毫秒数。当 trigger 为 hover 时才生效 默认：300
          * @since 2.9.2 支持数组类型，数组成员值分别表示显示延迟时间和隐藏延迟时间
          */
-        delay?: number | Array<number>;
+        delay?: number | [show: number, hide: number];
         /**
          * 自定义组件的样式类名
          */

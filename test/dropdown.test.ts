@@ -94,6 +94,7 @@ function dropdown() {
               },
           ],
           id: 'demo1',
+          delay: [120, 120],
           // 菜单被点击的事件
           click(data, othis){
               console.log(data); // 得到当前所点击的菜单项对应的数据

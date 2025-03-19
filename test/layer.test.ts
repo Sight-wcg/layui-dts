@@ -6,6 +6,7 @@ function layerTest() {
       layer.open({
           type: 1,
           content: '传入任意的文本或html', // 这里content是一个普通的String
+          offset: '25px'
       });
       layer.open({
           type: 1,
@@ -68,9 +69,15 @@ function layerTest() {
       // eg2
       layer.open({
           content: 'test',
+          btnAsync: true, // 开启按钮异步加载
+          hideOnClose: true,
+          removeFocus: true,
           btn: ['按钮一', '按钮二', '按钮三'],
           yes: (index, layero) => {
               // 按钮【按钮一】的回调
+          },
+          btn1(){
+
           },
           btn2: (index, layero) => {
               // 按钮【按钮二】的回调
@@ -97,6 +104,7 @@ function layerTest() {
       layer.open({
           minStack: true,
           content: '测试回调',
+
           success: (layero, index) => {
               console.log(layero, index);
           },
@@ -107,6 +115,9 @@ function layerTest() {
               }
               return false;
           },
+          beforeEnd(o,i,t){
+
+          }
       });
       layer.config({
           anim: 1, // 默认动画风格
@@ -219,7 +230,7 @@ function layerTest() {
 
       // 当你想关闭当前页的某个层时
       index = layer.open();
-      index = layer.alert();
+      index = layer.alert('提示层');
       index = layer.load();
       index = layer.tips();
       // 正如你看到的，每一种弹层调用方式，都会返回一个index
@@ -279,6 +290,9 @@ function layerTest() {
           // 关闭所有层并执行回调
           // do something
       });
+      layer.closeLast()
+      layer.closeLast('dialog', () => {})
+      layer.closeLast(['dialog','page'], () => {})
 
       layer.style(index, {
           width: '1000px',
@@ -365,6 +379,8 @@ function layerTest() {
           });
       });
       layer.photos({
+          toolbar: true, // 是否显示工具栏
+          footer: false,
           photos: {
               title: '', // 相册标题
               id: 123, // 相册id
