@@ -10,6 +10,11 @@ function SliderTest() {
               // console.log(value[1]); // 得到结尾值
               // do something
           },
+          done(){
+
+          },
+          tipsAlways: false,
+          
       });
       slider.config;
       slider.set;
