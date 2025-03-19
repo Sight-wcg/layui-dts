@@ -1,5 +1,5 @@
 declare namespace Layui {
-    interface EditOption {
+    interface EditOptions {
         /**
          * 重新定制编辑器工具栏，如：`tool: ['link', 'unlink', 'face']` 。可选值：
          * - 'strong' 加粗
@@ -51,12 +51,12 @@ declare namespace Layui {
          * @param id 实例元素（一般为textarea）的id值
          * @param options 编辑器的可配置项
          */
-        build(id: string, options?: EditOption): any;
+        build(id: string, options?: Partial<EditOptions>): any;
         /**
          * 设置编辑器的全局属性
          * @param options
          */
-        set(options: EditOption): Layedit;
+        set(options: Partial<EditOptions>): Layedit;
         /**
          * 获得编辑器的内容
          * @param index 即执行layedit.build返回的值
