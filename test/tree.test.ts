@@ -84,6 +84,9 @@ function treeTest() {
           showCheckbox: false,
           edit: [],
           accordion: true,
+          customName: {
+            id: 'menuId'
+          }
           // 新的参数
       });
       treeReloaded.config.abc;
