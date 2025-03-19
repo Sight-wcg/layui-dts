@@ -11,6 +11,8 @@ function transferTest() {
               { value: '3', title: '贤心', disabled: '', checked: '' },
           ],
           id: 'demo1', // 定义索引
+          dblclick(obj){
+          }
       });
       transfer.render({
           elem: '#test',
