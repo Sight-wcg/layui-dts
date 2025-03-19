@@ -149,14 +149,38 @@ declare namespace Layui {
          * @param selector 选择器
          */
         (selector?: string | HTMLElement | JQuery): Lay;
-
+        /**
+         * 版本
+         */
         v: string;
         /**
-         * 把多个对象深层复制到dest,返回也为dest
-         * @param dest
-         * @param src
+         * 把多个对象深度克隆到 target
+         * @param target 一个对象
+         * @param objectN 包含额外的属性合并到第一个参数
          */
-        extend(dest: any, ...src: any): any;
+        extend<T, U, V, W, X, Y, Z>(
+            target: T,
+            object1: U,
+            object2: V,
+            object3: W,
+            object4: X,
+            object5: Y,
+            object6: Z,
+        ): T & U & V & W & X & Y & Z;
+        extend<T, U, V, W, X, Y>(
+            target: T,
+            object1: U,
+            object2: V,
+            object3: W,
+            object4: X,
+            object5: Y,
+        ): T & U & V & W & X & Y;
+        extend<T, U, V, W, X>(target: T, object1: U, object2: V, object3: W, object4: X): T & U & V & W & X;
+        extend<T, U, V, W>(target: T, object1: U, object2: V, object3: W): T & U & V & W;
+        extend<T, U, V>(target: T, object1: U, object2: V): T & U & V;
+        extend<T, U>(target: T, object1: U): T & U;
+        extend<T>(target: T): this & T;
+        extend(target: any, object1: any, ...objectN: any[]): any;
         /**
          * 如果是 ie 则是版本字符串，非 ie 为 false
          */
@@ -229,18 +253,7 @@ lay.style({
          * 将元素定位到指定目标元素附近
          * @param target 目标元素
          * @param elem 定位元素
-         * @param opts
-         * ```
-         * opts
-         * - position: 元素的定位模式，默认 absolute
-         * - clickType: 点击类型，默认为 'left'，如果 {@link opts.target} 是 document 或 body 元素，则为 'right'
-         * - align: 对齐方式，默认 left
-         * - allowBottomOut: 顶部没有足够区域显示时，是否允许底部溢出
-         * - margin: 边距；
-         * - e: 事件对象，仅右键生效
-         * - SYSTEM_RELOAD: 是否重载，用于出现滚动条时重新计算位置
-         * - offset: 相对于触发元素的额外偏移量[x,y]
-         * ```
+         * @param opts 可配置的选项
          * @example
 ```js
 <button id="targetEl">dropdown</button>
@@ -264,13 +277,40 @@ lay.position(
             target: HTMLElement,
             elem: HTMLElement,
             opts?: {
+                /**
+                 * 元素的定位模式
+                 * @default 'absolute'
+                 */
                 position?: 'absolute' | 'fixed';
+                /**
+                 * 点击类型，默认为 'left'，如果 {@link opts.target} 是 document 或 body 元素，则为 'right'
+                 */
                 clickType?: 'left' | 'right';
+                /**
+                 * 对齐方式
+                 * @default 'left'
+                 */
                 align?: 'left' | 'center' | 'right';
+                /**
+                 * 顶部没有足够区域显示时，是否允许底部溢出
+                 */
                 allowBottomOut?: boolean;
+                /**
+                 * 边距
+                 */
                 margin?: number;
+                /**
+                 * 事件对象，仅右键生效
+                 */
                 e?: MouseEvent | { clientX: number; clientY: number };
+                /**
+                 * 是否重载，用于出现滚动条时重新计算位置
+                 * 这是一个仅供内部使用的私有参数
+                 */
                 SYSTEM_RELOAD?: boolean;
+                /**
+                 * 相对于触发元素的额外偏移量[x,y]
+                 */
                 offset?: [offsetX: number, offsetY: number]
             }
         ): void;

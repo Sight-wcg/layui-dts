@@ -98,57 +98,46 @@ declare namespace Layui {
          * 初始焦点
          */
         elemItem: JQuery;
-
         /**
          * 轮播渲染
          */
         render(): void;
-
         /**
          * 重置轮播
          */
         reload(options: { [index: string]: string }): void;
-
         /**
          * 获取上一个等待条目的索引
          */
         prevIndex(): number;
-
         /**
          * 获取下一个等待条目的索引
          */
         nextIndex(): number;
-
         /**
          * 手动递增索引值
          */
         addIndex(num: number): void;
-
         /**
          * 手动递减索引值
          */
         subIndex(num: number): void;
-
         /**
          * 自动轮播
          */
         autoplay(): void;
-
         /**
          * 箭头
          */
         arrow(): void;
-
         /**
          * 指示器
          */
         indicator(): void;
-
         /**
          * 滑动切换 type ：sub 减，其他增
          */
         slide(type: string, num: number): void;
-
         /**
          * 事件处理
          */
@@ -161,25 +150,21 @@ declare namespace Layui {
      */
     interface Carousel {
         config: { [index: string]: any };
-
         /**
          * 核心入口
          */
         render(options: Partial<CarouselOptions>): void;
-
         /**
          * 绑定切换事件
          * @param event  事件
          * @param callback  回调
          */
         on(event: string, callback: (this: CarouselClass, obj: CarouselItem) => any): any;
-
         /**
          * 重置轮播
          * @param options 基础参数
          */
         reload(options?: Partial<CarouselOptions>): void;
-
         /**
          * 设置轮播组件的全局参数
          * @param options 基础参数
