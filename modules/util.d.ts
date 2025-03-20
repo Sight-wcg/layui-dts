@@ -4,18 +4,20 @@ declare namespace Layui {
      */
     interface UtilBarOptions {
         /**
-         * 默认false。如果值为true，则显示第一个bar，带有一个默认图标。    <br/>&nbsp;
+         * 默认false。如果值为true，则显示第一个bar，带有一个默认图标
+         * 
+         * 如果值为图标字符，则显示第二个bar，并覆盖默认图标
          * @deprecated 2.8.0 已废弃，请使用 {@link UtilBarOptions.bars|bars}
          * @see {@link UtilBarOptions.bars|bars}
          */
-        //  如果值为图标字符，则显示第一个bar，并覆盖默认图标
         bar1?: boolean | string;
         /**
-         * 默认false。如果值为true，则显示第二个bar，带有一个默认图标。    <br/>&nbsp;
+         * 默认false。如果值为true，则显示第二个bar，带有一个默认图标
+         * 
+         * 如果值为图标字符，则显示第二个bar，并覆盖默认图标
          * @deprecated 2.8.0 已废弃，请使用 {@link UtilBarOptions.bars|bars}
          * @see {@link UtilBarOptions.bars|bars}
          */
-        //  如果值为图标字符，则显示第二个bar，并覆盖默认图标
         bar2?: boolean | string;
         /**
          * 设置固定工具条列表
@@ -263,7 +265,7 @@ declare namespace Layui {
          * 批量处理事件
          * @param attr 绑定需要监听事件的元素属性
          * @param obj 事件回调链
-         * @deprecated 2.9.0 已弃用,请使用 {@link Util.event|util.on}
+         * @deprecated 2.9.0 已弃用,请使用 {@link Util.on|util.on}
          * @see {@link Util.event|util.on}
          */
         event(attr: string, obj: { [index: string]: (othis: JQuery) => any }): any;

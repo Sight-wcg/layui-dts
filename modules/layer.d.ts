@@ -112,7 +112,7 @@ declare namespace Layui {
          * @default ''
          * 
          */
-        content?: string | HTMLElement | JQuery | [url: string, showScrollbar: 'yes' | 'no'] | [content: string, referenceEl: string];
+        content?: string | HTMLElement | JQuery | [iframeUrl: string, showScrollbar: 'yes' | 'no'] | [tipsContent: string, tipsReferenceEl: string];
         /**
          * 弹层的主题风格。通过赋值对应的 className，实现对主题样式的定制
          * @default ''
@@ -309,11 +309,6 @@ declare namespace Layui {
          */
         move?: string | boolean | HTMLElement;
         /**
-         * 固定 1，不能修改
-         * @deprecated
-         */
-        readonly moveType?: boolean;
-        /**
          * 是否允许拖拽到窗口外
          * @default false
          */
@@ -463,6 +458,23 @@ declare namespace Layui {
          * @since 2.9.11
          */
         beforeEnd?(layero: JQuery, index: number, that: any): boolean | JQueryDeferred<boolean> | Promise<boolean> | void;
+        /**
+         * 只提供默认的一种拖拽风格
+         * 
+         * 固定 1，不能修改
+         * @deprecated 2.7
+         */
+        readonly moveType?: boolean;
+        /**
+         * @deprecated 2.7
+         * @see {@link LayerOptions.fixed|fixed}
+         */
+        fix?: boolean | undefined;
+        /**
+         * @deprecated 2.7
+         * @see {@link LayerOptions.anim|anim}
+         */
+        shift?: number | undefined;
     }
 
     /**
@@ -607,6 +619,7 @@ declare namespace Layui {
         src?: string;
         /**
          * 缩略图地址
+         * @deprecated 已弃用，未实现的选项
          */
         thumb?: string;
     }
