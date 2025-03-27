@@ -360,7 +360,7 @@ function tableTest() {
   layui.table.on('event(filter)', () => {}); // 事件。event为内置事件名（详见下文），filter为容器lay-filter设定的值
   layui.table.init('filter', {}); // filter为容器lay-filter设定的值，options即各项基础参数。例子见：转换静态表格
   layui.table.checkStatus('id'); // 获取表格选中行（下文会有详细介绍）。id 即为 id 参数对应的值
-  layui.table.render({cols: [[]]}); // 用于表格方法级渲染，核心方法。应该不用再过多解释了，详见：方法级渲染
+  layui.table.render({elem: 'test',cols: [[]]}); // 用于表格方法级渲染，核心方法。应该不用再过多解释了，详见：方法级渲染
   layui.table.reload('id', {}, false); // 表格重载
   layui.table.resize('id'); // 重置表格尺寸
   layui.table.exportFile('id', null, 'csv'); // 导出数据

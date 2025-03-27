@@ -359,7 +359,7 @@ declare namespace Layui {
         /**
          * 指定原始 table 容器的选择器或 DOM，方法渲染方式必填
          */
-        elem?: string | HTMLElement | JQuery;
+        elem: string | HTMLElement | JQuery;
         /**
          * 发送异步请求的 URL
          * - 2.8.0 之前默认自动传递两个参数：?page=1&limit=30（该参数可通过 request 自定义）
@@ -668,7 +668,7 @@ declare namespace Layui {
         selectedStyle?: boolean;
     }
 
-    // ------------以下 TableOn 开头interface，在调用地方使用----------
+    // ------------以下 TableOn 开头 interface，在调用地方使用----------
     /**
      * table 公共事件参数
      */
@@ -1023,7 +1023,7 @@ declare namespace Layui {
         /**
          * 遍历表头
          * @internal
-         * @param id table参数中的id，无id则数字
+         * @param id table 渲染时的 id 属性值
          * @param callback 回调
          * @param cols 列配置项，默认为当前表格的 cols 参数值
          */
@@ -1096,7 +1096,7 @@ declare namespace Layui {
          * @param option 基础属性选项
          * @see https://layui.dev/docs/2/table/#table.init
          */
-        init(filter: TableFilter, option?: Partial<TableOptions>): object;
+        init(filter: TableFilter, option?: Omit<Partial<TableOptions>, 'elem'>): object;
         /**
          * 表格事件
          * 
@@ -1224,5 +1224,12 @@ declare namespace Layui {
              */
             related?: boolean | ((field: string, index: number) => boolean)
         ): void;
+        /**
+         * 返回行节点代码
+         * @internal
+         * @param id table 渲染时的 `id` 属性值
+         * @param data 行数据
+         */
+        getTrHtml(id: string, data: Array<Record<string, any>>): string;
     }
 }
