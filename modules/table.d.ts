@@ -1023,11 +1023,11 @@ declare namespace Layui {
         /**
          * 遍历表头
          * @internal
-         * @param id  table参数中的id，无id则数字
-         * @param callback  回调
-         * @param cols
+         * @param id table参数中的id，无id则数字
+         * @param callback 回调
+         * @param cols 列配置项，默认为当前表格的 cols 参数值
          */
-        eachCols(id: string, callback: AnyFn, cols?: Array<Array<Required<TableColumnOptions>>>): void;
+        eachCols(id: string, callback:(index: string, colDef: TableColumnOptions) => void, cols?: Array<Array<TableColumnOptions>>): void;
         /**
          * 获取表格当前选中行相关数据
          * @param id table 渲染时的 id 属性值
