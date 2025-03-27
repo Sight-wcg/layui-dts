@@ -14,12 +14,22 @@ function tableTest() {
                   // 标题栏
                   { checkbox: true },
                   { field: 'test', title: 'abc', width: '12', minWidth: 12, type: 'space', templet: '#titleTpl' },
-                  { LAY_CHECKED: true, fixed: 'left', hide: true },
+                  { LAY_CHECKED: true, fixed: 'left', hide: true,edit: 'text' },
                   {
+                      fieldTitle: 'test',
+                      maxWidth: 60,
+                      expandedWidth: 60,
+                      edit(d) {
+                          return 'text';
+                      },
                       totalRow: { score: '666', experience: '999' },
                       templet: d => {
                           return d.aa;
                       },
+                      escape: true,
+                      expandedMode: 'tips',
+                      ignoreExport: true,
+                      type: 'normal'
                   },
                   { totalRowText: '合计：', sort: true, unresize: true, edit: 'text' },
                   { event: 'btn01', style: 'background-color: #5FB878; color: #fff;' },
@@ -53,11 +63,29 @@ function tableTest() {
           skin: 'nob',
           even: true,
           size: 'lg',
+          maxHeight: 500,
+          cellMaxWidth: 60,
+          lineStyle: 'height:95px',
+          className: 'text',
+          css: '.{color:red}',
+          cellExpandedMode: 'tips',
+          cellExpandedWidth: 12,
+          pagebar: '#123',
+          scrollPos: 'fixed',
+          editTrigger: 'dbclick',
 
           method: 'get',
           where: null, // {}
           contentType: "application/json'",
           headers: { token: '' },
+          dataType: 'json',
+          jsonpCallback: 'callback',
+          before(opt){
+            console.log(opt);
+          },
+          complete(x,t){
+
+          },
           parseData(res) {
               // res 即为原始返回的数据
               return {
@@ -78,6 +106,7 @@ function tableTest() {
               countName: 'total', // 规定数据总数的字段名称，默认：count
               dataName: 'rows', // 规定数据列表的字段名称，默认：data
           },
+
       });
       rendered.config.cols;
       layui.use(['table', 'laytpl', 'element'], () => {
@@ -213,7 +242,7 @@ function tableTest() {
       if (checkStatus.isAll) {
           checkStatus.data.length;
       }
-      layui.table.exportFile('id', []);
+      layui.table.exportFile('id', null);
       layui.table.on('sort(test)', obj => {
           // 注：sort 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
           console.log(obj.field); // 当前排序的字段名
@@ -279,6 +308,15 @@ function tableTest() {
       data.field;
       data.type;
   });
+  layui.table.on('colResized', obj => {
+    console.log(obj.col);
+  });
+  layui.table.on('colToggled', obj => {
+    console.log(obj.col);
+  });
+  layui.table.on('rowContextmenu', obj => {
+    console.log(obj.data);
+  });
   layui.table.reload('id', {
       url: null,
       data: [],
@@ -322,10 +360,13 @@ function tableTest() {
   layui.table.on('event(filter)', () => {}); // 事件。event为内置事件名（详见下文），filter为容器lay-filter设定的值
   layui.table.init('filter', {}); // filter为容器lay-filter设定的值，options即各项基础参数。例子见：转换静态表格
   layui.table.checkStatus('id'); // 获取表格选中行（下文会有详细介绍）。id 即为 id 参数对应的值
-  layui.table.render({}); // 用于表格方法级渲染，核心方法。应该不用再过多解释了，详见：方法级渲染
+  layui.table.render({cols: [[]]}); // 用于表格方法级渲染，核心方法。应该不用再过多解释了，详见：方法级渲染
   layui.table.reload('id', {}, false); // 表格重载
   layui.table.resize('id'); // 重置表格尺寸
-  layui.table.exportFile('id', [], 'type'); // 导出数据
+  layui.table.exportFile('id', null, 'csv'); // 导出数据
+  layui.table.exportFile('id', null, {title: 'test', type: 'csv'}); // 导出数据
+  layui.table.exportFile([], [], 'csv'); // 导出数据
+  layui.table.exportFile([],[], {title: 'test'}); // 导出数据
   layui.table.getData('id'); // 用于获取表格当前页的所有行数据（layui 2.6.0 开始新增）
 
   // 所获得的 tableIns 即为当前容器的实例
@@ -371,13 +412,8 @@ function tableTest() {
       ],
       'csv',
   );
-  layui.table.exportFile(
-      'abc',
-      [
-          ['张三', '男', '20'],
-          ['李四', '女', '18'],
-          ['王五', '女', '19'],
-      ],
-      'csv',
-  );
+  layui.table.getOptions('idTest'); // 获取表格的配置信息
+  layui.table.hideCol('idTest', true); // 隐藏列
+  layui.table.hideCol('idTest', {field: 'a', hide: true}); // 隐藏列
+  layui.table.updateRow('test', {index: 1, data: {}}, (f,i) => true);
 }
