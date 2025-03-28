@@ -12,5 +12,8 @@
   "type": "module",
   "dependencies": {
     "@types/jquery": "^3.5.32"
+  },
+  "devDependencies": {
+    "tinyglobby": "^0.2.12"
   }
 }
