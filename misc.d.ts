@@ -1,16 +1,11 @@
 declare namespace Layui {
-    /**
-     * Void function
-     */
+    // utils
     type Fn = () => void;
-
-    /**
-     * Any function
-     */
     type AnyFn = (...args: any[]) => any;
-    type Awaitable<T> = Promise<T> | T;
     type ArgumentsType<T> = T extends (...args: infer U) => any ? U : never;
     type ExportsCallback = (this: Layui, fn: (app: string, exports: object) => void) => void;
+    type MaybeArray<T> = T | T[];
+    type MaybePromise<T> = T | Promise<T>;
 
     /**
      * 全局属性

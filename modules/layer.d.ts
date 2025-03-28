@@ -829,10 +829,7 @@ declare namespace Layui {
          * @param callback 关闭后执行的回调(2.9.0)
          * @since 2.8.0
          */
-        closeLast(
-            type?: 'dialog' | 'page' | 'iframe' | 'loading' | 'tips' | Array<'dialog' | 'page' | 'iframe' | 'loading' | 'tips'>,
-            callback?: AnyFn
-        ): void;
+        closeLast(type?: MaybeArray<'dialog' | 'page' | 'iframe' | 'loading' | 'tips'>, callback?: AnyFn): void;
         /**
          * 重新定义层的样式
          * @param index 打开弹层时返回的唯一索引

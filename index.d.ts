@@ -1,8 +1,9 @@
-// Type definitions for layui-src 2.9.21
-// Project: https://github.com/sentsin/layui/releases/tag/v2.6.8
+// Type definitions for layui-src 2.9.25
+// Project: https://github.com/layui/layui/releases/tag/v2.9.25
 // Definitions by: javabitar <https://github.com/javabitar>
+// Definitions by: sight <https://github.com/Sight-wcg>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
-// Minimum TypeScript Version: 3.1
+// Minimum TypeScript Version: 4.7
 
 /// <reference types="jquery" />
 /// <reference path="modules/carousel.d.ts" />
