@@ -267,7 +267,7 @@ declare namespace Layui {
          * 批量处理事件
          * @param attr 绑定需要监听事件的元素属性
          * @param obj 事件回调链
-         * @deprecated 2.9.0 已弃用,请使用 {@link Util.on|util.on}
+         * @deprecated 2.8.0 已弃用,请使用 {@link Util.on|util.on}
          * @see {@link Util.event|util.on}
          */
         event(attr: string, obj: { [index: string]: (othis: JQuery) => any }): any;
@@ -285,7 +285,8 @@ declare namespace Layui {
          * - elem 触发事件的委托元素，默认值 body
          * - trigger 事件触发的方式，默认值 'click'
          * @returns 返回当前 events 参数设置的事件集合
-         * @since 2.9.0
+         * @since 2.8.0
+         * @since 2.9.0 增加 options 参数选项
          */
         on(
             attr: string, 
