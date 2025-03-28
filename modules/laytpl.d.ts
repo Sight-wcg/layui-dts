@@ -9,6 +9,23 @@ declare namespace Layui {
          */
         close?: string
     }
+
+    interface LayTplReturn {
+        tpl: string;
+        /**
+         * 执行解析,不常用，推荐 render
+         * @param tpl  模板串
+         * @param data  数据
+         */
+        parse(tpl: string, data: object): string;
+        /**
+         * 执行解析
+         * @param data 数据
+         * @param callback  解析后的回调，即可通过回调中参数也可通过 render 返回值获取解析后结果串
+         */
+        render(data: Record<string, any>, callback?: (str: string) => any): string;
+    }
+
     /**
      * 模板引擎
      * @see https://layui.dev/docs/2/laytpl/
@@ -25,21 +42,5 @@ declare namespace Layui {
          * @param option 例如：{open: '<%',close: '%>'}
          */
         config(option?: LayTplOptions): void;
-    }
-
-    interface LayTplReturn {
-        tpl: string;
-        /**
-         * 执行解析,不常用，推荐 render
-         * @param tpl  模板串
-         * @param data  数据
-         */
-        parse(tpl: string, data: object): string;
-        /**
-         * 执行解析
-         * @param data 数据
-         * @param callback  解析后的回调，即可通过回调中参数也可通过 render 返回值获取解析后结果串
-         */
-        render(data: object, callback?: (str: string) => any): string;
     }
 }

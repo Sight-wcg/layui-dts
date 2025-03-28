@@ -99,12 +99,14 @@ function laydateTest() {
             render([['2017-08-15']]);
           },
       });
+      ins1.hint('123')
       laydate.render({
         elem: 'test',
         mark(ymd, render){
 
         }
       })
+
       laydate.path = '/static/xxx/'; // laydate.js 所在目录
       layui.laydate.getEndDate();
       laydate.hint('tesr');

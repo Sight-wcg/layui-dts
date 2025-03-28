@@ -45,7 +45,7 @@ declare namespace Layui {
         /**
          * 绑定元素选择器或 DOM 对象
          */
-        elem: string | HTMLElement | JQuery;
+        elem?: string | Element | JQuery;
         /**
          * 菜单列数据项，也可用 {@link content|content} 选项自定义模板
          */
@@ -194,13 +194,13 @@ templet: function(d){
      * @see https://layui.dev/docs/2/dropdown/
      */
     interface Dropdown {
-        config: { [index: string]: any };
+        config: Required<DropdownOptions>;
         index: number;
         /**
          * 全局设置
          * @param options 
          */
-        set(options: DropdownOptions): Dropdown;
+        set(options: Partial<DropdownOptions>): Dropdown;
         /**
          * 给 dropdown 绑定事件，当前只有 click 即 event 类似: `click(id|filter)`
          * @param event 事件名 如：`click(id|filter)` 括号内是 `.layui-menu` 的 `id=""` 或者 `lay-filter=""`
@@ -212,7 +212,7 @@ templet: function(d){
          * @param id 组件渲染时定义的 id 属性值
          * @param options 全部基础参数
          */
-        reload(id: string, options: Partial<DropdownOptions>): DropdownReturn;
+        reload(id: string, options?: Partial<DropdownOptions>): DropdownReturn;
         /**
          * 仅数据或内容重载
          * @param id 组件渲染时定义的 id 属性值

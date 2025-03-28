@@ -127,7 +127,7 @@ text: {
         skin?: string;
         /**
          * 自定义右上角内容，可传入任意 html
-         * @deprecated 2.8.2 已删除，请使用 {@link CodeOption.tools|tools}
+         * @deprecated 2.8.2 已弃用，请使用 {@link CodeOption.tools|tools}
          */
         about?: boolean;
         /**
@@ -137,7 +137,11 @@ text: {
          * - `obj.render()` 对预览中的 `element,form` 等组件进行渲染
          * @since 2.8.0
          */
-        done?(obj?: { container: JQuery; render(): void }): void;
+        done?(obj: { container: JQuery; options: Required<CodeOptions>; render(): void }): void;
+        /**
+         * 所有实例渲染完毕后的回调
+         */
+        allDone?(): void;
         /**
          * 开启代码复制功能图标
          * @since 2.8.2
@@ -146,18 +150,28 @@ text: {
         /**
          * 点击复制按钮的回调函数
          * 返回 false 阻止内置提示(2.9.21+)
-         * @param code - 当前 code 内容
-         * @param cpoied - 是否复制成功 2.9.21+
+         * @param code 当前 code 内容
+         * @param cpoied 是否复制成功(2.9.21+)
          * @since 2.8.2
          */
         onCopy?(code: string, cpoied: boolean): void | boolean;
         /**
-         * 用于重新渲染 code，譬如代码高亮处理
+         * 用于重新渲染 code，例如代码高亮处理
          * @param code 当前 code 内容
          * @param opts 当前选项
          * @since 2.8.17
          */
         codeRender?(code: string, opts: Required<CodeOptions>): string;
+        /**
+         * 用于解析 code 内容，例如去掉注释，替换链接等
+         * 
+         * 内部私有方法
+         * @internal
+         * @param code 当前 code 内容
+         * @param opts 当前选项
+         * @since 2.8.0
+         */
+        codeParse?(code: string, opts: Required<CodeOptions>): string;
         /**
          * 指定语法高亮器，支持 `hljs,prism,shiki`
          * @since 2.8.17
@@ -187,6 +201,13 @@ text: {
         code?: string;
     }
 
+    interface CodeReturn{
+        config: Required<CodeOptions>;
+        reload(opts?: Partial<CodeOptions>): void;
+        updateOptions(opts: Partial<CodeOptions>): Required<CodeOptions>;
+        reloadCode(opts?: Partial<CodeOptions>): void;
+    }
+
     /**
      * code 模块
      * @see https://layui.dev/docs/2/code/
@@ -194,8 +215,9 @@ text: {
     interface Code {
         /**
          * 渲染代码面板
-         * @param options 配置项
+         * @param options 
+         * @param _mod 默认为空，传入 `reloadCode` 则重新渲染代码面板。仅供内部使用的私有属性
          */
-        (options?: CodeOptions): void;
+        (options?: CodeOptions, _mod?: 'reloadCode' ): CodeReturn;
     }
 }

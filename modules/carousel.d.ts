@@ -58,6 +58,8 @@ declare namespace Layui {
          * - `inside` 容器内部
          * - `outside` 容器外部
          * - `none` 不显示
+         * 
+         * 如果设定了 anim: 'updown'，则 indicator 参数的 outside 值无效
          * @default 'inside'
          */
         indicator?: 'insider' | 'outsider' | 'none';
@@ -95,53 +97,82 @@ declare namespace Layui {
          */
         config: Required<CarouselOptions>;
         /**
-         * 初始焦点
+         * @internal
          */
         elemItem: JQuery;
         /**
+         * @internal
+         */
+        timer: number;
+        /**
+         * @internal
+         */
+        haveSlider: boolean;
+        /**
+         * @internal
+         */
+        elemInd: JQuery;
+        /**
          * 轮播渲染
+         * @internal
          */
         render(): void;
         /**
-         * 重置轮播
-         */
-        reload(options: { [index: string]: string }): void;
-        /**
          * 获取上一个等待条目的索引
+         * @internal
          */
         prevIndex(): number;
         /**
          * 获取下一个等待条目的索引
+         * @internal
          */
         nextIndex(): number;
         /**
          * 手动递增索引值
+         * @internal
          */
         addIndex(num: number): void;
         /**
          * 手动递减索引值
+         * @internal
          */
         subIndex(num: number): void;
         /**
          * 自动轮播
+         * @internal
          */
         autoplay(): void;
         /**
          * 箭头
+         * @internal
          */
         arrow(): void;
         /**
          * 指示器
+         * @internal
          */
         indicator(): void;
         /**
          * 滑动切换 type ：sub 减，其他增
+         * @internal
          */
         slide(type: string, num: number): void;
         /**
          * 事件处理
+         * @internal
          */
         events(): void;
+        /**
+         * 重置轮播
+         * @param options 基础参数
+         */
+        reload(options?: Partial<CarouselOptions>): void;
+        /**
+         * 切换到指定的索引
+         * @param index 轮播下标，从 0 开始计算
+         * @since 2.8.0
+         */
+        goto(index: number): void;
     }
 
     /**
@@ -149,11 +180,13 @@ declare namespace Layui {
      * @see https://layui.dev/docs/2/carousel/
      */
     interface Carousel {
-        config: { [index: string]: any };
+        config: Required<CarouselOptions>;
         /**
-         * 核心入口
+         * 渲染方法
+         * @param options 基础参数
+         * @return 实例对象，包含操作当前实例的相关成员方法
          */
-        render(options: Partial<CarouselOptions>): void;
+        render(options: CarouselOptions): CarouselClass;
         /**
          * 绑定切换事件
          * @param event  事件
@@ -161,20 +194,9 @@ declare namespace Layui {
          */
         on(event: string, callback: (this: CarouselClass, obj: CarouselItem) => any): any;
         /**
-         * 重置轮播
-         * @param options 基础参数
-         */
-        reload(options?: Partial<CarouselOptions>): void;
-        /**
          * 设置轮播组件的全局参数
          * @param options 基础参数
          */
-        set(options?: Partial<CarouselOptions>): Carousel;
-        /**
-         * 轮播的手动切换
-         * @param index 轮播下标，从 0 开始计算
-         * @since 2.8.0
-         */
-        goto(index: number): void;
+        set(options: Partial<CarouselOptions>): this;
     }
 }

@@ -728,7 +728,7 @@ declare namespace Layui {
         /**
          * 展开或关闭全部节点（目前只支持关闭全部）
          * @param id treeTable 渲染时的 id 属性值
-         * @param expandFlag 折叠状态。 true 展开；false 关闭
+         * @param expandFlag 折叠状态。true 展开；false 关闭
          * @since 2.8.0
          * @see https://layui.dev/docs/2/treeTable/#expandAll
          */
@@ -748,7 +748,7 @@ declare namespace Layui {
          * @since 2.8.0
          * @see https://layui.dev/docs/2/treeTable/#checkAllNodes
          */
-        checkAllNodes(id: string, checked: boolean): void;
+        checkAllNodes(id: string, checked: boolean | null): void;
         /**
          * 重载异步子节点
          * @param id treeTable 渲染时的 id 属性值
@@ -783,7 +783,7 @@ declare namespace Layui {
          * @since 2.8.0
          * @see https://layui.dev/docs/2/treeTable/#checkStatus
          */
-        checkStatus(id: string, includeHalfCheck?: boolean): checkStatusReturn;
+        checkStatus(id: string, includeHalfCheck?: boolean): TablecheckStatusReturn;
         /**
          * 表格事件
          * 

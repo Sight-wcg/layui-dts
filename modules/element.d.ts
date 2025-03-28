@@ -128,6 +128,7 @@ declare namespace Layui {
         /**
          * 用于绑定自定义 Tab 元素（即非 layui 自带的 tab 结构）
          * @param option 参数
+         * @see https://layui.dev/docs/2/tab/
          */
         tab(option: TabElement): void;
         /**
@@ -160,9 +161,14 @@ element.progress('demo', '30%')
          * - `nav` 渲染导航栏目
          * - `breadcrumb` 渲染面包屑
          * - `progress` 渲染进度条
-         * - `collapse` 渲染叠面板
+         * - `collapse` 渲染折叠面板
          * @param filter 元素的 `lay-filter=""` 的值，用于局部更新，
          * @since 自 2.9.16+ {@link filter} 支持 jQuery 对象
+         * @see https://layui.dev/docs/2/nav/- 导航栏
+         * @see https://layui.dev/docs/2/tab/- 选项卡
+         * @see https://layui.dev/docs/2/panel/- 折叠面板
+         * @see https://layui.dev/docs/2/progress/- 进度条
+         * @see https://layui.dev/docs/2/nav/#separator- 面包屑
          */
         render(type?: 'tab' | 'nav' | 'breadcrumb' | 'progress' | 'collapse', filter?: string | JQuery): void;
     }

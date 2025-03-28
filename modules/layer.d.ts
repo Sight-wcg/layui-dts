@@ -47,6 +47,7 @@ declare namespace Layui {
      */
     type LayerCallbackPrompt = (value: string, index: number, layero: JQuery) => void;
     type LayerType = 0 | 1 | 2 | 3 | 4;
+    type LayerIndex = number;
     /**
      * 弹层选项
      * @see https://layui.dev/docs/2/layer/#api
@@ -112,7 +113,7 @@ declare namespace Layui {
          * @default ''
          * 
          */
-        content?: string | HTMLElement | JQuery | [iframeUrl: string, showScrollbar: 'yes' | 'no'] | [tipsContent: string, tipsReferenceEl: string];
+        content?: string | HTMLElement | JQuery | [iframeUrl: string, showScrollbar: 'yes' | 'no'] | [tipsContent: string, tipsReferenceEl: string | HTMLElement];
         /**
          * 弹层的主题风格。通过赋值对应的 className，实现对主题样式的定制
          * @default ''
@@ -152,7 +153,7 @@ declare namespace Layui {
          * 当设置边缘坐标时，可配合 `anim` 属性实现抽屉弹出效果
          * @default  'auto'
          */
-        offset?: 'auto' | 't' | 'r' | 'b' | 'l' | 'rt' | 'rb' | 'lt' | 'lb' | number | `${number}px` | [y: number | `${number}px`, x: number | `${number}px`];
+        offset?: 'auto' | 't' | 'r' | 'b' | 'l' | 'rt' | 'rb' | 'lt' | 'lb' | `${number}px` | [y: `${number}px`, x: `${number}px`];
         /**
          * 提示图标。信息框和加载层的私有参数
          * - 当 type 为 0(信息框)可以传入 0-6 启用图标
@@ -235,10 +236,13 @@ declare namespace Layui {
          * @default 0
          * @example
          * time: 5000 // 即代表5秒后自动关闭
+         * time: -1 // 不自动关闭弹层
          */
         time?: number;
         /**
-         * 弹层的唯一索引值。一般用于页面层或 iframe 层弹出时的状态识别，设置该属性可防止弹层的重复弹出
+         * 弹层的唯一索引值
+         * 
+         * 一般用于页面层或 iframe 层弹出时的状态识别，设置该属性可防止弹层的重复弹出
          * @default ''
          */
         id?: string;
@@ -261,7 +265,7 @@ declare namespace Layui {
          * - `anim: 'slideRight'`  从左边缘往右
          * @default 0
          */
-        anim?: number;
+        anim?: number | string;
         /**
          * 是否开启弹层关闭时的动画
          * @default true
@@ -271,7 +275,7 @@ declare namespace Layui {
          * 是否开启标题栏的最大化和最小化图标
          * 
          * 该参数值对 `type:1` 和 `type:2` 有效
-         * @default false // 默认不显示最大小化按钮
+         * @default false
          */
         maxmin?: boolean;
         /**
@@ -329,7 +333,7 @@ declare namespace Layui {
          * layui.layer.tips('提示内容','#abc',{tips:[1, '#f00']})
          * layui.layer.tips('提示内容','#abc',{tips:[1, 'rgb(255,0,0)']})
          */
-        tips?: number | [placement: number, bgColor: string];
+        tips?: 1 | 2 | 3 | 4 | [placement: 1 | 2 | 3 | 4, bgColor: string];
         /**
          * 是否允许同时存在多个 tips 层，即不销毁上一个 tips
          * @default false
@@ -382,35 +386,43 @@ declare namespace Layui {
          */
         btn1?: LayerBtnCallback;
         /**
-         * 自定义按钮
+         * 自定义按钮回调
+         * 
+         * - yes 和 btn1 触发时默认不关闭弹层，需主动调用 layer.close 关闭
+         * - btn2 即以后的回调触发时默认关闭，返回 false 阻止关闭
+         * - 开启 btnAsync 异步按钮时，所有按钮行为一致，回调触发时默认关闭，返回 false 阻止关闭
          */
         btn2?: LayerBtnCallback;
         /**
-         * 自定义按钮
+         * 自定义按钮回调
+         * 
+         * - yes 和 btn1 触发时默认不关闭弹层，需主动调用 layer.close 关闭
+         * - btn2 即以后的回调触发时默认关闭，返回 false 阻止关闭
+         * - 开启 btnAsync 异步按钮时，所有按钮行为一致，回调触发时默认关闭，返回 false 阻止关闭
          */
         btn3?: LayerBtnCallback;
         /**
-         * 自定义按钮
+         * 自定义按钮回调
          */
         btn4?: LayerBtnCallback;
         /**
-         * 自定义按钮
+         * 自定义按钮回调
          */
         btn5?: LayerBtnCallback;
         /**
-         * 自定义按钮
+         * 自定义按钮回调
          */
         btn6?: LayerBtnCallback;
         /**
-         * 自定义按钮
+         * 自定义按钮回调
          */
         btn7?: LayerBtnCallback;
         /**
-         * 自定义按钮
+         * 自定义按钮回调
          */
         btn8?: LayerBtnCallback;
         /**
-         * 自定义按钮
+         * 自定义按钮回调
          */
         btn9?: LayerBtnCallback;
         /**
@@ -462,19 +474,19 @@ declare namespace Layui {
          * 只提供默认的一种拖拽风格
          * 
          * 固定 1，不能修改
-         * @deprecated 2.7
+         * @internal
          */
-        readonly moveType?: boolean;
+        readonly moveType?: number;
         /**
          * @deprecated 2.7
          * @see {@link LayerOptions.fixed|fixed}
          */
-        fix?: boolean | undefined;
+        fix?: boolean;
         /**
          * @deprecated 2.7
          * @see {@link LayerOptions.anim|anim}
          */
-        shift?: number | undefined;
+        shift?: number;
     }
 
     /**
@@ -509,7 +521,7 @@ declare namespace Layui {
         extend?: string[] | string;
     }
 
-    interface LayerPromptOptions extends Omit<LayerOptions, 'yes'> {
+    interface LayerPromptOptions extends Omit<LayerOptions, 'type' | 'yes' | 'content' | 'btn' | 'skin'> {
         /**
          * 输入框类型。支持以下可选值：
          * - 0 文本输入框
@@ -535,42 +547,8 @@ declare namespace Layui {
         placeholder?: string;
     }
 
-    interface LayerTabOptions extends LayerOptions {
+    interface LayerTabOptions extends Omit<LayerOptions, 'type' | 'skin' | 'title' | 'content'> {
         tab: Array<{ title: string; content: string }>;
-    }
-
-    interface LayerPhotosOptions extends LayerOptions {
-        /**
-         * 图片层的数据源
-         * 
-         * JSON 对象或者选择器，元素的 jQUery 对象，用于构造 img
-         */
-        photos?: LayerPhotosData | string | JQuery;
-        /**
-         * 图片层切换后的回调函数
-         * @param pic 当前图片的一些信息
-         * @param layero 当前元素
-         */
-        tab?(pic: LayerPhotosDataItem, layero: JQuery): void;
-        /**
-         * 是否隐藏图片底部栏
-         * @default false
-         * @since 2.8.0
-         * @deprecated 2.8.16 已移除，使用 @link{LayerPhotosOptions.footer}
-         */
-        hideFooter?: boolean;
-        /**
-         * 是否显示顶部工具栏
-         * @default true
-         * @since 2.8.16
-         */
-        toolbar?: boolean;
-        /**
-         * 是否隐藏底部栏
-         * @default false
-         * @since 2.8.16
-         */
-        footer?: boolean;
     }
 
     interface LayerPhotosData {
@@ -624,6 +602,40 @@ declare namespace Layui {
         thumb?: string;
     }
 
+    interface LayerPhotosOptions extends Omit<LayerOptions, 'type' | 'id' | 'area' | 'title' | 'closeBtn' | 'shade' | 'move' | 'moveType' | 'moveOut' | 'scrollbar' | 'isOutAnim' | 'skin' | 'end'> {
+        /**
+         * 图片层的数据源
+         * 
+         * JSON 对象或者选择器，元素的 jQUery 对象，用于构造 img
+         */
+        photos?: LayerPhotosData | string | JQuery;
+        /**
+         * 图片层切换后的回调函数
+         * @param pic 当前图片的一些信息
+         * @param layero 当前元素
+         */
+        tab?(pic: LayerPhotosDataItem, layero: JQuery): void;
+        /**
+         * 是否隐藏图片底部栏
+         * @default false
+         * @since 2.8.0
+         * @deprecated 2.8.16 已移除，请使用 {@link LayerPhotosOptions.footer|footer}
+         */
+        hideFooter?: boolean;
+        /**
+         * 是否显示顶部工具栏
+         * @default true
+         * @since 2.8.16
+         */
+        toolbar?: boolean;
+        /**
+         * 是否隐藏底部栏
+         * @default false
+         * @since 2.8.16
+         */
+        footer?: boolean;
+    }
+
     /**
      * 弹层组件
      * @see https://layui.dev/docs/2/layer/
@@ -643,8 +655,6 @@ declare namespace Layui {
         /**
          * 执行初始化，就绪后执行回调参数
          * 
-         * ready(path: string, callback: () => void): void; //兼容旧版?
-         * 
          * 初始化就绪 (CSS完成的回调)，当你在页面一打开就要执行弹层时可放入回调中
          * @param callback 就绪后的回调
          */
@@ -655,22 +665,22 @@ declare namespace Layui {
          * @return 返回弹层索引
          * @see https://layui.dev/docs/2/layer/#open
          */
-        open(options?: LayerOptions): number;
+        open(options?: LayerOptions): LayerIndex;
         /**
          * 普通信息框
          * @param content 内容
          * @param options 基础属性选项
-         * @param yes  点击确定后的回调
+         * @param yes 点击确定后的回调
          * @see https://layui.dev/docs/2/layer/#alert
          */
-        alert(content: any, options?: LayerOptions, yes?: LayerBtnCallback): number;
+        alert(content: any, options?: Omit<LayerOptions, 'type' | 'yes' | 'content'>, yes?: LayerBtnCallback): LayerIndex;
         /**
          * 普通信息框
          * @param content 内容
          * @param yes 点击确定后的回调
          * @see https://layui.dev/docs/2/layer/#alert
          */
-        alert(content: any, yes?: LayerBtnCallback): number;
+        alert(content: any, yes?: LayerBtnCallback): LayerIndex;
         /**
          * 询问框
          * @param content 提示内容
@@ -696,7 +706,7 @@ declare namespace Layui {
          * });
          * ```
          */
-        confirm(content: any, options?: LayerOptions, yes?: LayerBtnCallback, cancel?: LayerCallbackCancel): number;
+        confirm(content: any, options?: Omit<LayerOptions, 'type'>, yes?: LayerBtnCallback, cancel?: LayerCallbackCancel): LayerIndex;
         /**
          * 询问框
          * @param content 提示内容
@@ -713,7 +723,7 @@ declare namespace Layui {
          * });
          * ```
          */
-        confirm(content: any, yes: LayerBtnCallback, cancel?: LayerCallbackCancel): number;
+        confirm(content: any, yes: LayerBtnCallback, cancel?: LayerCallbackCancel): LayerIndex;
         /**
          * 提示框
          * @param content 提示内容
@@ -721,27 +731,27 @@ declare namespace Layui {
          * @param end 关闭后的回调
          * @see https://layui.dev/docs/2/layer/#msg
          */
-        msg(content: string, options?: LayerOptions, end?: LayerCallbackEnd): number;
+        msg(content: string, options?: Omit<LayerOptions, 'type' | 'skin' | 'title' | 'resize' | 'end' | 'removeFocus'>, end?: LayerCallbackEnd): LayerIndex;
         /**
          * 提示框
          * @param content 提示内容
          * @param end 关闭后的回调
          * @see https://layui.dev/docs/2/layer/#msg
          */
-        msg(content: string, end?: LayerCallbackEnd): number;
+        msg(content: string, end?: LayerCallbackEnd): LayerIndex;
         /**
          * 加载层
          * @param icon 加载图标风格，支持 0-2 可选值，默认0
          * @param options 基础属性选项
          * @see https://layui.dev/docs/2/layer/#load
          */
-        load(icon?: 0 | 1 | 2, options?: LayerOptions): number;
+        load(icon?: 0 | 1 | 2, options?: Omit<LayerOptions, 'type' | 'resize' | 'removeFocus'>): LayerIndex;
         /**
          * 加载层
          * @param options 基础属性选项
          * @see https://layui.dev/docs/2/layer/#load
          */
-        load(options?: LayerOptions): number;
+        load(options?: Omit<LayerOptions, 'type' | 'resize' | 'removeFocus'>): LayerIndex;
         /**
          * tips 层
          * @param content 显示的内容
@@ -749,7 +759,7 @@ declare namespace Layui {
          * @param options 基础属性选项
          * @see https://layui.dev/docs/2/layer/#tips
          */
-        tips(content?: string, referenceEl?: string | HTMLElement | JQuery, options?: LayerOptions): number;
+        tips(content?: string, referenceEl?: string | HTMLElement | JQuery, options?: Omit<LayerOptions, 'type' | 'content' | 'closeBtn' | 'resize' | 'removeFocus'>): LayerIndex;
         /**
          * 输入层
          * @param options 参数
@@ -770,39 +780,32 @@ declare namespace Layui {
          * );
          * ```
          */
-        prompt(options?: LayerPromptOptions, yes?: LayerCallbackPrompt): number;
+        prompt(options?: LayerPromptOptions, yes?: LayerCallbackPrompt): LayerIndex;
         /**
          * 输入层
          * @param yes 点击确定的回调
          * @see https://layui.dev/docs/2/layer/#prompt
          * @example 
          * ```js
-         * layui.layer.prompt({
-         *    formType: 2, // 输入框类型，支持0（文本）默认1（密码）2（多行文本）
-         *    value: '初始值', // 初始时的值，默认空字符
-         *    maxlength: 140, // 可输入文本的最大长度，默认500
-         *    title: '请输入值',
-         *    area: ['800px', '350px'], // 自定义文本域宽高
-         *  },(value, index, elem) => {
-         *     layui.layer.alert(value); // 得到value
-         *     layui.layer.close(index);
-         *   },
-         * );
+         * layer.prompt(function(value, index, elem){
+         *   alert(value); // 得到 value
+         *   layer.close(index); // 关闭层
+         * });
          * ```
          */
-        prompt(yes: LayerCallbackPrompt): number;
+        prompt(yes?: LayerCallbackPrompt): LayerIndex;
         /**
          * 标签层
          * @param options 
          * @see https://layui.dev/docs/2/layer/#tab
          */
-        tab(options?: LayerTabOptions): number;
+        tab(options: LayerTabOptions): LayerIndex;
         /**
          * 相册层
          * @param options 属性选项
          * @see https://layui.dev/docs/2/layer/#photos
          */
-        photos(options?: LayerPhotosOptions): number;
+        photos(options: LayerPhotosOptions): LayerIndex;
         /**
          * 关闭指定层
          * @param index 层索引
@@ -848,7 +851,7 @@ declare namespace Layui {
          * @param selector iframe 子页面的选择器或元素对象
          * @param index 打开弹层时返回的唯一索引
          */
-        getChildFrame(selector: string | HTMLElement | JQuery, index: number): JQuery;
+        getChildFrame(selector: string | Element | JQuery, index: number): JQuery;
         /**
          * 在 iframe 页中获取弹层索引
          * @param windowName 即 window.name

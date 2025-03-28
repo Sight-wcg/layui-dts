@@ -93,7 +93,7 @@ declare namespace Layui {
          */
         bgcolor?: string;
         /**
-         * 用于控制出现TOP按钮的滚动条高度临界值。默认：200
+         * 用于控制出现 TOP 按钮的滚动条高度临界值。默认：200
          * @deprecated 2.8.0 已废弃, 请使用 {@link UtilBarOptions.margin|margin}
          * @see {@link UtilBarOptions.margin|margin}
          */
@@ -102,11 +102,12 @@ declare namespace Layui {
          * 你可以通过重置bar的位置，比如 css: {right: 100, bottom: 100}
          */
         css?: { [key: string]: string | number | boolean };
-
         /**
-         * 点击bar的回调，函数返回一个type参数，用于区分bar类型。    <br/>&nbsp;
-         *  支持的类型有：bar1、bar2、top
+         * 点击bar的回调，函数返回一个type参数，用于区分 bar 类型
+         * 
+         * 支持的类型有：bar1、bar2、top
          * @param type  bar1、bar2、top
+         * @deprecated 2.8.0 已废弃，请使用 {@link UtilBarOptions.on|on}
          */
         click?(type: string | 'bar1' | 'bar2' | 'top'): void;
     }
@@ -186,8 +187,9 @@ declare namespace Layui {
         /**
          * 固定块
          * @param option 参数
+         * @see https://layui.dev/docs/2/fixbar/
          */
-        fixbar(option?: UtilBarOptions): void;
+        fixbar(option: UtilBarOptions): void;
         /**
          * 倒计时
          * @param endTime 结束时间戳或 Date 对象，如：4073558400000，或：new Date(2099,1,1)
@@ -215,7 +217,7 @@ declare namespace Layui {
          * @param time 当前时间之前的时间戳或日期对象
          * @param onlyDate 是否在超过 30 天后，只返回日期字符，而不返回时分秒
          */
-        timeAgo(time?: number | Date, onlyDate?: boolean): string;
+        timeAgo(time: number | Date, onlyDate?: boolean): string;
         /**
          * 转化时间戳或日期对象为日期格式字符
          * 
@@ -244,23 +246,23 @@ declare namespace Layui {
          * @param format 默认：yyyy-MM-dd HH:mm:ss
          * @param option 参数选项 {customMeridiem: function(hours, minutes){ return hours < 12 ? '上午' : '下午'; }}
          */
-        toDateString(time?: number | Date, format?: string, option?: { customMeridiem: (hours: number, minutes: number) => string }): string;
+        toDateString(time: number | Date, format?: string, option?: { customMeridiem?: (hours: number, minutes: number) => string }): string;
         /**
          * 数字前置补零
          * @param num 数字
          * @param length 补 0 后的长度
          */
-        digit(num?: number | string, length?: number): string;
+        digit(num: number | string, length?: number): string;
         /**
          * 转义 xss 字符
          * @param str
          */
-        escape(str?: any): string;
+        escape(str: any): string;
         /**
          * 将转义后的 HTML 还原
          * @since 2.6.0
          */
-        unescape(str?: any): string;
+        unescape(str: any): string;
         /**
          * 批量处理事件
          * @param attr 绑定需要监听事件的元素属性
@@ -285,7 +287,23 @@ declare namespace Layui {
          * @returns 返回当前 events 参数设置的事件集合
          * @since 2.9.0
          */
-        on(attr: string, events: { [index: string]: (othis: JQuery, e: JQuery.Event) => any }, options?: { trigger: string; elem: string | HTMLElement | JQuery }): object;
-        on(events: { [index: string]: (othis: JQuery, e: JQuery.Event) => any }, options?: { trigger: string; elem: string | HTMLElement | JQuery }): object;
+        on(
+            attr: string, 
+            events: { [index: string]: (othis: JQuery, e: JQuery.Event) => any }, 
+            options?: { trigger?: string; elem?: string | Element | JQuery }
+        ): Record<string, any>;
+        /**
+         * 批量事件处理
+         * @param events 事件集合
+         * @param options 参数选项
+         * - elem 触发事件的委托元素，默认值 body
+         * - trigger 事件触发的方式，默认值 'click'
+         * @returns 返回当前 events 参数设置的事件集合
+         * @since 2.9.0
+         */
+        on(
+            events: { [index: string]: (othis: JQuery, e: JQuery.Event) => any }, 
+            options?: { trigger?: string; elem?: string | Element | JQuery }
+        ): Record<string, any>;
     }
 }

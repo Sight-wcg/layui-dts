@@ -80,7 +80,7 @@ declare namespace Layui {
         change?(value: number | number[]): void;
         /**
          * 滑块拖拽完毕的回调函数，滑块拖动过程中不会触发
-         * @param value 滑块当前值
+         * @param value 滑块为范围模式是数组，否则是数字
          * @since 2.8.0
          */
         done?(value: number | number[]): void;

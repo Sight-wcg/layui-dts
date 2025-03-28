@@ -1,11 +1,11 @@
 declare namespace Layui {
     interface LayPageOptions {
         /**
-         * 指向存放分页的容器，值可以是容器 ID、DOM对象
+         * 指向存放分页的容器，值可以是容器 ID、DOM 对象
          * - elem: 'id'   注意：这里不能加 # 号
          * - elem: document.getElementById('id')
          */
-        elem?: string | HTMLElement;
+        elem: string | HTMLElement;
         /**
          * 数据总数。一般通过服务端得到
          */
@@ -150,6 +150,6 @@ declare namespace Layui {
          * laypage 组件渲染，核心方法
          * @param options 
          */
-        render(options?: LayPageOptions): any;
+        render(options: LayPageOptions): any;
     }
 }

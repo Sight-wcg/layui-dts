@@ -30,7 +30,7 @@ declare namespace Layui {
         /**
          * 数据源
          */
-        data?: Array<TransferOptionsData>;
+        data?: Array<any>;
         /**
          * 用于对数据源进行格式解析
          * @param data
@@ -136,7 +136,7 @@ declare namespace Layui {
          * @param id  实例唯一索引
          * @param options 各项基础参数
          */
-        reload(id: string, options: Partial<TransferOptions>): void;
+        reload(id: string, options?: Partial<TransferOptions>): void;
         /**
          * 设定全局默认参数
          * @param options 各项基础参数

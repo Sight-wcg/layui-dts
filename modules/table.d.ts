@@ -335,12 +335,12 @@ declare namespace Layui {
         /**
          * 对当前表格的完整重载
          */
-        reload(options: Partial<TableOptions>, deep?: boolean): void;
+        reload(options?: Partial<TableOptions>, deep?: boolean): void;
         /**
          * 仅数据重载
          * @since 2.7.0
          */
-        reloadData(options: Partial<TableOptions>, deep?: boolean): void;
+        reloadData(options?: Partial<TableOptions>, deep?: boolean): void;
         /**
          * 对当前表格重新分配列宽
          */
@@ -382,7 +382,7 @@ declare namespace Layui {
          * 成 data.length，即与 count 等同即可，那么默认的分页栏只会显示 1 页，若要自定义
          * 分页结构，可通过 pagebar 属性结合 laypage 组件来重新自定义分页排版
          */
-        data?: any[];
+        data?: Array<any>;
         /**
          * 设定实例唯一索引，以便用于其他方法对 table 实例进行相关操作。
          * 若该属性未设置，则默认从 elem 属性绑定的原始 table 元素中的 id 属性值中获取
@@ -566,7 +566,7 @@ declare namespace Layui {
          * @param options 各项基础参数
          * @since 2.7.3
          */
-        before?(options?: Required<TableOptions>): void;
+        before?(options: Required<TableOptions>): void;
         /**
          * 数据渲染完毕的回调函数
          * @param res 当前渲染的数据
@@ -961,7 +961,7 @@ declare namespace Layui {
         pagebar(this: HTMLElement, obj: TableOnPagebar): void;
     };
 
-    interface checkStatusReturn {
+    interface TablecheckStatusReturn {
         /**
          * 选中行的数据
          */
@@ -1033,7 +1033,7 @@ declare namespace Layui {
          * @param id table 渲染时的 id 属性值
          * @see https://layui.dev/docs/2/table/#table.checkStatus
          */
-        checkStatus(id: string): checkStatusReturn;
+        checkStatus(id: string): TablecheckStatusReturn;
         /**
          * 导出 table 中数据到文件
          * @param id table 渲染时的 id 属性值。指定 id 后下载文件名默认为 table 中 title

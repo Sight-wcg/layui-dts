@@ -1,11 +1,10 @@
 function carousel() {
   layui.use('carousel', () => {
       const carousel = layui.carousel;
-      carousel.config['a'];
-      carousel.config.nothing;
+      carousel.config['anim'] = 'updown'
 
       // 建造实例
-      carousel.render({
+      const inst = carousel.render({
           elem: '#test1',
           width: '100%', // 设置容器宽度
           arrow: 'always', // 始终显示箭头
@@ -15,15 +14,15 @@ function carousel() {
             obj.item
           }
       });
-      carousel.reload({
+      inst.reload({
           elem: '#test1',
           width: '100%', // 设置容器宽度
           arrow: 'always', // 始终显示箭头
           anim: 'updown', // 切换动画方式
       });
-      carousel.on('change(test1)', obj => {
+      carousel.on('change(test1)', function(obj) {
           // test1来源于对应HTML容器的 lay-filter="test1" 属性值
-          // this.config.width;
+           this.config.width;
           // this.elemItem;
           // this.render();
           // this.reload({});
@@ -39,6 +38,6 @@ function carousel() {
       });
       carousel.set({ autoplay: true });
 
-      carousel.goto(0);
+      inst.goto(0);
   });
 }

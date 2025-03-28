@@ -2,7 +2,7 @@ function code() {
   layui.use('code', () => {
       // 加载code模块
       layui.code(); // 引用code方法
-      layui.code({
+      var inst = layui.code({
           preview: 'iframe',
           title: 'NotePad++的风格',
           skin: 'notepad', // 如果要默认风格，不用设定该key。
@@ -39,5 +39,9 @@ function code() {
           tools: ["full",'window', {title: ['复制'], type: 'copy', event: (obj) => {}}],
           wordWrap: true
       });
+
+      inst.reloadCode({
+        code: '123'
+      })
   });
 }

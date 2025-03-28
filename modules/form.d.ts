@@ -1,11 +1,11 @@
 declare namespace Layui {
     interface LayFormData {
         /**
-         * 被执行事件的元素 DOM 对象，一般为button 对象,可能是 `input select button` 等不能用 HTMLElement
+         * 被执行事件的元素 DOM 对象，一般为 button 对象,可能是 `input select button` 等不能用 HTMLElement
          */
         elem: HTMLButtonElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
         /**
-         * 表单元素美化后的 jQuery对象
+         * 表单元素美化后的 jQuery 对象
          */
         othis: JQuery;
         /**
@@ -22,8 +22,16 @@ declare namespace Layui {
         field: any;
     }
 
+    interface LayFormVerifyConfigCallback {
+        /**
+         * @param value 当前进入验证的表单项的值
+         * @param elem 当前进入验证的表单项的 DOM 元素
+         * @return 返回验证信息；返回 true 阻止默认提示风格
+         */
+        (value: string, elem: HTMLButtonElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement): string | boolean | void;
+    }
     interface LayFormVerifyConfig {
-        [index: string]: ((value: string, item: HTMLElement) => any) | [RegExp, string];
+        [index: string]: LayFormVerifyConfigCallback | [RegExp, string];
     }
 
     /**
@@ -72,9 +80,9 @@ declare namespace Layui {
         /**
          * 取值，取出所有子元素是 `input,select,textarea` 且有 `name` 属性的表单元素值
          * @param filter 表单容器 `lay-filter=""` 属性的值
-         * @param itemForm  表单 field 子元素的父容器，没有则是第一个 `.layui-form` 作为父元素。实例：`$(".layui-form")`
+         * @param itemForm 表单 field 子元素的父容器，没有则是第一个 `.layui-form` 作为父元素。实例：`$(".layui-form")`
          */
-        getValue(filter: string, itemForm?: JQuery): { [index: string]: string };
+        getValue(filter: string, itemForm?: JQuery): Record<string, string>;
         /**
          * 表单 field 元素回调事件 （每个表单都有一个默认事件）
          * @param event 类似：`select(x)|checkbox(x)|switch(x)|radio(x)|submit(x)` x 为 field上的 `lay-filter="x"`
@@ -117,11 +125,16 @@ declare namespace Layui {
          */
         validate(elem: string | JQuery): boolean;
         /**
-         * 表单赋值 / 取值
+         * 表单取值
+         * @param filter 单域容器的 lay-filter 属性值
+         */
+        val(filter: string): Record<string, any>;
+        /**
+         * 表单赋值
          * @param filter 单域容器的 lay-filter 属性值
          * @param obj 要设置的值
          */
-        val(filter: string, obj?: Record<string, any>): any;
+        val(filter: string, obj: Record<string, any>): Record<string, any>;
         /**
          * 维护表单验证
          * @param config 验证参数

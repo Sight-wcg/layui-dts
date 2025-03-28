@@ -269,7 +269,7 @@ max: 7 // 最大日期为 7 天后
          */
         mark?: { [key: string]: string } | ((ymd: { year: number; month: number; date: number }, render: ((val: object) => void) | string) => void);
         /**
-         * @deprecated 
+         * @internal
          */
         eventElem?: string | HTMLElement | JQuery;
         /**
@@ -304,15 +304,27 @@ formatToDisplay: function (value) {
          * @return  数组中指定的时间会被禁用
          * @since 2.9.8
          */
-        disabledTime?(date: Date, type: 'start' | 'end'): { hours?(): number[]; minutes?(hour?: number): number[]; seconds?(hour?: number, minute?: number): number[] };
+        disabledTime?(
+            date: Date,
+            type: 'start' | 'end'
+        ): {
+            hours?(): number[];
+            minutes?(hour: number): number[];
+            seconds?(hour: number, minute: number): number[]
+        };
         /**
          * 自定义单元格内容
          * @param ymd 当前单元格日期对象
          * @param render 渲染函数
-         * @param info 上下文信息，type 表示面板模式
+         * @param info 上下文信息
+         * - type 表示面板模式
          * @since 2.9.9
          */
-        cellRender?(ymd: { year: number; month: number; date: number }, render: (val: string | HTMLElement | JQuery) => void, info: { type: 'year' | 'month' | 'date' }): void;
+        cellRender?(
+            ymd: { year: number; month: number; date: number },
+            render: (val: string | HTMLElement | JQuery) => void,
+            info: { type: 'year' | 'month' | 'date' }
+        ): void;
         /**
          * 控件初始打开的回调
          * @param date 基础参数
@@ -364,27 +376,50 @@ formatToDisplay: function (value) {
         close?(this: any): void;
     }
 
+    interface LaydateReturn {
+        config: Required<LayDateOptions>;
+        /**
+         * 提示
+         * @param content 提示内容
+         */
+        hint(content: string): void;
+        /**
+         * 重载
+         * @param options 选项
+         */
+        reload(options?: Partial<LayDateOptions>): void;
+    }
+
     /**
      * 日期和时间组件
      * @see https://layui.dev/docs/2/laydate/
      */
     interface Laydate {
-        /**
-         * 核心方法
-         * @param options  基础参数
-         */
-        render(options: LayDateOptions): { config: Required<LayDateOptions>; hint: (content: string) => void };
+        v: string;
+        index: number;
         /**
          * 设置全局参数
-         * @param options
+         * @param options 
          */
         set(options?: Partial<LayDateOptions>): Laydate;
         /**
+         * 主体 CSS 等待事件
+         * @param callback 
+         */
+        ready(callback: AnyFn): Laydate;
+        /**
+         * 核心方法
+         * @param options 基础参数
+         */
+        render(options: LayDateOptions): LaydateReturn;
+        /**
          * 配置基础路径
-         *  如果你不是采用 layui 或者普通 script 标签方式加载的 laydate.js
-         *  而是采用 requirejs 等其它方式引用 laydate
-         *  那么你需要设置基础路径，以便 `laydate.css` 
-         * @deprecated 2.8.0 之后不再提供独立版本
+         * 
+         * 如果你不是采用 layui 或者普通 script 标签方式加载的 laydate.js
+         * 而是采用 requirejs 等其它方式引用 laydate
+         * 那么你需要设置基础路径，以便加载 `laydate.css`
+         *  
+         * @deprecate 2.8.0 之后不再提供独立版本
          */
         path: string;
         /**
@@ -393,8 +428,8 @@ formatToDisplay: function (value) {
          * @since 2.8.0
          */
         hint(
-            id: string, 
-            option?: { 
+            id: string,
+            option?: {
                 /**
                  * 提示内容
                  */
@@ -402,7 +437,7 @@ formatToDisplay: function (value) {
                 /**
                  * 提示层自动消失所需的毫秒数
                  */
-                ms: number 
+                ms: number
             }
         ): void;
         /**
@@ -426,8 +461,8 @@ formatToDisplay: function (value) {
         close(id: string): Laydate;
         /**
          * 获取指定年月的最后一天
-         * @param month  month默认为当前月
-         * @param year  year默认为当前年
+         * @param month month 默认为当前月
+         * @param year year 默认为当前年
          */
         getEndDate(month?: number, year?: number): number;
     }
