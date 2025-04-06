@@ -165,11 +165,11 @@ declare namespace Layui {
          * - 若值为整数类型，且数字 ＜ 86400000，则数字代表天数，如： `min: -7` 即代表最小日期在 7 天前，正数代表若干天后；
          * - 若值为整数类型，且数字 ≥ 86400000，则数字代表毫秒数，如：`max: 4073558400000` 即代表最大日期在公元 3000年1月1日。
          * @example
-```
-min: '2017-1-1 00:00:00' // 最小日期时间值
-min: -7 // 最小日期为 7 天前
-max: 7 // 最大日期为 7 天后
-```
+         * ```
+         * min: '2017-1-1 00:00:00' // 最小日期时间值
+         * min: -7 // 最小日期为 7 天前
+         * max: 7 // 最大日期为 7 天后
+         * ```
          */
         min?: string | number;
         /**
@@ -183,11 +183,11 @@ max: 7 // 最大日期为 7 天后
          * - 若值为整数类型，且数字 ＜ 86400000，则数字代表天数，如： `min: -7` 即代表最小日期在 7 天前，正数代表若干天后；
          * - 若值为整数类型，且数字 ≥ 86400000，则数字代表毫秒数，如：`max: 4073558400000` 即代表最大日期在公元 3000年1月1日。
          * @example
-```
-min: '2017-1-1 00:00:00' // 最小日期时间值
-min: -7 // 最小日期为 7 天前
-max: 7 // 最大日期为 7 天后
-```
+         * ```
+         * min: '2017-1-1 00:00:00' // 最小日期时间值
+         * min: -7 // 最小日期为 7 天前
+         * max: 7 // 最大日期为 7 天后
+         * ```
          */
         max?: string | number;
         /**
@@ -224,7 +224,7 @@ max: 7 // 最大日期为 7 天后
          * - 若为 Array 类型，则可设置遮罩颜色和透明度，如：`shade: [0.5, '#000']`
          * @since 2.8.0
          */
-        shade?: number | Array<string | number>;
+        shade?: number | [opacity: number, bgColor: string];
         /**
          * 是否显示组件面板的底部栏
          * @default true
@@ -257,7 +257,7 @@ max: 7 // 最大日期为 7 天后
          * theme: ['#FF5722', '#FF5723'] // 定义主色和辅色 （2.8.4）
          * ```
          */
-        theme?: string | 'default' | 'molv' | 'grid' | 'circle' | Array<string | 'molv' | 'grid' | 'circle'>;
+        theme?: MaybeArray<string | 'molv' | 'grid' | 'circle'>;
         /**
          * 是否显示公历节日
          * @default false
@@ -277,16 +277,16 @@ max: 7 // 最大日期为 7 天后
          * @param value 日期字符串
          * @since 2.9.9
          * @example
-```
-formatToDisplay: function (value) {
-  var date = new Date(value);
-  var displayValue = [
-    value,
-    date.toLocaleDateString(Intl.LocalesArgument, { weekday: 'long' })
-  ].join(' ')；
-  return displayValue;
-};
-```
+         * ```js
+         * formatToDisplay: function (value) {
+         *   var date = new Date(value);
+         *   var displayValue = [
+         *     value,
+         *     date.toLocaleDateString(Intl.LocalesArgument, { weekday: 'long' })
+         *   ].join(' ')；
+         *   return displayValue;
+         * };
+         * ```
          */
         formatToDisplay?(value: string): string;
         /**
@@ -301,7 +301,7 @@ formatToDisplay: function (value) {
          * 设置不可选取的时间
          * @param date 当前的日期对象
          * @param type 面板类型，'start'|'end'
-         * @return  数组中指定的时间会被禁用
+         * @return 数组中指定的时间会被禁用
          * @since 2.9.8
          */
         disabledTime?(
@@ -334,21 +334,21 @@ formatToDisplay: function (value) {
          * 日期时间被切换后的回调   this to test and elem
          * @param value 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
          * @param date 得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
-         * @param endDate 开启范围选择（range: true）才会返回。对象成员同上date
+         * @param endDate 开启范围选择（range: true）才会返回。对象成员同上 date
          */
         change?(value: string, date: LayDateCallbackParam, endDate: LayDateCallbackParam): void;
         /**
          * 控件选择完毕后的回调
          * @param value 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
          * @param date 得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
-         * @param endDate 开启范围选择（range: true）才会返回。对象成员同上date
+         * @param endDate 开启范围选择（range: true）才会返回。对象成员同上 date
          */
         done?(value: string, date: LayDateCallbackParam, endDate: LayDateCallbackParam): void;
         /**
          * 点击底部栏「确定」按钮时的回调函数
          * @param value 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
          * @param date 得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
-         * @param endDate 开启范围选择（range: true）才会返回。对象成员同上date
+         * @param endDate 开启范围选择（range: true）才会返回。对象成员同上 date
          * @since 2.8.0
          */
         onConfirm?(value: string, date: LayDateCallbackParam, endDate: LayDateCallbackParam): void;
@@ -356,7 +356,7 @@ formatToDisplay: function (value) {
          * 点击底部栏「现在」按钮时的回调函数
          * @param value 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
          * @param date 得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
-         * @param endDate 开启范围选择（range: true）才会返回。对象成员同上date
+         * @param endDate 开启范围选择（range: true）才会返回。对象成员同上 date
          * @since 2.8.0
          */
         onNow?(value: string, date: LayDateCallbackParam, endDate: LayDateCallbackParam): void;
@@ -364,7 +364,7 @@ formatToDisplay: function (value) {
          * 点击底部栏「清空」按钮时的回调函数
          * @param value 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
          * @param date 得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
-         * @param endDate 开启范围选择（range: true）才会返回。对象成员同上date
+         * @param endDate 开启范围选择（range: true）才会返回。对象成员同上 date
          * @since 2.8.0
          */
         onClear?(value: string, date: LayDateCallbackParam, endDate: LayDateCallbackParam): void;
@@ -391,7 +391,7 @@ formatToDisplay: function (value) {
     }
 
     /**
-     * 日期和时间组件
+     * 日期选择器
      * @see https://layui.dev/docs/2/laydate/
      */
     interface Laydate {

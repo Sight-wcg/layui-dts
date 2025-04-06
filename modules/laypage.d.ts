@@ -135,7 +135,7 @@ declare namespace Layui {
     }
 
     /**
-     * 分页模块
+     * 分页
      * @see https://layui.dev/docs/2/laypage/
      */
     interface Laypage {
@@ -143,7 +143,7 @@ declare namespace Layui {
         on<K extends keyof HTMLElementEventMap>(
             elem: HTMLElement | null,
             event: K,
-            listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => void,
+            listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any,
         ): void;
         on(elem: HTMLElement | null, event: string, listener: (this: HTMLElement, ...args: any) => any): void;
         /**

@@ -47,11 +47,11 @@ declare namespace Layui {
     }
 
     /**
-     * 评分组件
+     * 评分
      * @see https://layui.dev/docs/2/rate/
      */
     interface Rate {
-        config: { [index: string]: any };
+        config: Record<string, any>;
         index: number;
         /**
          * @param event

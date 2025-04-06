@@ -81,7 +81,8 @@ declare namespace Layui {
          */
         isSpreadItem?: boolean;
         /**
-         * 延迟关闭的毫秒数。当 trigger 为 hover 时才生效 默认：300
+         * 延迟关闭的毫秒数。当 trigger 为 hover 时才生效
+         * @default 300
          * @since 2.9.2 支持数组类型，数组成员值分别表示显示延迟时间和隐藏延迟时间
          */
         delay?: number | [show: number, hide: number];
@@ -90,7 +91,7 @@ declare namespace Layui {
          */
         className?: string;
         /**
-         * 设置组件的 style 属性，从而定义新的样式
+         * 设置组件的 style 属性
          */
         style?: string;
         /**
@@ -100,17 +101,16 @@ declare namespace Layui {
          * @default 0
          * @since 2.8.0
          */
-        shade?: number | Array<string | number>;
+        shade?: number | [opacity: number, bgColor: string];
         /**
          * 全局定义菜单的列表模板，可添加任意 html 字符，且支持 laytpl 模板语法
          * @since 2.8.0 支持函数类型
          * @example
-```js
-// 2.8.0 支持函数类型
-templet: function(d){
-  return '<i class="layui-icon layui-icon-tips"></i> ' + d.title;
-}
-```
+         * ```js
+         * templet: function(d){
+         *   return '<i class="layui-icon layui-icon-tips"></i> ' + d.title;
+         * }
+         * ```
          */
         templet?: string | ((d: object) => string);
         /**
@@ -155,7 +155,7 @@ templet: function(d){
          * @since 2.8.0 支持返回 false，阻止关闭面板
          * @since 2.9.18 支持事件对象 e 参数，e 为点击事件的事件对象
          */
-        click?(this: DropdownOptions, data: any, othis: JQuery, e: Event): void | boolean;
+        click?(this: DropdownOptions, data: any, othis: JQuery, e: JQuery.Event): void | boolean;
         /**
          * 面板关闭后的回调函数
          * @param elem 当前组件绑定的目标元素对象

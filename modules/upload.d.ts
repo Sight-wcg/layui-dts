@@ -227,6 +227,7 @@ declare namespace Layui {
          */
         upload(files?: Blob[]): void;
     }
+
     interface UploadText {
         /**
          * 数据格式错误的提示
@@ -262,7 +263,7 @@ declare namespace Layui {
         /**
          * 全局参数项
          */
-        config: { [index: string]: any };
+        config: Record<string, any>;
         /**
          * 绑定事件，内部 modName 默认为 upload，绑定参考 layui.onevent，触发参考 layui.event
          * @param events
@@ -271,12 +272,12 @@ declare namespace Layui {
         on(events: string, callback: (this: Layui, obj: any) => any): any;
         /**
          * 核心方法
-         * @param option 基础参数
+         * @param option 属性选项
          */
         render(option: UploadOptions): UploadReturn;
         /**
          * 设置upload全局参数(预设基础参数值)
-         * @param option 参数
+         * @param option 属性选项
          */
         set(option?: Partial<UploadOptions>): Upload;
     }

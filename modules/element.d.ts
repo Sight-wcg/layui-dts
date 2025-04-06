@@ -91,12 +91,12 @@ declare namespace Layui {
      * 元素操作
      */
     interface Element {
-        config: { [index: string]: any };
+        config: Record<string, any>;
         /**
          * 全局设置
          * @param options 选项 
          */
-        set(options: object): Element;
+        set(options: Record<string, any>): this;
         /**
          * 用于元素的一些事件触发
          * @param event 事件名称
@@ -115,14 +115,14 @@ declare namespace Layui {
          * 用于删除指定的Tab选项
          * @param filter tab 元素的 `lay-filter="value"` 过滤器的值
          * @param layid 选项卡标题列表的 lay-id 属性的值
-         * @param force 是否强制删除，默认为false。如果为true，则会直接删除，不会触发事件 2.9.21
+         * @param force 是否强制删除，默认为false。如果为true，则会直接删除，不会触发事件 (2.9.21+)
          */
         tabDelete(filter: string, layid: string, force?: boolean): void;
         /**
          * 用于外部切换到指定的Tab项上
          * @param filter 对应容器 lay-filter 的属性值
          * @param layid 比如：lay-id="xx"中的 'xx'
-         * @param force 是否强制切换，默认为false。如果为true，则会直接切换，不会触发事件 2.9.15
+         * @param force 是否强制切换，默认为false。如果为true，则会直接切换，不会触发事件 (2.9.15+)
          */
         tabChange(filter: string, layid: string, force?: boolean): void;
         /**
@@ -136,9 +136,9 @@ declare namespace Layui {
          * @param filter 对应进度条容器 lay-filter 的属性值
          * @param percent 比例，百分比字符串，例如：'30%'、'50%'
          * @example
-```js
-element.progress('demo', '30%')
-```
+         * ```js
+         * element.progress('demo', '30%')
+         * ```
          */
         progress(filter: string, percent: string): void;
         /**
@@ -155,7 +155,7 @@ element.progress('demo', '30%')
          */
         init(type?: 'tab' | 'nav' | 'breadcrumb' | 'progress' | 'collapse', filter?: string | JQuery): void;
         /**
-         * Element 渲染方法，用于重新渲染 Element 组件。
+         * Element 渲染方法，用于重新渲染 Element 组件
          * @param type 渲染类型，未指定时将重新渲染页面内所有类型的 Element 组件
          * - `tab` 渲染 tab 选项卡
          * - `nav` 渲染导航栏目

@@ -1,24 +1,24 @@
 declare namespace Layui {
-    interface Lay<TElement = HTMLElement> extends ArrayLike<TElement>,Iterable<TElement> {
+    interface Lay<TElement = HTMLElement> extends ArrayLike<TElement>, Iterable<TElement> {
         /**
          * 当前的选择器
          */
         selector: string | undefined;
         /**
          * 添加 CSS 类
-         * @param className  类名
+         * @param className 类名
          * @param remove 是否是移除 `className`, 默认 `false`
          */
         addClass(className: string, remove?: boolean): this;
         /**
          * 追加内容
-         * @param elem html或者元素对象
+         * @param elem html 或者元素对象
          */
         append(elem?: string | HTMLElement): this;
         /**
          * 设置元素属性
-         * @param key 是attribute的key
-         * @param value 是attribute的value
+         * @param key 属性名
+         * @param value 属性值
          */
         attr(key: string, value: any): this;
         /**
@@ -27,20 +27,20 @@ declare namespace Layui {
         attr(): string;
         /**
          * 添加 css style
-         * @param key 属性css
+         * @param key 属性名
          * @param value 值
          */
         css(key: string, value: any): this;
         /**
          * 获取 css style
-         * @param key 属性css
+         * @param key 属性名
          */
         css(key: string): string;
         /**
          * 对元素遍历
-         * @param fn (index,elem)
+         * @param fn 回调函数，返回 `true` 则停止遍历，和 jQuery 相反
          */
-        each(fn?: (this: HTMLElement, index: number, elem: HTMLElement) => any): this;
+        each(fn?: (this: TElement, index: number, elem: TElement) => any): this;
         /**
          * 查找子元素
          * @param selector 选择器
@@ -73,14 +73,16 @@ declare namespace Layui {
          * 解除事件
          * @param eventName 事件名
          * @param fn 回调
+         * @since 2.9.11 新增 options
          */
-        off(eventName: keyof HTMLElementEventMap, fn: AnyFn): this;
+        off<K extends keyof HTMLElementEventMap>(eventName: K, fn: (this: TElement, e: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): this;
         /**
          * 事件绑定，注意：只支持内置事件，不支持自定义事件
          * @param eventName 事件名 比如click，自定事件会绑定失败
-         * @param fn 回调 (tip:this:any)
+         * @param fn 回调
+         * @since 2.9.11 新增 options
          */
-        on(eventName: keyof HTMLElementEventMap, fn: AnyFn): this;
+        on<K extends keyof HTMLElementEventMap>(eventName: K, fn: (this: TElement, e: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): this;
         /**
          * 移除元素
          * @param elem 实际是 removeChild(elem)
@@ -88,7 +90,7 @@ declare namespace Layui {
         remove(elem: HTMLElement): this
         /**
          * 移除指定的 `attribute`
-         * @param key 是 attribute 的 key
+         * @param key 属性名
          */
         removeAttr(key: string): this;
         /**
@@ -97,7 +99,7 @@ declare namespace Layui {
          */
         removeClass(className: string): this;
         /**
-         * 设置元素的value
+         * 设置元素的 value
          * @param value 值
          */
         val(value: any): this;
@@ -114,6 +116,7 @@ declare namespace Layui {
          * 获取第一个元素宽度
          */
         width(): number;
+        [n: number]: TElement;
     }
 
     interface LayTouchSwipeState {
@@ -141,6 +144,66 @@ declare namespace Layui {
          * 开始时间
          */
         timeStart: Date;
+    }
+
+    interface LayPositionOptions {
+        /**
+         * 元素的定位模式
+         * @default 'absolute'
+         */
+        position?: 'absolute' | 'fixed';
+        /**
+         * 点击类型，默认为 'left'，如果 {@link opts.target} 是 document 或 body 元素，则为 'right'
+         */
+        clickType?: 'left' | 'right';
+        /**
+         * 对齐方式
+         * @default 'left'
+         */
+        align?: 'left' | 'center' | 'right';
+        /**
+         * 顶部没有足够区域显示时，是否允许底部溢出
+         */
+        allowBottomOut?: boolean;
+        /**
+         * 边距
+         */
+        margin?: number;
+        /**
+         * 事件对象，仅右键生效
+         */
+        e?: MouseEvent | { clientX: number; clientY: number };
+        /**
+         * 是否重载，用于出现滚动条时重新计算位置
+         * 这是一个仅供内部使用的私有参数
+         */
+        SYSTEM_RELOAD?: boolean;
+        /**
+         * 相对于触发元素的额外偏移量[x,y]
+         */
+        offset?: [offsetX: number, offsetY: number]
+    }
+
+    interface LayOnClickOutsideOpsions {
+        /**
+         * 监听的事件类型
+         * @default 'pointerdown''
+         */
+        event?: string;
+        /**
+         * 监听范围
+         * @default document
+         */
+        scope?: HTMLElement | Document | Window;
+        /**
+         * 忽略监听的元素或选择器字符串
+         */
+        ignore?: Array<string | HTMLElement>
+        /**
+         * 对内部事件侦听器使用捕获阶段
+         * @default true
+         */
+        capture?: boolean;
     }
 
     interface LayStatic {
@@ -193,7 +256,7 @@ declare namespace Layui {
         /**
          * 阻止事件冒泡
          */
-        stope(event: Event): void;
+        stope(event: Event | JQuery.Event): void;
         /**
         * 对象（Array、Object、DOM 对象等）遍历，可用于取代 for 语句
         * @param collection Array对象
@@ -207,10 +270,10 @@ declare namespace Layui {
          * @param length 数字长度，默认值 2。如果原始数字长度小于 length，则前面补零
          * @returns 返回补 0 后的数字
          * @example
-```js
-lay.digit(6, 2); // "06"
-lay.digit('7', 3); // "007"
-```
+         * ```js
+         * lay.digit(6, 2); // "06"
+         * lay.digit('7', 3); // "007"
+         * ```
          */
         digit(num: number | string, length?: number): string;
         /**
@@ -218,9 +281,9 @@ lay.digit('7', 3); // "007"
          * @param elemName 元素的标签名
          * @param attr 添加到元素上的属性
          * @example
-```js
-lay.elem('div', {id: 'test'}) // <div id="test"></div>
-```
+         * ```js
+         * lay.elem('div', {id: 'test'}) // <div id="test"></div>
+         * ```
          */
         elem<K extends keyof HTMLElementTagNameMap>(elemName: K, attr?: object): HTMLElementTagNameMap[K];
         /**
@@ -236,17 +299,17 @@ lay.elem('div', {id: 'test'}) // <div id="test"></div>
          * - text: 样式内容
          * @since 2.8.15
          * @example
-```html
-<div id="targetEl">
-  <!-- 样式追加到目标容器 -->
-  <style id="LAY-STYLE-DF-0">.card{color: #000}</style>
-</div>
-
-lay.style({
-  target: '#targetEl',
-  text: '.card{color: #000}'
-}) // <style id="LAY-STYLE-DF-0">.card{color: #000}</style>
-```
+         * ```html
+         * <div id="targetEl">
+         *   <!-- 样式追加到目标容器 -->
+         *   <style id="LAY-STYLE-DF-0">.card{color: #000}</style>
+         * </div>
+         * 
+         * lay.style({
+         *   target: '#targetEl',
+         *   text: '.card{color: #000}'
+         * }) // <style id="LAY-STYLE-DF-0">.card{color: #000}</style>
+         * ```
          */
         style(options: { target?: string | HTMLElement | JQuery; id?: string; text: string }): HTMLStyleElement;
         /**
@@ -255,112 +318,72 @@ lay.style({
          * @param elem 定位元素
          * @param opts 可配置的选项
          * @example
-```js
-<button id="targetEl">dropdown</button>
-<ul id="contentEl" class="dropdown-menu">
-  <li>菜单1</li>
-  <li>菜单2</li>
-</ul>
-
-// 下拉菜单将被定位到按钮附近
-lay.position(
-  $('#targetEl')[0],
-  $('#contentEl')[0],
-  {
-    position: 'fixed',
-    align: 'center'
-  }
-)
-```
+         * ```js
+         * <button id="targetEl">dropdown</button>
+         * <ul id="contentEl" class="dropdown-menu">
+         *   <li>菜单1</li>
+         *   <li>菜单2</li>
+         * </ul>
+         * 
+         * // 下拉菜单将被定位到按钮附近
+         * lay.position(
+         *   $('#targetEl')[0],
+         *   $('#contentEl')[0],
+         *   {
+         *     position: 'fixed',
+         *     align: 'center'
+         *   }
+         * )
+         * ```
          */
-        position(
-            target: HTMLElement,
-            elem: HTMLElement,
-            opts?: {
-                /**
-                 * 元素的定位模式
-                 * @default 'absolute'
-                 */
-                position?: 'absolute' | 'fixed';
-                /**
-                 * 点击类型，默认为 'left'，如果 {@link opts.target} 是 document 或 body 元素，则为 'right'
-                 */
-                clickType?: 'left' | 'right';
-                /**
-                 * 对齐方式
-                 * @default 'left'
-                 */
-                align?: 'left' | 'center' | 'right';
-                /**
-                 * 顶部没有足够区域显示时，是否允许底部溢出
-                 */
-                allowBottomOut?: boolean;
-                /**
-                 * 边距
-                 */
-                margin?: number;
-                /**
-                 * 事件对象，仅右键生效
-                 */
-                e?: MouseEvent | { clientX: number; clientY: number };
-                /**
-                 * 是否重载，用于出现滚动条时重新计算位置
-                 * 这是一个仅供内部使用的私有参数
-                 */
-                SYSTEM_RELOAD?: boolean;
-                /**
-                 * 相对于触发元素的额外偏移量[x,y]
-                 */
-                offset?: [offsetX: number, offsetY: number]
-            }
-        ): void;
+        position(target: HTMLElement, elem: HTMLElement, opts?: LayPositionOptions): void;
         /**
          * 获取元素上的属性配置项
          * @param elem HTML 元素
          * @param attr 可配置的选项，string 类型指定属性名
          * @example
-```js
-  <div id="testEl" lay-options="{color:red}" lay-toc="{hot: true}"></div>
-
-  var elem = $('#testEl')
-  lay.options(elem) // {color:red}
-  lay.options(elem[0]) // {color:red}
-  lay.options('#testEl') // {color:red}
-  lay.options('#testEl', {attr: 'lay-toc'}) // {hot: true}
-  lay.options('#testEl', 'lay-toc') // {hot: true}
-
-  $('#testEl').attr('lay-toc') // '{hot: true}'
-```
+         * ```js
+         * <div id="testEl" lay-options="{color:red}" lay-toc="{hot: true}"></div>
+         * 
+         * var elem = $('#testEl')
+         * lay.options(elem) // {color:red}
+         * lay.options(elem[0]) // {color:red}
+         * lay.options('#testEl') // {color:red}
+         * lay.options('#testEl', {attr: 'lay-toc'}) // {hot: true}
+         * lay.options('#testEl', 'lay-toc') // {hot: true}
+         * 
+         * $('#testEl').attr('lay-toc') // '{hot: true}'
+         * ```
          */
-        options(elem: string | HTMLElement | JQuery, attr?: string | Record<string, string>): any;
+        options(elem: string | HTMLElement | JQuery, attr?: string | Record<string, string>): Record<string, any>;
         /**
          * 元素是否属于顶级元素（document 或 body）
          * @param elem HTML 元素
          */
-        isTopElem(elem: any): boolean;
+        isTopElem(elem: unknown): elem is Document | HTMLBodyElement;
         /**
          * 获取 style rules
          * @param style HTMLStyle 元素
          * @param callback 用来返回 style 元素中的每个 `style rule` 的函数，返回 true 终止遍历
          * @example
-```html
-<style id="test">
-  .lay-card{
-     color: #000;
-   }
-   .lay-btn-success{
-     color: green;
-   }
-</style>
-
-lay.getStyleRules($('#test')[0], function(rule, index){
-  if(rule.selectorText === '.lay-card'){
-    console.log(index, rule.cssText) // 0 '.lay-card{color: #000}'
-    rule.style.color = '#EEE';
-    return true; // 终止遍历
-  }
- }) // RuleList
-   * ```
+         * ```js
+         * <style id="test">
+         * .lay-card{
+         *   color: #000;
+         * }
+         * .lay-btn-success{
+         *   color: green;
+         * }
+         * </style>
+         * 
+         * lay.getStyleRules($('#test')[0], function(rule, index){
+         *   if(rule.selectorText === '.lay-card'){
+         *     console.log(index, rule.cssText) // 0 '.lay-card{color: #000}'
+         *     rule.style.color = '#EEE';
+         *     return true; // 终止遍历
+         *   }
+         * }) // RuleList
+         * ```
          */
         getStyleRules(style: HTMLStyleElement, callback: (ruleItem: CSSStyleRule, index: number) => boolean): CSSRuleList;
         clipboard: {
@@ -409,30 +432,13 @@ lay.getStyleRules($('#test')[0], function(rule, index){
         onClickOutside(
             target: HTMLElement,
             handler: (e: MouseEvent) => void,
-            options?: {
-                /**
-                 * 监听的事件类型，默认值：pointerdown
-                 */
-                event?: string;
-                /**
-                 * 监听范围，默认值：document
-                 */
-                scope?: HTMLElement | Document | Window;
-                /**
-                 * 忽略监听的元素或选择器字符串
-                 */
-                ignore?: Array<string | HTMLElement>
-                /**
-                 * 对内部事件侦听器使用捕获阶段
-                 */
-                capture?: boolean;
-            }
+            options?: LayOnClickOutsideOpsions
         ): Fn;
         /**
          * 判断一个对象是否具有某个自身的属性，而不考虑继承的属性
          * @param obj 对象
          * @param key 属性名
          */
-        hasOwn<O, K extends PropertyKey, V = unknown>(o: O, p: K): o is O & Record<K, V>;
+        hasOwn<O, K extends PropertyKey, V = unknown>(obj: O, prop: K): obj is O & Record<K, V>;
     }
 }

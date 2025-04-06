@@ -29,7 +29,7 @@ declare namespace Layui {
          * - 默认可直接设置数值，如： value: 50
          * - 若滑块开启 range: true 区间选择，则值为数组，异表示开始和结尾的区间，如： value: [30, 60]
          */
-        value?: number | number[];
+        value?: MaybeArray<number>;
         /**
          * 拖动的步长
          * @default 1
@@ -72,18 +72,18 @@ declare namespace Layui {
          * 自定义提示文本
          * @param value 滑块为范围模式是数组，否则是数字
          */
-        setTips?(value: number | number[]): string;
+        setTips?(value: MaybeArray<number>): string;
         /**
          * 数值改变的回调
          * @param value 滑块为范围模式是数组，否则是数字
          */
-        change?(value: number | number[]): void;
+        change?(value: MaybeArray<number>): void;
         /**
          * 滑块拖拽完毕的回调函数，滑块拖动过程中不会触发
          * @param value 滑块为范围模式是数组，否则是数字
          * @since 2.8.0
          */
-        done?(value: number | number[]): void;
+        done?(value: MaybeArray<number>): void;
     }
 
     /**
@@ -91,7 +91,7 @@ declare namespace Layui {
      * @see https://layui.dev/docs/2/slider/
      */
     interface Slider {
-        config: { [index: string]: any };
+        config: Record<string, any>;
         index: number;
         /**
          * 设置滑块的全局参数

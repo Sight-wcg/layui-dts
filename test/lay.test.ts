@@ -34,8 +34,8 @@ function layTest() {
   layui.lay('').each;
   layui.lay('').addClass('');
   layui.lay('').length;
-  layui.lay('#abc').on('click', e => {
-      console.log();
+  layui.lay('#abc').on('click', function(e) {
+      console.log(this, e);
   });
   layui.laypage.on(document.getElementById('abc'), 'click', e => {
       console.log(e);

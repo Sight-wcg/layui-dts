@@ -29,16 +29,16 @@ declare namespace Layui {
         /**
          * 预定义颜色，此参数需配合 {@link predefine|`predefine:true`} 使用
          * @example
-```js
-  colorpicker.render({
-    elem: '#ID-colorpicker-demo-predefine-2',
-    color: '#9d8a0e',
-    predefine: true, // 开启预定义颜色
-    colors: ['#ff8c00','#00ced1','#9d8a0e'] //自定义预定义颜色项
-  });
-```
+         * ```js
+         * colorpicker.render({
+         *   elem: '#ID-colorpicker-demo-predefine-2',
+         *   color: '#9d8a0e',
+         *   predefine: true, // 开启预定义颜色
+         *   colors: ['#ff8c00','#00ced1','#9d8a0e'] //自定义预定义颜色项
+         * });
+         * ```
          */
-        colors?: string[];
+        colors?: Array<string>;
         /**
          * 下拉框大小
          * @default 'sm'
@@ -73,16 +73,16 @@ declare namespace Layui {
      * @see https://layui.dev/docs/2/colorpicker/
      */
     interface ColorPicker {
-        config: { [index: string]: any };
+        config: Record<string, any>;
         index: number;
         /**
-         * colorpicker 组件渲染，核心方法
-         * @param option colorpicker 选项
+         * colorpicker 组件渲染方法
+         * @param option 属性选项
          */
         render(option: ColorPickerOptions): ColorPicker;
         /**
          * 全局设置
-         * @param option colorpicker 选项
+         * @param option 属性选项
          */
         set(option: ColorPickerOptions): ColorPicker;
         /**

@@ -89,7 +89,7 @@ declare namespace Layui {
     }
 
     interface TransferReturn {
-        config: { [index: string]: any };
+        config: Record<string, any>;
         /**
          * 获得右侧数据
          */
@@ -109,11 +109,11 @@ declare namespace Layui {
     }
 
     /**
-     * 穿梭框组件
+     * 穿梭框
      * @see https://layui.dev/docs/2/transfer/
      */
     interface Transfer {
-        config: { [index: string]: any };
+        config: Record<string, any>;
         index: number;
         /**
          * 获得右侧数据

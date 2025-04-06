@@ -1,7 +1,4 @@
 declare namespace Layui {
-    /**
-     * code 模块参数
-     */
     interface CodeOptions {
         /**
          * 指定元素的选择器 默认值为 `.layui-code`
@@ -88,12 +85,12 @@ declare namespace Layui {
          * 自定义默认文本
          * @since 2.8.0
          * @example
-```js
-text: {
-  code: '代码栏标题', // 默认:  </>
-  preview: '预览栏标题' // 默认: Preview
-}
-```
+         * ```js
+         * text: {
+         *   code: '代码栏标题', // 默认:  </>
+         *   preview: '预览栏标题' // 默认: Preview
+         * }
+         * ```
          */
         text?: { code?: string; preview?: string };
         /**
@@ -189,7 +186,7 @@ text: {
          */
         langMarker?: boolean;
         /**
-         * 设置文字是否自动换行
+         * 是否自动换行
          * @default true
          * @since 2.8.17
          */
@@ -209,14 +206,14 @@ text: {
     }
 
     /**
-     * code 模块
+     * 代码预览
      * @see https://layui.dev/docs/2/code/
      */
     interface Code {
         /**
          * 渲染代码面板
          * @param options 
-         * @param _mod 默认为空，传入 `reloadCode` 则重新渲染代码面板。仅供内部使用的私有属性
+         * @param _mod 传入 `reloadCode` 则重新渲染代码面板。仅供内部使用的私有属性
          */
         (options?: CodeOptions, _mod?: 'reloadCode' ): CodeReturn;
     }

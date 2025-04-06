@@ -4,6 +4,7 @@
 // Definitions by: sight <https://github.com/Sight-wcg>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 // Minimum TypeScript Version: 4.7
+/// <reference types="jquery" />
 declare const layui: Layui;
 declare const lay: Layui.LayStatic;
 declare const layer: Layui.Layer;
@@ -672,7 +673,7 @@ declare namespace Layui {
          */
         autoplay?: boolean | 'always';
         /**
-         * 自动切换的时间间隔，单位：ms（毫秒），不能低于800
+         * 自动切换的时间间隔，单位：ms（毫秒），不能低于 800
          * @default 3000
          */
         interval?: number;
@@ -709,7 +710,7 @@ declare namespace Layui {
          * @param obj 轮播条目对象
          * @since 2.7.0
          */
-        change?: (obj: CarouselItem) => any;
+        change?(obj: CarouselItem): void;
     }
 
     interface CarouselItem {
@@ -812,7 +813,7 @@ declare namespace Layui {
     }
 
     /**
-     * 轮播组件
+     * 轮播
      * @see https://layui.dev/docs/2/carousel/
      */
     interface Carousel {
@@ -839,9 +840,6 @@ declare namespace Layui {
 
 // modules/code.d.ts
 declare namespace Layui {
-    /**
-     * code 模块参数
-     */
     interface CodeOptions {
         /**
          * 指定元素的选择器 默认值为 `.layui-code`
@@ -928,12 +926,12 @@ declare namespace Layui {
          * 自定义默认文本
          * @since 2.8.0
          * @example
-```js
-text: {
-  code: '代码栏标题', // 默认:  </>
-  preview: '预览栏标题' // 默认: Preview
-}
-```
+         * ```js
+         * text: {
+         *   code: '代码栏标题', // 默认:  </>
+         *   preview: '预览栏标题' // 默认: Preview
+         * }
+         * ```
          */
         text?: { code?: string; preview?: string };
         /**
@@ -1029,7 +1027,7 @@ text: {
          */
         langMarker?: boolean;
         /**
-         * 设置文字是否自动换行
+         * 是否自动换行
          * @default true
          * @since 2.8.17
          */
@@ -1049,14 +1047,14 @@ text: {
     }
 
     /**
-     * code 模块
+     * 代码预览
      * @see https://layui.dev/docs/2/code/
      */
     interface Code {
         /**
          * 渲染代码面板
          * @param options 
-         * @param _mod 默认为空，传入 `reloadCode` 则重新渲染代码面板。仅供内部使用的私有属性
+         * @param _mod 传入 `reloadCode` 则重新渲染代码面板。仅供内部使用的私有属性
          */
         (options?: CodeOptions, _mod?: 'reloadCode' ): CodeReturn;
     }
@@ -1094,16 +1092,16 @@ declare namespace Layui {
         /**
          * 预定义颜色，此参数需配合 {@link predefine|`predefine:true`} 使用
          * @example
-```js
-  colorpicker.render({
-    elem: '#ID-colorpicker-demo-predefine-2',
-    color: '#9d8a0e',
-    predefine: true, // 开启预定义颜色
-    colors: ['#ff8c00','#00ced1','#9d8a0e'] //自定义预定义颜色项
-  });
-```
+         * ```js
+         * colorpicker.render({
+         *   elem: '#ID-colorpicker-demo-predefine-2',
+         *   color: '#9d8a0e',
+         *   predefine: true, // 开启预定义颜色
+         *   colors: ['#ff8c00','#00ced1','#9d8a0e'] //自定义预定义颜色项
+         * });
+         * ```
          */
-        colors?: string[];
+        colors?: Array<string>;
         /**
          * 下拉框大小
          * @default 'sm'
@@ -1138,16 +1136,16 @@ declare namespace Layui {
      * @see https://layui.dev/docs/2/colorpicker/
      */
     interface ColorPicker {
-        config: { [index: string]: any };
+        config: Record<string, any>;
         index: number;
         /**
-         * colorpicker 组件渲染，核心方法
-         * @param option colorpicker 选项
+         * colorpicker 组件渲染方法
+         * @param option 属性选项
          */
         render(option: ColorPickerOptions): ColorPicker;
         /**
          * 全局设置
-         * @param option colorpicker 选项
+         * @param option 属性选项
          */
         set(option: ColorPickerOptions): ColorPicker;
         /**
@@ -1243,7 +1241,8 @@ declare namespace Layui {
          */
         isSpreadItem?: boolean;
         /**
-         * 延迟关闭的毫秒数。当 trigger 为 hover 时才生效 默认：300
+         * 延迟关闭的毫秒数。当 trigger 为 hover 时才生效
+         * @default 300
          * @since 2.9.2 支持数组类型，数组成员值分别表示显示延迟时间和隐藏延迟时间
          */
         delay?: number | [show: number, hide: number];
@@ -1252,7 +1251,7 @@ declare namespace Layui {
          */
         className?: string;
         /**
-         * 设置组件的 style 属性，从而定义新的样式
+         * 设置组件的 style 属性
          */
         style?: string;
         /**
@@ -1262,17 +1261,16 @@ declare namespace Layui {
          * @default 0
          * @since 2.8.0
          */
-        shade?: number | Array<string | number>;
+        shade?: number | [opacity: number, bgColor: string];
         /**
          * 全局定义菜单的列表模板，可添加任意 html 字符，且支持 laytpl 模板语法
          * @since 2.8.0 支持函数类型
          * @example
-```js
-// 2.8.0 支持函数类型
-templet: function(d){
-  return '<i class="layui-icon layui-icon-tips"></i> ' + d.title;
-}
-```
+         * ```js
+         * templet: function(d){
+         *   return '<i class="layui-icon layui-icon-tips"></i> ' + d.title;
+         * }
+         * ```
          */
         templet?: string | ((d: object) => string);
         /**
@@ -1317,7 +1315,7 @@ templet: function(d){
          * @since 2.8.0 支持返回 false，阻止关闭面板
          * @since 2.9.18 支持事件对象 e 参数，e 为点击事件的事件对象
          */
-        click?(this: DropdownOptions, data: any, othis: JQuery, e: Event): void | boolean;
+        click?(this: DropdownOptions, data: any, othis: JQuery, e: JQuery.Event): void | boolean;
         /**
          * 面板关闭后的回调函数
          * @param elem 当前组件绑定的目标元素对象
@@ -1495,12 +1493,12 @@ declare namespace Layui {
      * 元素操作
      */
     interface Element {
-        config: { [index: string]: any };
+        config: Record<string, any>;
         /**
          * 全局设置
          * @param options 选项 
          */
-        set(options: object): Element;
+        set(options: Record<string, any>): this;
         /**
          * 用于元素的一些事件触发
          * @param event 事件名称
@@ -1519,14 +1517,14 @@ declare namespace Layui {
          * 用于删除指定的Tab选项
          * @param filter tab 元素的 `lay-filter="value"` 过滤器的值
          * @param layid 选项卡标题列表的 lay-id 属性的值
-         * @param force 是否强制删除，默认为false。如果为true，则会直接删除，不会触发事件 2.9.21
+         * @param force 是否强制删除，默认为false。如果为true，则会直接删除，不会触发事件 (2.9.21+)
          */
         tabDelete(filter: string, layid: string, force?: boolean): void;
         /**
          * 用于外部切换到指定的Tab项上
          * @param filter 对应容器 lay-filter 的属性值
          * @param layid 比如：lay-id="xx"中的 'xx'
-         * @param force 是否强制切换，默认为false。如果为true，则会直接切换，不会触发事件 2.9.15
+         * @param force 是否强制切换，默认为false。如果为true，则会直接切换，不会触发事件 (2.9.15+)
          */
         tabChange(filter: string, layid: string, force?: boolean): void;
         /**
@@ -1540,9 +1538,9 @@ declare namespace Layui {
          * @param filter 对应进度条容器 lay-filter 的属性值
          * @param percent 比例，百分比字符串，例如：'30%'、'50%'
          * @example
-```js
-element.progress('demo', '30%')
-```
+         * ```js
+         * element.progress('demo', '30%')
+         * ```
          */
         progress(filter: string, percent: string): void;
         /**
@@ -1559,7 +1557,7 @@ element.progress('demo', '30%')
          */
         init(type?: 'tab' | 'nav' | 'breadcrumb' | 'progress' | 'collapse', filter?: string | JQuery): void;
         /**
-         * Element 渲染方法，用于重新渲染 Element 组件。
+         * Element 渲染方法，用于重新渲染 Element 组件
          * @param type 渲染类型，未指定时将重新渲染页面内所有类型的 Element 组件
          * - `tab` 渲染 tab 选项卡
          * - `nav` 渲染导航栏目
@@ -1698,49 +1696,54 @@ declare namespace Layui {
         [index: string]: LayFormVerifyConfigCallback | [RegExp, string];
     }
 
+    interface FormConfig {
+        /**
+         * 设置表单元素的自动完成属性，等同于原生表单的 autocomplete 属性
+         */
+        autocomplete: string;
+        /**
+         * form内置的验证
+         */
+        verify: {
+            /**
+             * 日期验证 date[0] 是正则,date[1] 是验证失败的提示（"日期格式不正确"）
+             */
+            date: [RegExp, string];
+            /**
+             * 邮箱验证 email[0] 是正则,email[1] 是验证失败的提示（"邮箱格式不正确"）
+             */
+            email: [RegExp, string];
+            /**
+             * 身份证号验证 identity[0]是正则, identity[1] 是验证失败的提示（ 请输入正确的身份证号"）
+             */
+            identity: [RegExp, string];
+            /**
+             * 验证数字，如果参数不是数字则返回"只能填写数字"，是数字则无返回值
+             * @param arg 参数 比如 1,"1",-1
+             */
+            number: (arg: any) => string | null;
+            /**
+             * 手机号验证 phone[0] 是正则,phone[1] 是验证失败的提示（"请输入正确的手机号"）
+             */
+            phone: [RegExp, string];
+            /**
+             * 空值验证 required[0] 是正则,required[1] 是为空的提示（"必填项不能为空"）
+             */
+            required: [RegExp, string];
+            /**
+             * url验证 url[0] 是正则,url[1] 是验证失败的提示（"链接格式不正确"）
+             */
+            url: [RegExp, string];
+            [index: string]: [RegExp, string] | AnyFn;
+        };
+    }
+
     /**
-     * 表单 - 页面元素
+     * 表单
      * @see https://layui.dev/docs/2/form/
      */
     interface Form {
-        config: {
-            autocomplete: string;
-            /**
-             * form内置的验证
-             */
-            verify: {
-                /**
-                 * 日期验证 date[0] 是正则,date[1] 是验证失败的提示（"日期格式不正确"）
-                 */
-                date: [RegExp, string];
-                /**
-                 * 邮箱验证 email[0] 是正则,email[1] 是验证失败的提示（"邮箱格式不正确"）
-                 */
-                email: [RegExp, string];
-                /**
-                 * 身份证号验证 identity[0]是正则, identity[1] 是验证失败的提示（ 请输入正确的身份证号"）
-                 */
-                identity: [RegExp, string];
-                /**
-                 * 验证数字，如果参数不是数字则返回"只能填写数字"，是数字则无返回值
-                 * @param arg 参数 比如 1,"1",-1
-                 */
-                number: (arg: any) => string | null;
-                /**
-                 * 手机号验证 phone[0] 是正则,phone[1] 是验证失败的提示（"请输入正确的手机号"）
-                 */
-                phone: [RegExp, string];
-                /**
-                 * 空值验证 required[0] 是正则,required[1] 是为空的提示（"必填项不能为空"）
-                 */
-                required: [RegExp, string];
-                /**
-                 * url验证 url[0] 是正则,url[1] 是验证失败的提示（"链接格式不正确"）
-                 */
-                url: [RegExp, string];
-                [index: string]: [RegExp, string] | AnyFn;
-            };
-        };
+        config: FormConfig;
         /**
          * 取值，取出所有子元素是 `input,select,textarea` 且有 `name` 属性的表单元素值
          * @param filter 表单容器 `lay-filter=""` 属性的值
@@ -1758,8 +1761,7 @@ declare namespace Layui {
          * @param type 对应表单组件类型，若不填，则指向所有类型
          * @param filter 对应 class="layui-form" 所在元素的 lay-filter 属性值，用于指定需渲染的表单区域
          */
-        render(type?: 'input' | 'select' | 'checkbox' | 'radio' |  null, filter?: string): Form;
-
+        render(type?: 'input' | 'select' | 'checkbox' | 'radio' | null, filter?: string): Form;
         /**
          * 允许指定表单元素的 jQuery 对象，从而完成定向渲染。且支持两种方式的指向：
          * - 若 jQuery 对象指向表单域容器（class="layui-form"），则渲染该表单域中的所有表单项(2.8.0)
@@ -1815,26 +1817,26 @@ declare namespace Layui {
 
 // modules/lay.d.ts
 declare namespace Layui {
-    interface Lay<TElement = HTMLElement> extends ArrayLike<TElement>,Iterable<TElement> {
+    interface Lay<TElement = HTMLElement> extends ArrayLike<TElement>, Iterable<TElement> {
         /**
          * 当前的选择器
          */
         selector: string | undefined;
         /**
          * 添加 CSS 类
-         * @param className  类名
+         * @param className 类名
          * @param remove 是否是移除 `className`, 默认 `false`
          */
         addClass(className: string, remove?: boolean): this;
         /**
          * 追加内容
-         * @param elem html或者元素对象
+         * @param elem html 或者元素对象
          */
         append(elem?: string | HTMLElement): this;
         /**
          * 设置元素属性
-         * @param key 是attribute的key
-         * @param value 是attribute的value
+         * @param key 属性名
+         * @param value 属性值
          */
         attr(key: string, value: any): this;
         /**
@@ -1843,20 +1845,20 @@ declare namespace Layui {
         attr(): string;
         /**
          * 添加 css style
-         * @param key 属性css
+         * @param key 属性名
          * @param value 值
          */
         css(key: string, value: any): this;
         /**
          * 获取 css style
-         * @param key 属性css
+         * @param key 属性名
          */
         css(key: string): string;
         /**
          * 对元素遍历
-         * @param fn (index,elem)
+         * @param fn 回调函数，返回 `true` 则停止遍历，和 jQuery 相反
          */
-        each(fn?: (this: HTMLElement, index: number, elem: HTMLElement) => any): this;
+        each(fn?: (this: TElement, index: number, elem: TElement) => any): this;
         /**
          * 查找子元素
          * @param selector 选择器
@@ -1889,14 +1891,16 @@ declare namespace Layui {
          * 解除事件
          * @param eventName 事件名
          * @param fn 回调
+         * @since 2.9.11 新增 options
          */
-        off(eventName: keyof HTMLElementEventMap, fn: AnyFn): this;
+        off<K extends keyof HTMLElementEventMap>(eventName: K, fn: (this: TElement, e: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): this;
         /**
          * 事件绑定，注意：只支持内置事件，不支持自定义事件
          * @param eventName 事件名 比如click，自定事件会绑定失败
-         * @param fn 回调 (tip:this:any)
+         * @param fn 回调
+         * @since 2.9.11 新增 options
          */
-        on(eventName: keyof HTMLElementEventMap, fn: AnyFn): this;
+        on<K extends keyof HTMLElementEventMap>(eventName: K, fn: (this: TElement, e: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): this;
         /**
          * 移除元素
          * @param elem 实际是 removeChild(elem)
@@ -1904,7 +1908,7 @@ declare namespace Layui {
         remove(elem: HTMLElement): this
         /**
          * 移除指定的 `attribute`
-         * @param key 是 attribute 的 key
+         * @param key 属性名
          */
         removeAttr(key: string): this;
         /**
@@ -1913,7 +1917,7 @@ declare namespace Layui {
          */
         removeClass(className: string): this;
         /**
-         * 设置元素的value
+         * 设置元素的 value
          * @param value 值
          */
         val(value: any): this;
@@ -1930,6 +1934,7 @@ declare namespace Layui {
          * 获取第一个元素宽度
          */
         width(): number;
+        [n: number]: TElement;
     }
 
     interface LayTouchSwipeState {
@@ -1957,6 +1962,66 @@ declare namespace Layui {
          * 开始时间
          */
         timeStart: Date;
+    }
+
+    interface LayPositionOptions {
+        /**
+         * 元素的定位模式
+         * @default 'absolute'
+         */
+        position?: 'absolute' | 'fixed';
+        /**
+         * 点击类型，默认为 'left'，如果 {@link opts.target} 是 document 或 body 元素，则为 'right'
+         */
+        clickType?: 'left' | 'right';
+        /**
+         * 对齐方式
+         * @default 'left'
+         */
+        align?: 'left' | 'center' | 'right';
+        /**
+         * 顶部没有足够区域显示时，是否允许底部溢出
+         */
+        allowBottomOut?: boolean;
+        /**
+         * 边距
+         */
+        margin?: number;
+        /**
+         * 事件对象，仅右键生效
+         */
+        e?: MouseEvent | { clientX: number; clientY: number };
+        /**
+         * 是否重载，用于出现滚动条时重新计算位置
+         * 这是一个仅供内部使用的私有参数
+         */
+        SYSTEM_RELOAD?: boolean;
+        /**
+         * 相对于触发元素的额外偏移量[x,y]
+         */
+        offset?: [offsetX: number, offsetY: number]
+    }
+
+    interface LayOnClickOutsideOpsions {
+        /**
+         * 监听的事件类型
+         * @default 'pointerdown''
+         */
+        event?: string;
+        /**
+         * 监听范围
+         * @default document
+         */
+        scope?: HTMLElement | Document | Window;
+        /**
+         * 忽略监听的元素或选择器字符串
+         */
+        ignore?: Array<string | HTMLElement>
+        /**
+         * 对内部事件侦听器使用捕获阶段
+         * @default true
+         */
+        capture?: boolean;
     }
 
     interface LayStatic {
@@ -2009,7 +2074,7 @@ declare namespace Layui {
         /**
          * 阻止事件冒泡
          */
-        stope(event: Event): void;
+        stope(event: Event | JQuery.Event): void;
         /**
         * 对象（Array、Object、DOM 对象等）遍历，可用于取代 for 语句
         * @param collection Array对象
@@ -2023,10 +2088,10 @@ declare namespace Layui {
          * @param length 数字长度，默认值 2。如果原始数字长度小于 length，则前面补零
          * @returns 返回补 0 后的数字
          * @example
-```js
-lay.digit(6, 2); // "06"
-lay.digit('7', 3); // "007"
-```
+         * ```js
+         * lay.digit(6, 2); // "06"
+         * lay.digit('7', 3); // "007"
+         * ```
          */
         digit(num: number | string, length?: number): string;
         /**
@@ -2034,9 +2099,9 @@ lay.digit('7', 3); // "007"
          * @param elemName 元素的标签名
          * @param attr 添加到元素上的属性
          * @example
-```js
-lay.elem('div', {id: 'test'}) // <div id="test"></div>
-```
+         * ```js
+         * lay.elem('div', {id: 'test'}) // <div id="test"></div>
+         * ```
          */
         elem<K extends keyof HTMLElementTagNameMap>(elemName: K, attr?: object): HTMLElementTagNameMap[K];
         /**
@@ -2052,17 +2117,17 @@ lay.elem('div', {id: 'test'}) // <div id="test"></div>
          * - text: 样式内容
          * @since 2.8.15
          * @example
-```html
-<div id="targetEl">
-  <!-- 样式追加到目标容器 -->
-  <style id="LAY-STYLE-DF-0">.card{color: #000}</style>
-</div>
-
-lay.style({
-  target: '#targetEl',
-  text: '.card{color: #000}'
-}) // <style id="LAY-STYLE-DF-0">.card{color: #000}</style>
-```
+         * ```html
+         * <div id="targetEl">
+         *   <!-- 样式追加到目标容器 -->
+         *   <style id="LAY-STYLE-DF-0">.card{color: #000}</style>
+         * </div>
+         * 
+         * lay.style({
+         *   target: '#targetEl',
+         *   text: '.card{color: #000}'
+         * }) // <style id="LAY-STYLE-DF-0">.card{color: #000}</style>
+         * ```
          */
         style(options: { target?: string | HTMLElement | JQuery; id?: string; text: string }): HTMLStyleElement;
         /**
@@ -2071,112 +2136,72 @@ lay.style({
          * @param elem 定位元素
          * @param opts 可配置的选项
          * @example
-```js
-<button id="targetEl">dropdown</button>
-<ul id="contentEl" class="dropdown-menu">
-  <li>菜单1</li>
-  <li>菜单2</li>
-</ul>
-
-// 下拉菜单将被定位到按钮附近
-lay.position(
-  $('#targetEl')[0],
-  $('#contentEl')[0],
-  {
-    position: 'fixed',
-    align: 'center'
-  }
-)
-```
+         * ```js
+         * <button id="targetEl">dropdown</button>
+         * <ul id="contentEl" class="dropdown-menu">
+         *   <li>菜单1</li>
+         *   <li>菜单2</li>
+         * </ul>
+         * 
+         * // 下拉菜单将被定位到按钮附近
+         * lay.position(
+         *   $('#targetEl')[0],
+         *   $('#contentEl')[0],
+         *   {
+         *     position: 'fixed',
+         *     align: 'center'
+         *   }
+         * )
+         * ```
          */
-        position(
-            target: HTMLElement,
-            elem: HTMLElement,
-            opts?: {
-                /**
-                 * 元素的定位模式
-                 * @default 'absolute'
-                 */
-                position?: 'absolute' | 'fixed';
-                /**
-                 * 点击类型，默认为 'left'，如果 {@link opts.target} 是 document 或 body 元素，则为 'right'
-                 */
-                clickType?: 'left' | 'right';
-                /**
-                 * 对齐方式
-                 * @default 'left'
-                 */
-                align?: 'left' | 'center' | 'right';
-                /**
-                 * 顶部没有足够区域显示时，是否允许底部溢出
-                 */
-                allowBottomOut?: boolean;
-                /**
-                 * 边距
-                 */
-                margin?: number;
-                /**
-                 * 事件对象，仅右键生效
-                 */
-                e?: MouseEvent | { clientX: number; clientY: number };
-                /**
-                 * 是否重载，用于出现滚动条时重新计算位置
-                 * 这是一个仅供内部使用的私有参数
-                 */
-                SYSTEM_RELOAD?: boolean;
-                /**
-                 * 相对于触发元素的额外偏移量[x,y]
-                 */
-                offset?: [offsetX: number, offsetY: number]
-            }
-        ): void;
+        position(target: HTMLElement, elem: HTMLElement, opts?: LayPositionOptions): void;
         /**
          * 获取元素上的属性配置项
          * @param elem HTML 元素
          * @param attr 可配置的选项，string 类型指定属性名
          * @example
-```js
-  <div id="testEl" lay-options="{color:red}" lay-toc="{hot: true}"></div>
-
-  var elem = $('#testEl')
-  lay.options(elem) // {color:red}
-  lay.options(elem[0]) // {color:red}
-  lay.options('#testEl') // {color:red}
-  lay.options('#testEl', {attr: 'lay-toc'}) // {hot: true}
-  lay.options('#testEl', 'lay-toc') // {hot: true}
-
-  $('#testEl').attr('lay-toc') // '{hot: true}'
-```
+         * ```js
+         * <div id="testEl" lay-options="{color:red}" lay-toc="{hot: true}"></div>
+         * 
+         * var elem = $('#testEl')
+         * lay.options(elem) // {color:red}
+         * lay.options(elem[0]) // {color:red}
+         * lay.options('#testEl') // {color:red}
+         * lay.options('#testEl', {attr: 'lay-toc'}) // {hot: true}
+         * lay.options('#testEl', 'lay-toc') // {hot: true}
+         * 
+         * $('#testEl').attr('lay-toc') // '{hot: true}'
+         * ```
          */
-        options(elem: string | HTMLElement | JQuery, attr?: string | Record<string, string>): any;
+        options(elem: string | HTMLElement | JQuery, attr?: string | Record<string, string>): Record<string, any>;
         /**
          * 元素是否属于顶级元素（document 或 body）
          * @param elem HTML 元素
          */
-        isTopElem(elem: any): boolean;
+        isTopElem(elem: unknown): elem is Document | HTMLBodyElement;
         /**
          * 获取 style rules
          * @param style HTMLStyle 元素
          * @param callback 用来返回 style 元素中的每个 `style rule` 的函数，返回 true 终止遍历
          * @example
-```html
-<style id="test">
-  .lay-card{
-     color: #000;
-   }
-   .lay-btn-success{
-     color: green;
-   }
-</style>
-
-lay.getStyleRules($('#test')[0], function(rule, index){
-  if(rule.selectorText === '.lay-card'){
-    console.log(index, rule.cssText) // 0 '.lay-card{color: #000}'
-    rule.style.color = '#EEE';
-    return true; // 终止遍历
-  }
- }) // RuleList
-   * ```
+         * ```js
+         * <style id="test">
+         * .lay-card{
+         *   color: #000;
+         * }
+         * .lay-btn-success{
+         *   color: green;
+         * }
+         * </style>
+         * 
+         * lay.getStyleRules($('#test')[0], function(rule, index){
+         *   if(rule.selectorText === '.lay-card'){
+         *     console.log(index, rule.cssText) // 0 '.lay-card{color: #000}'
+         *     rule.style.color = '#EEE';
+         *     return true; // 终止遍历
+         *   }
+         * }) // RuleList
+         * ```
          */
         getStyleRules(style: HTMLStyleElement, callback: (ruleItem: CSSStyleRule, index: number) => boolean): CSSRuleList;
         clipboard: {
@@ -2225,31 +2250,14 @@ lay.getStyleRules($('#test')[0], function(rule, index){
         onClickOutside(
             target: HTMLElement,
             handler: (e: MouseEvent) => void,
-            options?: {
-                /**
-                 * 监听的事件类型，默认值：pointerdown
-                 */
-                event?: string;
-                /**
-                 * 监听范围，默认值：document
-                 */
-                scope?: HTMLElement | Document | Window;
-                /**
-                 * 忽略监听的元素或选择器字符串
-                 */
-                ignore?: Array<string | HTMLElement>
-                /**
-                 * 对内部事件侦听器使用捕获阶段
-                 */
-                capture?: boolean;
-            }
+            options?: LayOnClickOutsideOpsions
         ): Fn;
         /**
          * 判断一个对象是否具有某个自身的属性，而不考虑继承的属性
          * @param obj 对象
          * @param key 属性名
          */
-        hasOwn<O, K extends PropertyKey, V = unknown>(o: O, p: K): o is O & Record<K, V>;
+        hasOwn<O, K extends PropertyKey, V = unknown>(obj: O, prop: K): obj is O & Record<K, V>;
     }
 }
 
@@ -2421,11 +2429,11 @@ declare namespace Layui {
          * - 若值为整数类型，且数字 ＜ 86400000，则数字代表天数，如： `min: -7` 即代表最小日期在 7 天前，正数代表若干天后；
          * - 若值为整数类型，且数字 ≥ 86400000，则数字代表毫秒数，如：`max: 4073558400000` 即代表最大日期在公元 3000年1月1日。
          * @example
-```
-min: '2017-1-1 00:00:00' // 最小日期时间值
-min: -7 // 最小日期为 7 天前
-max: 7 // 最大日期为 7 天后
-```
+         * ```
+         * min: '2017-1-1 00:00:00' // 最小日期时间值
+         * min: -7 // 最小日期为 7 天前
+         * max: 7 // 最大日期为 7 天后
+         * ```
          */
         min?: string | number;
         /**
@@ -2439,11 +2447,11 @@ max: 7 // 最大日期为 7 天后
          * - 若值为整数类型，且数字 ＜ 86400000，则数字代表天数，如： `min: -7` 即代表最小日期在 7 天前，正数代表若干天后；
          * - 若值为整数类型，且数字 ≥ 86400000，则数字代表毫秒数，如：`max: 4073558400000` 即代表最大日期在公元 3000年1月1日。
          * @example
-```
-min: '2017-1-1 00:00:00' // 最小日期时间值
-min: -7 // 最小日期为 7 天前
-max: 7 // 最大日期为 7 天后
-```
+         * ```
+         * min: '2017-1-1 00:00:00' // 最小日期时间值
+         * min: -7 // 最小日期为 7 天前
+         * max: 7 // 最大日期为 7 天后
+         * ```
          */
         max?: string | number;
         /**
@@ -2480,7 +2488,7 @@ max: 7 // 最大日期为 7 天后
          * - 若为 Array 类型，则可设置遮罩颜色和透明度，如：`shade: [0.5, '#000']`
          * @since 2.8.0
          */
-        shade?: number | Array<string | number>;
+        shade?: number | [opacity: number, bgColor: string];
         /**
          * 是否显示组件面板的底部栏
          * @default true
@@ -2513,7 +2521,7 @@ max: 7 // 最大日期为 7 天后
          * theme: ['#FF5722', '#FF5723'] // 定义主色和辅色 （2.8.4）
          * ```
          */
-        theme?: string | 'default' | 'molv' | 'grid' | 'circle' | Array<string | 'molv' | 'grid' | 'circle'>;
+        theme?: MaybeArray<string | 'molv' | 'grid' | 'circle'>;
         /**
          * 是否显示公历节日
          * @default false
@@ -2533,16 +2541,16 @@ max: 7 // 最大日期为 7 天后
          * @param value 日期字符串
          * @since 2.9.9
          * @example
-```
-formatToDisplay: function (value) {
-  var date = new Date(value);
-  var displayValue = [
-    value,
-    date.toLocaleDateString(Intl.LocalesArgument, { weekday: 'long' })
-  ].join(' ')；
-  return displayValue;
-};
-```
+         * ```js
+         * formatToDisplay: function (value) {
+         *   var date = new Date(value);
+         *   var displayValue = [
+         *     value,
+         *     date.toLocaleDateString(Intl.LocalesArgument, { weekday: 'long' })
+         *   ].join(' ')；
+         *   return displayValue;
+         * };
+         * ```
          */
         formatToDisplay?(value: string): string;
         /**
@@ -2557,7 +2565,7 @@ formatToDisplay: function (value) {
          * 设置不可选取的时间
          * @param date 当前的日期对象
          * @param type 面板类型，'start'|'end'
-         * @return  数组中指定的时间会被禁用
+         * @return 数组中指定的时间会被禁用
          * @since 2.9.8
          */
         disabledTime?(
@@ -2590,21 +2598,21 @@ formatToDisplay: function (value) {
          * 日期时间被切换后的回调   this to test and elem
          * @param value 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
          * @param date 得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
-         * @param endDate 开启范围选择（range: true）才会返回。对象成员同上date
+         * @param endDate 开启范围选择（range: true）才会返回。对象成员同上 date
          */
         change?(value: string, date: LayDateCallbackParam, endDate: LayDateCallbackParam): void;
         /**
          * 控件选择完毕后的回调
          * @param value 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
          * @param date 得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
-         * @param endDate 开启范围选择（range: true）才会返回。对象成员同上date
+         * @param endDate 开启范围选择（range: true）才会返回。对象成员同上 date
          */
         done?(value: string, date: LayDateCallbackParam, endDate: LayDateCallbackParam): void;
         /**
          * 点击底部栏「确定」按钮时的回调函数
          * @param value 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
          * @param date 得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
-         * @param endDate 开启范围选择（range: true）才会返回。对象成员同上date
+         * @param endDate 开启范围选择（range: true）才会返回。对象成员同上 date
          * @since 2.8.0
          */
         onConfirm?(value: string, date: LayDateCallbackParam, endDate: LayDateCallbackParam): void;
@@ -2612,7 +2620,7 @@ formatToDisplay: function (value) {
          * 点击底部栏「现在」按钮时的回调函数
          * @param value 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
          * @param date 得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
-         * @param endDate 开启范围选择（range: true）才会返回。对象成员同上date
+         * @param endDate 开启范围选择（range: true）才会返回。对象成员同上 date
          * @since 2.8.0
          */
         onNow?(value: string, date: LayDateCallbackParam, endDate: LayDateCallbackParam): void;
@@ -2620,7 +2628,7 @@ formatToDisplay: function (value) {
          * 点击底部栏「清空」按钮时的回调函数
          * @param value 得到日期生成的值，如：2017-08-18 范围："2021-07-06 - 2021-08-09"
          * @param date 得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
-         * @param endDate 开启范围选择（range: true）才会返回。对象成员同上date
+         * @param endDate 开启范围选择（range: true）才会返回。对象成员同上 date
          * @since 2.8.0
          */
         onClear?(value: string, date: LayDateCallbackParam, endDate: LayDateCallbackParam): void;
@@ -2647,7 +2655,7 @@ formatToDisplay: function (value) {
     }
 
     /**
-     * 日期和时间组件
+     * 日期选择器
      * @see https://layui.dev/docs/2/laydate/
      */
     interface Laydate {
@@ -2725,7 +2733,7 @@ formatToDisplay: function (value) {
 }
 // modules/layedit.d.ts
 declare namespace Layui {
-    interface EditOptions {
+    interface LayEditOptions {
         /**
          * 重新定制编辑器工具栏，如：`tool: ['link', 'unlink', 'face']` 。可选值：
          * - 'strong' 加粗
@@ -2744,7 +2752,7 @@ declare namespace Layui {
          */
         tool?: string[];
         /**
-         * 不显示编辑器工具栏，一般用于隐藏默认配置的工具bar
+         * 不显示编辑器工具栏，一般用于隐藏默认配置的工具 bar
          */
         hideTool?: string[];
         /**
@@ -2774,33 +2782,33 @@ declare namespace Layui {
     interface Layedit {
         /**
          * 用于建立编辑器的核心方法
-         * @param id 实例元素（一般为textarea）的id值
+         * @param id 实例元素（一般为 textarea）的id值
          * @param options 编辑器的可配置项
          */
-        build(id: string, options: Partial<EditOptions>): any;
+        build(id: string, options: Partial<LayEditOptions>): any;
         /**
          * 设置编辑器的全局属性
          * @param options
          */
-        set(options: Partial<EditOptions>): Layedit;
+        set(options: Partial<LayEditOptions>): Layedit;
         /**
          * 获得编辑器的内容
-         * @param index 即执行layedit.build返回的值
+         * @param index 即执行 layedit.build 返回的值
          */
         getContent(index: number): string;
         /**
          *  获得编辑器的纯文本内容
-         * @param index 即执行layedit.build返回的值
+         * @param index 即执行 layedit.build 返回的值
          */
         getText(index: number): string;
         /**
-         *  用于同步编辑器内容到textarea（一般用于异步提交）
-         * @param index 即执行layedit.build返回的值
+         *  用于同步编辑器内容到 textarea（一般用于异步提交）
+         * @param index 即执行 layedit.build 返回的值
          */
         sync(index: number): void;
         /**
          * 获取编辑器选中的文本
-         * @param index 即执行layedit.build返回的值
+         * @param index 即执行 layedit.build 返回的值
          */
         getSelection(index: number): string;
     }
@@ -3834,7 +3842,7 @@ declare namespace Layui {
     }
 
     /**
-     * 分页模块
+     * 分页
      * @see https://layui.dev/docs/2/laypage/
      */
     interface Laypage {
@@ -3842,7 +3850,7 @@ declare namespace Layui {
         on<K extends keyof HTMLElementEventMap>(
             elem: HTMLElement | null,
             event: K,
-            listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => void,
+            listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any,
         ): void;
         on(elem: HTMLElement | null, event: string, listener: (this: HTMLElement, ...args: any) => any): void;
         /**
@@ -3893,8 +3901,8 @@ declare namespace Layui {
         (tpl: string, options?: LayTplOptions): LayTplReturn;
         /**
          * 重新定义界定符
-         * 如果模版默认的 {{ }} 界定符符与你的其它模板（一般是服务端模板）存在冲突，你也可以重新定义界定符：
-         * @param option 例如：{open: '<%',close: '%>'}
+         * 如果模版默认的 {{ }} 界定符符与你的其它模板（一般是服务端模板）存在冲突，你也可以重新定义界定符
+         * @param option 例如：`{open: '<%', close: '%>'}`
          */
         config(option?: LayTplOptions): void;
     }
@@ -3949,11 +3957,11 @@ declare namespace Layui {
     }
 
     /**
-     * 评分组件
+     * 评分
      * @see https://layui.dev/docs/2/rate/
      */
     interface Rate {
-        config: { [index: string]: any };
+        config: Record<string, any>;
         index: number;
         /**
          * @param event
@@ -4004,7 +4012,7 @@ declare namespace Layui {
          * - 默认可直接设置数值，如： value: 50
          * - 若滑块开启 range: true 区间选择，则值为数组，异表示开始和结尾的区间，如： value: [30, 60]
          */
-        value?: number | number[];
+        value?: MaybeArray<number>;
         /**
          * 拖动的步长
          * @default 1
@@ -4047,18 +4055,18 @@ declare namespace Layui {
          * 自定义提示文本
          * @param value 滑块为范围模式是数组，否则是数字
          */
-        setTips?(value: number | number[]): string;
+        setTips?(value: MaybeArray<number>): string;
         /**
          * 数值改变的回调
          * @param value 滑块为范围模式是数组，否则是数字
          */
-        change?(value: number | number[]): void;
+        change?(value: MaybeArray<number>): void;
         /**
          * 滑块拖拽完毕的回调函数，滑块拖动过程中不会触发
          * @param value 滑块为范围模式是数组，否则是数字
          * @since 2.8.0
          */
-        done?(value: number | number[]): void;
+        done?(value: MaybeArray<number>): void;
     }
 
     /**
@@ -4066,7 +4074,7 @@ declare namespace Layui {
      * @see https://layui.dev/docs/2/slider/
      */
     interface Slider {
-        config: { [index: string]: any };
+        config: Record<string, any>;
         index: number;
         /**
          * 设置滑块的全局参数
@@ -5419,7 +5427,7 @@ declare namespace Layui {
     }
 
     interface TransferReturn {
-        config: { [index: string]: any };
+        config: Record<string, any>;
         /**
          * 获得右侧数据
          */
@@ -5439,11 +5447,11 @@ declare namespace Layui {
     }
 
     /**
-     * 穿梭框组件
+     * 穿梭框
      * @see https://layui.dev/docs/2/transfer/
      */
     interface Transfer {
-        config: { [index: string]: any };
+        config: Record<string, any>;
         index: number;
         /**
          * 获得右侧数据
@@ -5533,14 +5541,8 @@ declare namespace Layui {
         type: 'add' | 'update' | 'del' | string;
     }
 
-    /**
-     * tree.reload()返回值
-     */
-    type TreeReloaded = Pick<Tree, 'config' | 'reload' | 'getChecked' | 'setChecked'>;
+    type TreeReloadReturn = Pick<Tree, 'config' | 'reload' | 'getChecked' | 'setChecked'>;
 
-    /**
-     * 基础参数
-     */
     interface TreeOptions {
         /**
          * 绑定元素选择器
@@ -5644,14 +5646,14 @@ declare namespace Layui {
     }
 
     /**
-     * 树形组件
+     * 树
      * @see https://layui.dev/docs/2/tree/
      */
     interface Tree {
         /**
          * 全局参数项
          */
-        config: { [index: string]: any };
+        config: Record<string, any>;
         /**
          * 获取选中的节点数据
          * @param id 对应 tree 渲染时定义的 id 属性值
@@ -5672,7 +5674,7 @@ declare namespace Layui {
          * @param id 对应 tree 渲染时定义的 id 属性值
          * @param options 基础参数
          */
-        reload(id: string, options: Partial<TreeOptions>): TreeReloaded;
+        reload(id: string, options: Partial<TreeOptions>): TreeReloadReturn;
         /**
          * 核心方法
          * @param option 基础参数
@@ -6748,6 +6750,7 @@ declare namespace Layui {
          */
         upload(files?: Blob[]): void;
     }
+
     interface UploadText {
         /**
          * 数据格式错误的提示
@@ -6783,7 +6786,7 @@ declare namespace Layui {
         /**
          * 全局参数项
          */
-        config: { [index: string]: any };
+        config: Record<string, any>;
         /**
          * 绑定事件，内部 modName 默认为 upload，绑定参考 layui.onevent，触发参考 layui.event
          * @param events
@@ -6792,12 +6795,12 @@ declare namespace Layui {
         on(events: string, callback: (this: Layui, obj: any) => any): any;
         /**
          * 核心方法
-         * @param option 基础参数
+         * @param option 属性选项
          */
         render(option: UploadOptions): UploadReturn;
         /**
          * 设置upload全局参数(预设基础参数值)
-         * @param option 参数
+         * @param option 属性选项
          */
         set(option?: Partial<UploadOptions>): Upload;
     }

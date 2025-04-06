@@ -38,8 +38,8 @@ declare namespace Layui {
         (tpl: string, options?: LayTplOptions): LayTplReturn;
         /**
          * 重新定义界定符
-         * 如果模版默认的 {{ }} 界定符符与你的其它模板（一般是服务端模板）存在冲突，你也可以重新定义界定符：
-         * @param option 例如：{open: '<%',close: '%>'}
+         * 如果模版默认的 {{ }} 界定符符与你的其它模板（一般是服务端模板）存在冲突，你也可以重新定义界定符
+         * @param option 例如：`{open: '<%', close: '%>'}`
          */
         config(option?: LayTplOptions): void;
     }

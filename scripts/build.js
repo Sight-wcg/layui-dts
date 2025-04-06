@@ -19,7 +19,7 @@ function rollupDts(){
         let originalContent = readFileSync(filepath, 'utf-8')
         if(filepath === 'index.d.ts'){
             originalContent = originalContent
-              .replace(/\/\/\/\s+<[^>]+?>/g, '')
+              .replace(/\/{3}\s+<reference path[^>]+?>/g, '')
               .replace(/(\n[\s\t]*\r*\n)/g, '\n')
               .replace(/^[\n\r\n\t]*|[\n\r\n\t]*$/g, '')
             codes.push(originalContent);

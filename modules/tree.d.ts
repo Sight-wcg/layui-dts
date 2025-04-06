@@ -55,14 +55,8 @@ declare namespace Layui {
         type: 'add' | 'update' | 'del' | string;
     }
 
-    /**
-     * tree.reload()返回值
-     */
-    type TreeReloaded = Pick<Tree, 'config' | 'reload' | 'getChecked' | 'setChecked'>;
+    type TreeReloadReturn = Pick<Tree, 'config' | 'reload' | 'getChecked' | 'setChecked'>;
 
-    /**
-     * 基础参数
-     */
     interface TreeOptions {
         /**
          * 绑定元素选择器
@@ -166,14 +160,14 @@ declare namespace Layui {
     }
 
     /**
-     * 树形组件
+     * 树
      * @see https://layui.dev/docs/2/tree/
      */
     interface Tree {
         /**
          * 全局参数项
          */
-        config: { [index: string]: any };
+        config: Record<string, any>;
         /**
          * 获取选中的节点数据
          * @param id 对应 tree 渲染时定义的 id 属性值
@@ -194,7 +188,7 @@ declare namespace Layui {
          * @param id 对应 tree 渲染时定义的 id 属性值
          * @param options 基础参数
          */
-        reload(id: string, options: Partial<TreeOptions>): TreeReloaded;
+        reload(id: string, options: Partial<TreeOptions>): TreeReloadReturn;
         /**
          * 核心方法
          * @param option 基础参数

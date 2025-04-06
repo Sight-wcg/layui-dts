@@ -36,7 +36,7 @@ declare namespace Layui {
          */
         autoplay?: boolean | 'always';
         /**
-         * 自动切换的时间间隔，单位：ms（毫秒），不能低于800
+         * 自动切换的时间间隔，单位：ms（毫秒），不能低于 800
          * @default 3000
          */
         interval?: number;
@@ -73,7 +73,7 @@ declare namespace Layui {
          * @param obj 轮播条目对象
          * @since 2.7.0
          */
-        change?: (obj: CarouselItem) => any;
+        change?(obj: CarouselItem): void;
     }
 
     interface CarouselItem {
@@ -176,7 +176,7 @@ declare namespace Layui {
     }
 
     /**
-     * 轮播组件
+     * 轮播
      * @see https://layui.dev/docs/2/carousel/
      */
     interface Carousel {

@@ -1,5 +1,5 @@
 declare namespace Layui {
-    interface EditOptions {
+    interface LayEditOptions {
         /**
          * 重新定制编辑器工具栏，如：`tool: ['link', 'unlink', 'face']` 。可选值：
          * - 'strong' 加粗
@@ -18,7 +18,7 @@ declare namespace Layui {
          */
         tool?: string[];
         /**
-         * 不显示编辑器工具栏，一般用于隐藏默认配置的工具bar
+         * 不显示编辑器工具栏，一般用于隐藏默认配置的工具 bar
          */
         hideTool?: string[];
         /**
@@ -48,33 +48,33 @@ declare namespace Layui {
     interface Layedit {
         /**
          * 用于建立编辑器的核心方法
-         * @param id 实例元素（一般为textarea）的id值
+         * @param id 实例元素（一般为 textarea）的id值
          * @param options 编辑器的可配置项
          */
-        build(id: string, options: Partial<EditOptions>): any;
+        build(id: string, options: Partial<LayEditOptions>): any;
         /**
          * 设置编辑器的全局属性
          * @param options
          */
-        set(options: Partial<EditOptions>): Layedit;
+        set(options: Partial<LayEditOptions>): Layedit;
         /**
          * 获得编辑器的内容
-         * @param index 即执行layedit.build返回的值
+         * @param index 即执行 layedit.build 返回的值
          */
         getContent(index: number): string;
         /**
          *  获得编辑器的纯文本内容
-         * @param index 即执行layedit.build返回的值
+         * @param index 即执行 layedit.build 返回的值
          */
         getText(index: number): string;
         /**
-         *  用于同步编辑器内容到textarea（一般用于异步提交）
-         * @param index 即执行layedit.build返回的值
+         *  用于同步编辑器内容到 textarea（一般用于异步提交）
+         * @param index 即执行 layedit.build 返回的值
          */
         sync(index: number): void;
         /**
          * 获取编辑器选中的文本
-         * @param index 即执行layedit.build返回的值
+         * @param index 即执行 layedit.build 返回的值
          */
         getSelection(index: number): string;
     }
