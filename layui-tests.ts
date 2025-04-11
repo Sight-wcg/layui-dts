@@ -121,9 +121,9 @@ function B_method() {
   device.os === 'Windows';
   device.android;
   layui.device('android');
-  layui.device('myflag');
-  layui.device().myflag;
-  layui.device()['myflag'];
+  var myDevice = layui.device('myflag');
+  myDevice.myflag
+  myDevice['myflag'];
   layui.device('os');
 
   // 其他底层方法

@@ -3,9 +3,10 @@ declare namespace Layui {
     type Fn = () => void;
     type AnyFn = (...args: any[]) => any;
     type ArgumentsType<T> = T extends (...args: infer U) => any ? U : never;
-    type ExportsCallback = (this: Layui, fn: (app: string, exports: object) => void) => void;
     type MaybeArray<T> = T | T[];
-    type MaybePromise<T> = T | Promise<T>;
+    type MaybePromise<T> = T | Promise<T> | JQuery.Deferred<T>;
+
+    type ExportsCallback = (this: Layui, fn: (app: string, exports: object) => void) => void;
 
     /**
      * 全局属性
@@ -27,16 +28,6 @@ declare namespace Layui {
          * 设定扩展的 layui 模块的所在目录，一般用于外部模块扩展
          */
         base?: string;
-    }
-
-    /**
-     * 地址中的参数和路径信息
-     */
-    interface UrlHash {
-        hash: string;
-        href?: string;
-        path: string[];
-        search: { [index: string]: string };
     }
 
     /**
@@ -150,5 +141,43 @@ declare namespace Layui {
         tree: Tree;
         upload: Upload;
         util: Util;
+    }
+
+    /**
+     * 地址中的参数和路径信息
+     */
+    interface UrlHash {
+        hash: string;
+        href?: string;
+        path: string[];
+        search: { [index: string]: string };
+    }
+
+    interface deviceReturn {
+        /**
+         * 当前浏览器所在的底层操作系统，如：Windows、Linux、Mac 等
+         */
+        os: string;
+        /**
+         * 当前浏览器是否为 ie6-11 的版本，如果不是 ie 浏览器，则为 false
+         */
+        ie: boolean;
+        /**
+         * 当前浏览器是否为微信 App 环境
+         */
+        weixin: boolean;
+        /**
+         * 当前浏览器是否为安卓系统环境
+         */
+        android: boolean;
+        /**
+         * 当前浏览器是否为 iOS 系统环境
+         */
+        ios: boolean;
+        /**
+         * 当前浏览器是否为移动设备环境
+         * @since v2.5.7
+         */
+        mobile: boolean;
     }
 }

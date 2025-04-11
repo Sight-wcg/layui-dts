@@ -50,11 +50,11 @@ interface Layui {
      * @see https://layui.dev/docs/2/base.html#api
      * @since 2.6.8
      * @example
-```js
-layui._isArray([1,6]); // true	
-layui._isArray($('div')); // true
-layui._isArray(document.querySelectorAll('div')); // true
-```
+     * ```js
+     * layui._isArray([1,6]); // true	
+     * layui._isArray($('div')); // true
+     * layui._isArray(document.querySelectorAll('div')); // true
+     * ```
      */
     _isArray(obj: any): boolean;
     /**
@@ -63,11 +63,11 @@ layui._isArray(document.querySelectorAll('div')); // true
      * @see https://layui.dev/docs/2/base.html#api
      * @since 2.6.9
      * @example
-```js
-layui._isArray([1,6]); // true	
-layui._isArray($('div')); // true
-layui._isArray(document.querySelectorAll('div')); // true
-```
+     * ```js
+     * layui._isArray([1,6]); // true	
+     * layui._isArray($('div')); // true
+     * layui._isArray(document.querySelectorAll('div')); // true
+     * ```
      */
     isArray(obj: any): boolean;
     /**
@@ -78,11 +78,11 @@ layui._isArray(document.querySelectorAll('div')); // true
      * @see https://layui.dev/docs/2/base.html#api
      * @since 2.6.8
      * @example
- ```js
-layui._typeof([]); // array 
-layui._typeof({}); // object 
-layui._typeof(new Date()); // date
-```
+     * ```js
+     * layui._typeof([]); // array 
+     * layui._typeof({}); // object 
+     * layui._typeof(new Date()); // date
+     * ```
      */
     _typeof(operand: any): string;
     /**
@@ -92,11 +92,11 @@ layui._typeof(new Date()); // date
      * @see https://layui.dev/docs/2/base.html#api
      * @since 2.6.9
      * @example
- ```js
-layui._typeof([]); // array 
-layui._typeof({}); // object 
-layui._typeof(new Date()); // date
-```
+     * ```js
+     * layui._typeof([]); // array 
+     * layui._typeof({}); // object 
+     * layui._typeof(new Date()); // date
+     * ```
      */
     typeof(operand: any): string;
     /**
@@ -124,26 +124,26 @@ layui._typeof(new Date()); // date
      * @param settings 存储的json对象数据
      * @see https://layui.dev/docs/2/base.html#api
      * @example
-```js
-// 【增】：向 test 表插入一个 nickname 字段，如果该表不存在，则自动建立。
-layui.data('test', {
-  key: 'nickname',
-  value: '张三'
-});
- 
-// 【删】：删除 test 表的 nickname 字段
-layui.data('test', {
-  key: 'nickname',
-  remove: true
-});
-layui.data('test', null); // 删除 test 表
-  
-// 【改】：同【增】，会覆盖已经存储的数据
-  
-// 【查】：向 test 表读取全部的数据
-var localTest = layui.data('test');
-console.log(localTest.nickname); // 获得“张三”
-```
+     * ```js
+     * // 【增】：向 test 表插入一个 nickname 字段，如果该表不存在，则自动建立。
+     * layui.data('test', {
+     *   key: 'nickname',
+     *   value: '张三'
+     * });
+     * 
+     * // 【删】：删除 test 表的 nickname 字段
+     * layui.data('test', {
+     *   key: 'nickname',
+     *   remove: true
+     * });
+     * layui.data('test', null); // 删除 test 表
+     * 
+     * // 【改】：同【增】，会覆盖已经存储的数据
+     * 
+     * // 【查】：向 test 表读取全部的数据
+     * var localTest = layui.data('test');
+     * console.log(localTest.nickname); // 获得“张三”
+     * ```
      */
     data(tableName: string, settings?: { key: string; value?: any; remove?: boolean } | null): any;
     /**
@@ -152,26 +152,26 @@ console.log(localTest.nickname); // 获得“张三”
      * @param settings 存储的json对象数据
      * @see https://layui.dev/docs/2/base.html#api
      * @example
-```js
-// 【增】：向 test 表插入一个 nickname 字段，如果该表不存在，则自动建立。
-layui.sessionData('test', {
-  key: 'nickname',
-  value: '张三'
-});
- 
-// 【删】：删除 test 表的 nickname 字段
-layui.sessionData('test', {
-  key: 'nickname',
-  remove: true
-});
-layui.sessionData('test', null); // 删除 test 表
-  
-// 【改】：同【增】，会覆盖已经存储的数据
-  
-// 【查】：向 test 表读取全部的数据
-var localTest = layui.sessionData('test');
-console.log(localTest.nickname); // 获得“张三”
-```
+     * ```js
+     * // 【增】：向 test 表插入一个 nickname 字段，如果该表不存在，则自动建立。
+     * layui.sessionData('test', {
+     *   key: 'nickname',
+     *   value: '张三'
+     * });
+     * 
+     * // 【删】：删除 test 表的 nickname 字段
+     * layui.sessionData('test', {
+     *   key: 'nickname',
+     *   remove: true
+     * });
+     * layui.sessionData('test', null); // 删除 test 表
+     * 
+     * // 【改】：同【增】，会覆盖已经存储的数据
+     * 
+     * // 【查】：向 test 表读取全部的数据
+     * var localTest = layui.sessionData('test');
+     * console.log(localTest.nickname); // 获得“张三”
+     * ```
      */
     sessionData(tableName: string, settings?: { key: string; value?: any; remove?: boolean } | null): any;
     /**
@@ -183,65 +183,20 @@ console.log(localTest.nickname); // 获得“张三”
      */
     define(mods: string[] | string, callback: Layui.ExportsCallback): any;
     /**
-     *  扩展一个 layui 模块,挂载到layui上
+     *  扩展一个 layui 模块，挂载到layui上
      * @param callback 回调函数：通过回调中参数 export 来挂载模块到 layui
      * 模块加载完毕的回调函数，它返回一个 exports 参数，用于输出该模块的接口。
      * 其参数 exports 是一个函数，它接受两个参数，第 1 个参数为模块名，第 2 个参数为模块接口。
      */
     define(callback: Layui.ExportsCallback): any;
     /**
-     * 获取浏览器信息：内置属性
-     * @param key 获取浏览器信息
+     * 获取浏览器信息
      * @see https://layui.dev/docs/2/base.html#api
      */
-    device(key: 'android' | 'ie' | 'ios' | 'mobile' | 'weixin'): boolean;
-    /**
-     * 获取浏览器信息:根据指定的key
-     * @param key 属性
-     * @see https://layui.dev/docs/2/base.html#api
-     */
-    device(key: string): any;
-    /**
-     * 获取浏览器信息：系统
-     * @param key
-     * @see https://layui.dev/docs/2/base.html#api
-     */
-    device(key: 'os'): string;
-    /**
-     * 获取浏览器信息:全部
-     * @see https://layui.dev/docs/2/base.html#api
-     */
-    device(): {
-        /**
-         * 当前浏览器所在的底层操作系统，如：Windows、Linux、Mac 等
-         */
-        os: string;
-        /**
-         * 当前浏览器是否为 ie6-11 的版本，如果不是 ie 浏览器，则为 false
-         */
-        ie: boolean;
-        /**
-         * 当前浏览器是否为微信 App 环境
-         */
-        weixin: boolean;
-        /**
-         * 当前浏览器是否为安卓系统环境
-         */
-        android: boolean;
-        /**
-         * 当前浏览器是否为 IOS 系统环境
-         */
-        ios: boolean;
-        /**
-         * 当前浏览器是否为移动设备环境
-         * @since v2.5.7
-         */
-        mobile: boolean;
-        [index: string]: any;
-    };
+    device<K extends PropertyKey>(key?: K): K extends string ? Layui.deviceReturn & Record<K, boolean | string | undefined> : Layui.deviceReturn;
     /**
      * 对象（Array、Object、DOM 对象等）遍历，可用于取代 for 语句
-     * @param collection Array对象
+     * @param collection Array 对象
      * @param callback 回调函数，返回 true 停止遍历，和 jQUery.each 相反
      * @see https://layui.dev/docs/2/base.html#api
      */
@@ -255,19 +210,19 @@ console.log(localTest.nickname); // 获得“张三”
      * @param fn 回调函数
      * @see https://layui.dev/docs/2/base.html#api
      * @example
-```js
-// 实例一：按照select后边括号内容filter来匹配，比如filter空或没有括号则可匹配到
-layui.onevent("form", "select()", console.log);
-layui.event("form","select()",[1,2,3]);
-
-// 实例二：{*}可匹配全部filter
-layui.onevent("form", "select(xx)", console.log)
-layui.event("form","select({*})",[1,2,3]);
-
-// 实例三：filter严格匹配
-layui.onevent("form", "select(xx)", console.log);
-layui.event("form","select(xx)",[1,2,3]);
-```
+     * ```js
+     * // 实例一：按照select后边括号内容filter来匹配，比如filter空或没有括号则可匹配到
+     * layui.onevent("form", "select()", console.log);
+     * layui.event("form","select()",[1,2,3]);
+     * 
+     * // 实例二：{*}可匹配全部filter
+     * layui.onevent("form", "select(xx)", console.log)
+     * layui.event("form","select({*})",[1,2,3]);
+     * 
+     * // 实例三：filter严格匹配
+     * layui.onevent("form", "select(xx)", console.log);
+     * layui.event("form","select(xx)",[1,2,3]);
+     * ```
      */
     event(modName: string, events: string, params?: any, fn?: (...arg: any) => any): any;
     /**
@@ -275,7 +230,7 @@ layui.event("form","select(xx)",[1,2,3]);
      * @param options
      * @see https://layui.dev/docs/2/base.html#api
      */
-    extend(options: {[index: string]: string }): Layui;
+    extend(options: { [index: string]: string }): Layui;
     /**
      * 用于获取模块对应的 define 回调函数
      * @param modName 模块名
@@ -292,10 +247,10 @@ layui.event("form","select(xx)",[1,2,3]);
     /**
      * 向控制台打印一些异常信息，目前只返回了 error方法
      * @example
-```js
-layui.hint().error('出错啦');
-layui.hint().error('出错啦','warn');
-```
+     * ```js
+     * layui.hint().error('出错啦');
+     * layui.hint().error('出错啦','warn');
+     * ```
      */
     hint(): { error: (msg: any, type?: string | 'log' | 'info' | 'error' | 'warn' | 'debug') => void };
     /**
@@ -325,15 +280,14 @@ layui.hint().error('出错啦','warn');
      * 用于移除模块相关事件的监听
      * 如：`layui.off('select(filter)', 'form')`，那么 `form.on('select(filter)', callback)` 的事件将会被移除。
      * @param events  事件名
-     * @param modName 模块名,比如 `layer,table,form` 等
+     * @param modName 模块名，比如 `layer,table,form` 等
      * @see https://layui.dev/docs/2/base.html#api
      */
     off(events: string, modName: string): Layui;
-
     /**
      * 禁止使用，请传入 callback
      * @param events 事件名
-     * @param modName 模块名,比如 `layer,table,form` 等
+     * @param modName 模块名，比如 `layer,table,form` 等
      * @see https://layui.dev/docs/2/base.html#api
      */
     on(events: string, modName: string): Layui;
@@ -344,9 +298,9 @@ layui.hint().error('出错啦','warn');
      * @param callback 回调函数
      * @see https://layui.dev/docs/2/base.html#api
      * @example
-```js
-layui.on("select(filter)","form",console.log);
-```
+     * ```js
+     * layui.on("select(filter)","form",console.log);
+     * ```
      */
     on(events: string, modName: string, callback: (obj: any) => any): (...arg: any) => any;
     /**
@@ -436,7 +390,7 @@ layui.on("select(filter)","form",console.log);
      */
     disuse(modules: keyof Layui.LayuiModuleMap | Array<keyof Layui.LayuiModuleMap>): any;
     /**
-     * 防抖，函数按指定毫秒延时执行
+     * 防抖
      * @param fn 
      * @param wait
      * @see https://layui.dev/docs/2/base.html#api
@@ -444,7 +398,7 @@ layui.on("select(filter)","form",console.log);
      */
     debounce<T extends (...args: any[]) => any>(fn: T, wait: number): T;
     /**
-     * 节流，限制函数在指定毫秒内不重复执行
+     * 节流
      * @param fn
      * @param wait
      * @see https://layui.dev/docs/2/base.html#api

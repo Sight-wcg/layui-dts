@@ -439,6 +439,6 @@ declare namespace Layui {
          * @param obj 对象
          * @param key 属性名
          */
-        hasOwn<O, K extends PropertyKey, V = unknown>(obj: O, prop: K): obj is O & Record<K, V>;
+        hasOwn<O, K extends PropertyKey, V = unknown>(obj: O, key: K): obj is O & Record<K, V>;
     }
 }
