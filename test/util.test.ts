@@ -153,9 +153,9 @@ function utilTest() {
               alert('触发了事件3');
           },
       });
-      util.event('lay-on', {t: () => {}}, 'click');
+      util.event('lay-on', {t: () => {}}, 'blur');
       util.event('lay-on', {t: () => {}});
-      util.on('lay-on', {t: () => {}}, 'change');
+      util.on('lay-on', {t: () => {}}, 'click');
       util.on('lay-on', {t: () => {}});
       var onRet = util.on('lay-on', {
         e1: (el, e) => {
@@ -164,7 +164,7 @@ function utilTest() {
         e2: function(el, e) {
             
         }
-      },{trigger:'change'});
+      },{trigger:'dblclick'});
 
       util.on({t: () => {}}, 'dblclick');
       util.on({t: () => {}});
@@ -175,7 +175,7 @@ function utilTest() {
         e2: function(el, e) {
             
         }
-      },{trigger:'contextmenu'});
+      },{trigger:'dblclick', elem: document});
 
       util.openWin({
         target: ''

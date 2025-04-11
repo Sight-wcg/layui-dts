@@ -181,12 +181,7 @@ declare namespace Layui {
 
     type TypeToTriggeredEventMap<TElement> = JQuery.TypeToTriggeredEventMap<TElement, undefined, any, any>
 
-    type TriggerEvent = 'change' | 'resize' | 'scroll' | 'select' | 'submit'
-        | 'click' | 'contextmenu' | 'dblclick' | 'mousedown' | 'mouseenter' | 'mouseleave' | 'mousemove' | 'mouseout' | 'mouseover' | 'mouseup'
-        | 'drag' | 'dragEnd' | 'dragenter' | 'dragexit' | 'dragleave' | 'dragover' | 'dragstart' | 'drop'
-        | 'keydown' | 'keypress' | 'keyup'
-        | 'touchcancel' | 'touchend' | 'touchmove' | 'touchstart'
-        | 'blur' | 'focus' | 'focusin' | 'focusout'
+    type TriggerEvent<TElement> = keyof Layui.OmitIndexSignature<TypeToTriggeredEventMap<TElement>>;
 
     /**
      * 工具集
@@ -296,7 +291,7 @@ declare namespace Layui {
          * @deprecated 2.8.0 已弃用,请使用 {@link Util.on|util.on}
          * @see {@link Util.event|util.on}
          */
-        event(attr: string, obj: { [index: string]: (othis: JQuery) => any }, eventType?: TriggerEvent): void;
+        event(attr: string, obj: { [index: string]: (othis: JQuery) => any }, eventType?: TriggerEvent<HTMLBodyElement>): void;
         /**
          * 批量事件处理
          * @param attr 触发事件的元素属性名，默认值 'lay-on'
@@ -306,10 +301,10 @@ declare namespace Layui {
          * @since 2.8.0
          * @since 2.9.0 事件处理函数新增第二个参数 e 事件对象；新增事件集合返回值；
          */
-        on<TEventType extends TriggerEvent = 'click', TElement = HTMLElement>(
+        on<TEventType extends TriggerEvent<TElement> = 'click', TElement = HTMLBodyElement>(
             attr: string,
             events: {
-                [attrValue: string]: (othis: JQuery<TElement>, e?: TypeToTriggeredEventMap<TElement>[TEventType]) => any
+                [attrValue: string]: (othis: JQuery, e?: TypeToTriggeredEventMap<TElement>[TEventType]) => any
             },
             trigger?: TEventType,
         ): typeof events;
@@ -323,14 +318,14 @@ declare namespace Layui {
          * @returns 返回当前 events 参数设置的事件集合
          * @since 2.9.0
          */
-        on<TEventType extends TriggerEvent = 'click', TElement = HTMLElement>(
+        on<TEventType extends TriggerEvent<TElement> = 'click', TElement = HTMLBodyElement>(
             attr: string,
             events: {
-                [attrValue: string]: (othis: JQuery<TElement>, e: TypeToTriggeredEventMap<TElement>[TEventType]) => any
+                [attrValue: string]: (othis: JQuery, e: TypeToTriggeredEventMap<TElement>[TEventType]) => any
             },
             options?: {
-                trigger?: TEventType | TriggerEvent;
-                elem?: string | HTMLElement | JQuery
+                trigger?: TEventType | TriggerEvent<TElement>;
+                elem?: string | TElement | JQuery<TElement>
             },
         ): typeof events
         /**
@@ -340,9 +335,9 @@ declare namespace Layui {
          * @returns 返回当前 events 参数设置的事件集合
          * @since 2.9.0
          */
-        on<TEventType extends TriggerEvent = 'click', TElement = HTMLElement>(
+        on<TEventType extends TriggerEvent<TElement> = 'click', TElement = HTMLBodyElement>(
             events: {
-                [attrValue: string]: (othis: JQuery<TElement>, e: TypeToTriggeredEventMap<TElement>[TEventType]) => any
+                [attrValue: string]: (othis: JQuery, e: TypeToTriggeredEventMap<TElement>[TEventType]) => any
             },
             trigger?: TEventType,
         ): typeof events
@@ -355,13 +350,13 @@ declare namespace Layui {
          * @returns 返回当前 events 参数设置的事件集合
          * @since 2.9.0
          */
-        on<TEventType extends TriggerEvent = 'click', TElement = HTMLElement>(
+        on<TEventType extends TriggerEvent<TElement> = 'click', TElement = HTMLBodyElement>(
             events: {
-                [attrValue: string]: (othis: JQuery<TElement>, e: TypeToTriggeredEventMap<TElement>[TEventType]) => any
+                [attrValue: string]: (othis: JQuery, e: TypeToTriggeredEventMap<TElement>[TEventType]) => any
             },
             options?: {
-                trigger?: TEventType | TriggerEvent;
-                elem?: string | HTMLElement | JQuery
+                trigger?: TEventType | TriggerEvent<TElement>;
+                elem?: string | TElement | JQuery<TElement>
             },
         ): typeof events;
     }

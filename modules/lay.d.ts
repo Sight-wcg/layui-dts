@@ -75,14 +75,22 @@ declare namespace Layui {
          * @param fn 回调
          * @since 2.9.11 新增 options
          */
-        off<K extends keyof HTMLElementEventMap>(eventName: K, fn: (this: TElement, e: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): this;
+        off<K extends keyof HTMLElementEventMap>(
+            eventName: K,
+            fn: (this: TElement, e: HTMLElementEventMap[K]) => any,
+            options?: boolean | EventListenerOptions
+        ): this;
         /**
          * 事件绑定，注意：只支持内置事件，不支持自定义事件
          * @param eventName 事件名 比如click，自定事件会绑定失败
          * @param fn 回调
          * @since 2.9.11 新增 options
          */
-        on<K extends keyof HTMLElementEventMap>(eventName: K, fn: (this: TElement, e: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): this;
+        on<K extends keyof HTMLElementEventMap>(
+            eventName: K,
+            fn: (this: TElement, e: HTMLElementEventMap[K]) => any,
+            options?: boolean | AddEventListenerOptions
+        ): this;
         /**
          * 移除元素
          * @param elem 实际是 removeChild(elem)
@@ -184,17 +192,26 @@ declare namespace Layui {
         offset?: [offsetX: number, offsetY: number]
     }
 
-    interface LayOnClickOutsideOpsions {
+    type LayOnClickOutsideScope = HTMLElement | Document | Window;
+    type LayOnClickOutsideScopeEventMap<SElement> = SElement extends Window
+        ? WindowEventMap
+        : SElement extends Document
+        ? DocumentEventMap
+        : SElement extends HTMLElement
+        ? HTMLElementEventMap
+        : never;
+    type LayOnClickOutsideEventMap<SElement> = Pick<LayOnClickOutsideScopeEventMap<SElement>, 'click' | 'mousedown' | 'mouseup' | 'touchstart' | 'touchend' | 'pointerdown' | 'pointerup'>;
+    interface LayOnClickOutsideOpsions<E extends keyof LayOnClickOutsideEventMap<S>, S extends LayOnClickOutsideScope> {
         /**
          * 监听的事件类型
          * @default 'pointerdown''
          */
-        event?: string;
+        event?: E;
         /**
          * 监听范围
          * @default document
          */
-        scope?: HTMLElement | Document | Window;
+        scope?: S;
         /**
          * 忽略监听的元素或选择器字符串
          */
@@ -429,10 +446,13 @@ declare namespace Layui {
          * @param options
          * @return 返回一个停止事件监听的函数
          */
-        onClickOutside(
+        onClickOutside<
+            E extends keyof LayOnClickOutsideEventMap<S> = 'pointerdown',
+            S extends LayOnClickOutsideScope = Document
+        >(
             target: HTMLElement,
-            handler: (e: MouseEvent) => void,
-            options?: LayOnClickOutsideOpsions
+            handler: (e: LayOnClickOutsideEventMap<S>[E]) => void,
+            options?: LayOnClickOutsideOpsions<E, S>
         ): Fn;
         /**
          * 判断一个对象是否具有某个自身的属性，而不考虑继承的属性

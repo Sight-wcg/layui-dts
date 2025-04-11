@@ -49,5 +49,9 @@ function layTest() {
   }
   var hasown = lay.hasOwn(window, 'name')
   var stop = lay.onClickOutside(document.body, (e) => {})
+  lay.onClickOutside(document.body ,(e) => {}, {
+    event: "pointerdown",
+    scope: window
+  })
   lay.clipboard.writeText('123')
 }

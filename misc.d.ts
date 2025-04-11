@@ -6,6 +6,11 @@ declare namespace Layui {
     type MaybeArray<T> = T | T[];
     type MaybePromise<T> = T | Promise<T> | JQuery.Deferred<T>;
     type LiteralUnion<T extends U, U = string> = T | (U & {});
+    type OmitIndexSignature<ObjectType> = {
+        [KeyType in keyof ObjectType as {} extends Record<KeyType, unknown>
+        ? never
+        : KeyType]: ObjectType[KeyType];
+    };
 
     type ExportsCallback = (this: Layui, fn: (app: string, exports: object) => void) => void;
 
