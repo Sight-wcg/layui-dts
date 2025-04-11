@@ -126,7 +126,7 @@ declare namespace Layui {
          * @since 2.9.11+ 新增支持 Promise
          * @param obj 回调参数(工具对象)
          */
-        before?(this: UploadOptionsThis, obj: UploadCallbackArg): void | boolean | JQueryDeferred<boolean> | Promise<boolean>;
+        before?(this: UploadOptionsThis, obj: UploadCallbackArg): void | MaybePromise<boolean>;
         /**
          * 上传后的回调
          * @param res 服务端response json
@@ -183,20 +183,21 @@ declare namespace Layui {
     interface UploadCallbackArg {
         /**
          * 预览
-         * @param callback index索引，file文件，result 文件base64编码
+         * @param callback index索引，file文件，result 文件 base64 编码
          */
         preview(callback: (index: string, file: File, result: string) => void): void;
         /**
-         * 上传单个文件    <br/>&nbsp;
+         * 上传单个文件
+         * 
          * 对上传失败的单个文件重新上传，一般在某个事件中使用
-         * @param index 索引  (选择文件时自动生成的：new Date().getTime()+'-'+i)
+         * @param index 索引 (选择文件时自动生成的：new Date().getTime()+'-'+i)
          * @param file 文件
          */
         upload(index: string, file: Blob): void;
         /**
          * 追加文件到队列, 比如 choose 回调中将每次选择的文件追加到文件队列
          */
-        pushFile(): { [index: string]: File };
+        pushFile(): Record<string, File>;
         /**
          * 重置文件和文件名
          * @param index 被重置的文件索引 (选择文件时自动生成的：new Date().getTime()+'-'+i)
@@ -215,7 +216,7 @@ declare namespace Layui {
         /**
          * 参数信息
          */
-        config: { [index: string]: any };
+        config: Record<string, any>;
         /**
          * 重载该实例，支持重载全部基础参数
          * @param options 基础参数

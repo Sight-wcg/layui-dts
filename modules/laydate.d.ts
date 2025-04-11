@@ -257,7 +257,7 @@ declare namespace Layui {
          * theme: ['#FF5722', '#FF5723'] // 定义主色和辅色 （2.8.4）
          * ```
          */
-        theme?: MaybeArray<string | 'molv' | 'grid' | 'circle'>;
+        theme?: MaybeArray<LiteralUnion<'molv' | 'grid' | 'circle'>>;
         /**
          * 是否显示公历节日
          * @default false

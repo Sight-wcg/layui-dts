@@ -263,6 +263,7 @@ function layerTest() {
       });
       layer.open({
           type: 2,
+          anim: 0,
           shade: false,
           area: '500px',
           maxmin: true,

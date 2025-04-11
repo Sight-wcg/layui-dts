@@ -285,7 +285,7 @@ declare namespace Layui {
          * lay.elem('div', {id: 'test'}) // <div id="test"></div>
          * ```
          */
-        elem<K extends keyof HTMLElementTagNameMap>(elemName: K, attr?: object): HTMLElementTagNameMap[K];
+        elem<K extends keyof HTMLElementTagNameMap>(elemName: K, attr?: Record<string, any>): HTMLElementTagNameMap[K];
         /**
          * 当前页面body是否存在滚动条
          */

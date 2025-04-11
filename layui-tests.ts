@@ -124,6 +124,7 @@ function B_method() {
   var myDevice = layui.device('myflag');
   myDevice.myflag
   myDevice['myflag'];
+  //layui.device().myflag;
   layui.device('os');
 
   // 其他底层方法

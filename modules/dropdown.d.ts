@@ -112,7 +112,7 @@ declare namespace Layui {
          * }
          * ```
          */
-        templet?: string | ((d: object) => string);
+        templet?: string | ((d: any) => string);
         /**
          * 自定义组件内容，从而替代默认的菜单结构
          */

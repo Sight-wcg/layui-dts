@@ -5,6 +5,7 @@ declare namespace Layui {
     type ArgumentsType<T> = T extends (...args: infer U) => any ? U : never;
     type MaybeArray<T> = T | T[];
     type MaybePromise<T> = T | Promise<T> | JQuery.Deferred<T>;
+    type LiteralUnion<T extends U, U = string> = T | (U & {});
 
     type ExportsCallback = (this: Layui, fn: (app: string, exports: object) => void) => void;
 

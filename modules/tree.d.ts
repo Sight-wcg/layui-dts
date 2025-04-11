@@ -52,7 +52,7 @@ declare namespace Layui {
     interface TreeOperateData {
         data: any;
         elem: JQuery;
-        type: 'add' | 'update' | 'del' | string;
+        type: LiteralUnion<'add' | 'update' | 'del'>;
     }
 
     type TreeReloadReturn = Pick<Tree, 'config' | 'reload' | 'getChecked' | 'setChecked'>;

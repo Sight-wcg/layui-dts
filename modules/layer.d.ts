@@ -72,7 +72,7 @@ declare namespace Layui {
          * title :'标题'
          * title: ['文本', 'font-size:18px;']  // 指定文本样式
          */
-        title?: string | boolean | string[];
+        title?: string | boolean | [text: string, style: string];
         /**
          * 弹层内容。 可传入的值比较灵活，支持以下使用场景：
          * 
@@ -123,7 +123,7 @@ declare namespace Layui {
          * skin: 'layui-layer-molv' // 内置墨绿主题
          * skin: 'layui-layer-win10' // 内置 Windows 10 风格主题(2.8.0)
          */
-        skin?: string;
+        skin?: 'layui-layer-lan' | 'layui-layer-molv' | 'layui-layer-win10' | (string & {});
         /**
          * 设置弹层的宽高，其值支持以下可选类型：支持以下可选类型：
          * - 若为 `array` 类型，则可同时设置宽高
@@ -214,7 +214,7 @@ declare namespace Layui {
          * `title: false` 时强制为 2
          *  @default 1
          */
-        closeBtn?: string | boolean | number;
+        closeBtn?: 0 | 1 | 2 | boolean;
         /**
          * 弹层的遮罩
          * @default 0.3
@@ -223,7 +223,7 @@ declare namespace Layui {
          * shade: 0  // 不显示遮罩
          * shade: [0.8, '#393D49'] // 设置透明度和遮罩颜色
          */
-        shade?: string | boolean | number | [number, string];
+        shade?: boolean | number | [opacity: number, bgColor: string];
         /**
          * 是否点击遮罩时关闭弹层，当遮罩存在时有效
          * @default false
@@ -265,7 +265,7 @@ declare namespace Layui {
          * - `anim: 'slideRight'`  从左边缘往右
          * @default 0
          */
-        anim?: number | string;
+        anim?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 'slideDown' | 'slideLeft' | 'slideRight' | 'slideUp' | (string & {}));
         /**
          * 是否开启弹层关闭时的动画
          * @default true
@@ -731,7 +731,7 @@ declare namespace Layui {
          * @param end 关闭后的回调
          * @see https://layui.dev/docs/2/layer/#msg
          */
-        msg(content: string, options?: Omit<LayerOptions, 'type' | 'skin' | 'title' | 'resize' | 'end' | 'removeFocus'>, end?: LayerCallbackEnd): LayerIndex;
+        msg(content: string, options?: Omit<LayerOptions, 'type' | 'skin' | 'title' | 'resize' | 'end'>, end?: LayerCallbackEnd): LayerIndex;
         /**
          * 提示框
          * @param content 提示内容
@@ -745,13 +745,13 @@ declare namespace Layui {
          * @param options 基础属性选项
          * @see https://layui.dev/docs/2/layer/#load
          */
-        load(icon?: 0 | 1 | 2, options?: Omit<LayerOptions, 'type' | 'resize' | 'removeFocus'>): LayerIndex;
+        load(icon?: 0 | 1 | 2, options?: Omit<LayerOptions, 'type' | 'resize'>): LayerIndex;
         /**
          * 加载层
          * @param options 基础属性选项
          * @see https://layui.dev/docs/2/layer/#load
          */
-        load(options?: Omit<LayerOptions, 'type' | 'resize' | 'removeFocus'>): LayerIndex;
+        load(options?: Omit<LayerOptions, 'type' | 'resize'>): LayerIndex;
         /**
          * tips 层
          * @param content 显示的内容
@@ -759,7 +759,7 @@ declare namespace Layui {
          * @param options 基础属性选项
          * @see https://layui.dev/docs/2/layer/#tips
          */
-        tips(content?: string, referenceEl?: string | HTMLElement | JQuery, options?: Omit<LayerOptions, 'type' | 'content' | 'closeBtn' | 'resize' | 'removeFocus'>): LayerIndex;
+        tips(content?: string, referenceEl?: string | HTMLElement | JQuery, options?: Omit<LayerOptions, 'type' | 'content' | 'closeBtn' | 'resize'>): LayerIndex;
         /**
          * 输入层
          * @param options 参数
