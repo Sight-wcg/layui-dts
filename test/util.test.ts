@@ -139,7 +139,7 @@ function utilTest() {
       layui.util.toDateString(new Date());
 
       layui.util.digit(1, 4);
-      layui.util.escape();
+      layui.util.escape('s');
 
       // 处理属性 为 lay-active 的所有元素事件
       util.event('lay-active', {
@@ -153,14 +153,30 @@ function utilTest() {
               alert('触发了事件3');
           },
       });
-      util.on({
-        e1: function(el, e){
+      util.event('lay-on', {t: () => {}}, 'click');
+      util.event('lay-on', {t: () => {}});
+      util.on('lay-on', {t: () => {}}, 'change');
+      util.on('lay-on', {t: () => {}});
+      var onRet = util.on('lay-on', {
+        e1: (el, e) => {
 
         },
-        e2: (el, e) => {
-
+        e2: function(el, e) {
+            
         }
-      });
+      },{trigger:'change'});
+
+      util.on({t: () => {}}, 'dblclick');
+      util.on({t: () => {}});
+      util.on({
+        e1: (el, e) => {
+
+        },
+        e2: function(el, e) {
+            
+        }
+      },{trigger:'contextmenu'});
+
       util.openWin({
         target: ''
       })
@@ -168,5 +184,16 @@ function utilTest() {
         data: 1,
         now: 1
       })
+
+      interface tt{
+        a: string;
+        b: number;
+        [id:string]: any
+      }
+
+      var te: keyof tt = ''; 
+
+      console.log(te);
+      
   });
 }

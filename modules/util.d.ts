@@ -179,6 +179,15 @@ declare namespace Layui {
         timer: number;
     }
 
+    type TypeToTriggeredEventMap<TElement> = JQuery.TypeToTriggeredEventMap<TElement, undefined, any, any>
+
+    type TriggerEvent = 'change' | 'resize' | 'scroll' | 'select' | 'submit'
+        | 'click' | 'contextmenu' | 'dblclick' | 'mousedown' | 'mouseenter' | 'mouseleave' | 'mousemove' | 'mouseout' | 'mouseover' | 'mouseup'
+        | 'drag' | 'dragEnd' | 'dragenter' | 'dragexit' | 'dragleave' | 'dragover' | 'dragstart' | 'drop'
+        | 'keydown' | 'keypress' | 'keyup'
+        | 'touchcancel' | 'touchend' | 'touchmove' | 'touchstart'
+        | 'blur' | 'focus' | 'focusin' | 'focusout'
+
     /**
      * 工具集
      * @see https://layui.dev/docs/2/util/
@@ -244,13 +253,23 @@ declare namespace Layui {
          * 
          * @param time 毫秒数或日期对象
          * @param format 默认：yyyy-MM-dd HH:mm:ss
-         * @param option 参数选项 {customMeridiem: function(hours, minutes){ return hours < 12 ? '上午' : '下午'; }}
+         * @param option 参数选项
+         * @example
+         * ```js
+         * customMeridiem: function(hours, minutes){ 
+         *   return hours < 12 ? '上午' : '下午'; 
+         * }
+         * ```
          */
-        toDateString(time: number | Date, format?: string, option?: { customMeridiem?: (hours: number, minutes: number) => string }): string;
+        toDateString(
+            time: number | Date,
+            format?: string,
+            option?: { customMeridiem?: (hours: number, minutes: number) => string }
+        ): string;
         /**
          * 数字前置补零
          * @param num 数字
-         * @param length 补 0 后的长度
+         * @param length 补 0 后的长度，默认 2
          */
         digit(num: number | string, length?: number): string;
         /**
@@ -264,19 +283,36 @@ declare namespace Layui {
          */
         unescape(str: any): string;
         /**
-         * 批量处理事件
-         * @param attr 绑定需要监听事件的元素属性
-         * @param obj 事件回调链
-         * @deprecated 2.8.0 已弃用,请使用 {@link Util.on|util.on}
-         * @see {@link Util.event|util.on}
-         */
-        event(attr: string, obj: { [index: string]: (othis: JQuery) => any }): any;
-        /**
          * 打开浏览器新标签页
          * @param options 属性配置项
          * @since 2.8.0
          */
         openWin(options: UtilOpenWinOptions): void;
+        /**
+         * 批量处理事件
+         * @param attr 绑定需要监听事件的元素属性
+         * @param obj 事件集合
+         * @since 2.5.0
+         * @deprecated 2.8.0 已弃用,请使用 {@link Util.on|util.on}
+         * @see {@link Util.event|util.on}
+         */
+        event(attr: string, obj: { [index: string]: (othis: JQuery) => any }, eventType?: TriggerEvent): void;
+        /**
+         * 批量事件处理
+         * @param attr 触发事件的元素属性名，默认值 'lay-on'
+         * @param events 事件集合
+         * @param trigger 事件触发的方式，默认值 'click'
+         * @returns 返回当前 events 参数设置的事件集合
+         * @since 2.8.0
+         * @since 2.9.0 事件处理函数新增第二个参数 e 事件对象；新增事件集合返回值；
+         */
+        on<TEventType extends TriggerEvent = 'click', TElement = HTMLElement>(
+            attr: string,
+            events: {
+                [attrValue: string]: (othis: JQuery<TElement>, e?: TypeToTriggeredEventMap<TElement>[TEventType]) => any
+            },
+            trigger?: TEventType,
+        ): typeof events;
         /**
          * 批量事件处理
          * @param attr 触发事件的元素属性名，默认值 'lay-on'
@@ -285,26 +321,48 @@ declare namespace Layui {
          * - elem 触发事件的委托元素，默认值 body
          * - trigger 事件触发的方式，默认值 'click'
          * @returns 返回当前 events 参数设置的事件集合
-         * @since 2.8.0
-         * @since 2.9.0 增加 options 参数选项
+         * @since 2.9.0
          */
-        on(
-            attr: string, 
-            events: { [index: string]: (othis: JQuery, e: JQuery.Event) => any }, 
-            options?: { trigger?: string; elem?: string | Element | JQuery }
-        ): Record<string, any>;
+        on<TEventType extends TriggerEvent = 'click', TElement = HTMLElement>(
+            attr: string,
+            events: {
+                [attrValue: string]: (othis: JQuery<TElement>, e: TypeToTriggeredEventMap<TElement>[TEventType]) => any
+            },
+            options?: {
+                trigger?: TEventType | TriggerEvent;
+                elem?: string | HTMLElement | JQuery
+            },
+        ): typeof events
         /**
          * 批量事件处理
          * @param events 事件集合
-         * @param options 参数选项
+         * @param trigger 事件触发的方式，默认值 'click'
+         * @returns 返回当前 events 参数设置的事件集合
+         * @since 2.9.0
+         */
+        on<TEventType extends TriggerEvent = 'click', TElement = HTMLElement>(
+            events: {
+                [attrValue: string]: (othis: JQuery<TElement>, e: TypeToTriggeredEventMap<TElement>[TEventType]) => any
+            },
+            trigger?: TEventType,
+        ): typeof events
+        /**
+         * 批量事件处理
+         * @param events 事件集合
+         * @param options 参数的更多选项
          * - elem 触发事件的委托元素，默认值 body
          * - trigger 事件触发的方式，默认值 'click'
          * @returns 返回当前 events 参数设置的事件集合
          * @since 2.9.0
          */
-        on(
-            events: { [index: string]: (othis: JQuery, e: JQuery.Event) => any }, 
-            options?: { trigger?: string; elem?: string | Element | JQuery }
-        ): Record<string, any>;
+        on<TEventType extends TriggerEvent = 'click', TElement = HTMLElement>(
+            events: {
+                [attrValue: string]: (othis: JQuery<TElement>, e: TypeToTriggeredEventMap<TElement>[TEventType]) => any
+            },
+            options?: {
+                trigger?: TEventType | TriggerEvent;
+                elem?: string | HTMLElement | JQuery
+            },
+        ): typeof events;
     }
 }

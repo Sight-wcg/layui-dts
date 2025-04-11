@@ -413,6 +413,13 @@ declare namespace Layui {
          */
         render(options: LayDateOptions): LaydateReturn;
         /**
+         * 重载
+         * @param id 组件渲染时定义的 id 属性值
+         * @param options 基础参数
+         * @since 2.8.0
+         */
+        reload(id: string, options?: Partial<LayDateOptions>): void;
+        /**
          * 配置基础路径
          * 
          * 如果你不是采用 layui 或者普通 script 标签方式加载的 laydate.js
