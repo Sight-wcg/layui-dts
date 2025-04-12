@@ -272,7 +272,7 @@ declare namespace Layui {
          * - `anim: 'slideRight'`  从左边缘往右
          * @default 0
          */
-        anim?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 'slideDown' | 'slideLeft' | 'slideRight' | 'slideUp' | (string & {}));
+        anim?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 'slideDown' | 'slideLeft' | 'slideRight' | 'slideUp' | (string & {});
         /**
          * 是否开启弹层关闭时的动画
          * @default true
