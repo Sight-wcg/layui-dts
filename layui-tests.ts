@@ -248,8 +248,10 @@ function B_method() {
     factoryCallback();
   }
 
-  layui.disuse('form');
+  layui.disuse('flow');
   layui.disuse(['form','lay']);
+  layui.disuse('t');
+  layui.disuse(['t', 'form'])
 
   var dFn = layui.debounce((a:number,b:string) => {return a+b}, 0);
   dFn(1, '2');

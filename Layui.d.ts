@@ -381,14 +381,14 @@ interface Layui {
      * @param callback 回调函数，从 layui 2.6 开始，首个参数是 callback 函数，则表示引用所有内置模块到 `layui.xx`
      * @param exports 无任何用途，可不传
      */
-    use(callback: (this: Layui, module: { config: object; time: number }) => any, exports?: any[]): { v: string };
+    use(callback: (this: Layui, module: { config: Layui.PlainObject; time: number }) => any, exports?: any[]): { v: string };
     /**
      * 弃用某模块，以便重新扩展新的同名模块
      * @param modules 模块名称，支持数组，可同时弃用多个模块
      * @example layui.disuse('table')
      * @since 2.7.0
      */
-    disuse(modules: keyof Layui.LayuiModuleMap | Array<keyof Layui.LayuiModuleMap>): any;
+    disuse(modules: Layui.MaybeArray<Layui.LiteralStringUnion<keyof Layui.LayuiModuleMap>>): any;
     /**
      * 防抖
      * @param fn 

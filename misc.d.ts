@@ -5,7 +5,19 @@ declare namespace Layui {
     type ArgumentsType<T> = T extends (...args: infer U) => any ? U : never;
     type MaybeArray<T> = T | T[];
     type MaybePromise<T> = T | Promise<T> | JQuery.Deferred<T>;
-    type LiteralUnion<T extends U, U = string> = T | (U & {});
+    export type Primitive =
+        | null
+        | undefined
+        | string
+        | number
+        | boolean
+        | symbol
+        | bigint;
+    type LiteralUnion<
+        LiteralType,
+        BaseType extends Primitive,
+    > = LiteralType | (BaseType & Record<never, never>);
+    type LiteralStringUnion<T> = LiteralUnion<T, string>;
     type OmitIndexSignature<ObjectType> = {
         [KeyType in keyof ObjectType as {} extends Record<KeyType, unknown>
         ? never
@@ -14,6 +26,7 @@ declare namespace Layui {
     type PlainObject<T = any> = {
         [key: string]: T;
     }
+
 
     type Selector = string;
     type ExportsCallback = (this: Layui, fn: (app: string, exports: object) => void) => void;

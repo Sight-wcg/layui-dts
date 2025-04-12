@@ -109,7 +109,7 @@ declare namespace Layui {
          * @param type  bar1、bar2、top
          * @deprecated 2.8.0 已废弃，请使用 {@link UtilBarOptions.on|on}
          */
-        click?(type: LiteralUnion<'bar1' | 'bar2' | 'top'>): void;
+        click?(type: LiteralStringUnion<'bar1' | 'bar2' | 'top'>): void;
     }
 
     /**
@@ -123,7 +123,7 @@ declare namespace Layui {
         /**
          * 打开页面的方式或窗口 name
          */
-        target?: LiteralUnion<'_blank' | '_parent' | '_self' | '_top'>;
+        target?: LiteralStringUnion<'_blank' | '_parent' | '_self' | '_top'>;
         /**
          * 打开的页面内容。若设置了 url 属性，则该属性无效
          */
