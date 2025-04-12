@@ -40,7 +40,7 @@ declare namespace Layui {
          * 对元素遍历
          * @param fn 回调函数，返回 `true` 则停止遍历，和 jQuery 相反
          */
-        each(fn?: (this: TElement, index: number, elem: TElement) => any): this;
+        each(fn: (this: TElement, index: number, elem: TElement) => any): this;
         /**
          * 查找子元素
          * @param selector 选择器
@@ -80,6 +80,16 @@ declare namespace Layui {
             fn: (this: TElement, e: HTMLElementEventMap[K]) => any,
             options?: boolean | EventListenerOptions
         ): this;
+        off<K extends keyof DocumentEventMap>(
+            eventName: K,
+            fn: (this: TElement, e: DocumentEventMap[K]) => any,
+            options?: boolean | EventListenerOptions
+        ): this;
+        off<K extends keyof WindowEventMap>(
+            eventName: K,
+            fn: (this: TElement, e: WindowEventMap[K]) => any,
+            options?: boolean | EventListenerOptions
+        ): this;
         /**
          * 事件绑定，注意：只支持内置事件，不支持自定义事件
          * @param eventName 事件名 比如click，自定事件会绑定失败
@@ -89,6 +99,16 @@ declare namespace Layui {
         on<K extends keyof HTMLElementEventMap>(
             eventName: K,
             fn: (this: TElement, e: HTMLElementEventMap[K]) => any,
+            options?: boolean | AddEventListenerOptions
+        ): this;
+        on<K extends keyof DocumentEventMap>(
+            eventName: K,
+            fn: (this: TElement, e: DocumentEventMap[K]) => any,
+            options?: boolean | AddEventListenerOptions
+        ): this;
+        on<K extends keyof WindowEventMap>(
+            eventName: K,
+            fn: (this: TElement, e: WindowEventMap[K]) => any,
             options?: boolean | AddEventListenerOptions
         ): this;
         /**
@@ -228,7 +248,15 @@ declare namespace Layui {
          * 查找 DOM 作为返回实例的操作对象
          * @param selector 选择器
          */
-        (selector?: string | HTMLElement | JQuery): Lay;
+        (window: Window): Lay<Window>;
+        <T extends keyof HTMLElementTagNameMap>(selector: T): Lay<HTMLElementTagNameMap[T]>;
+        <T extends keyof SVGElementTagNameMap>(selector: T): Lay<SVGElementTagNameMap[T]>;
+        <T extends globalThis.Element = HTMLElement>(selector: Layui.Selector): Lay<T>;
+        (element: HTMLSelectElement): Lay<HTMLSelectElement>;
+        <T extends globalThis.Element>(element_or_elementArray: T | ArrayLike<T>): Lay<T>;
+        <T>(selection: Lay<T>): Lay<T>;
+        <T extends Layui.PlainObject>(object: T): Lay<T>;
+        <T = HTMLElement>(): Lay<T>;
         /**
          * 版本
          */
@@ -276,7 +304,7 @@ declare namespace Layui {
         stope(event: Event | JQuery.Event): void;
         /**
         * 对象（Array、Object、DOM 对象等）遍历，可用于取代 for 语句
-        * @param collection Array对象
+        * @param collection 集合，可以是数组或对象等可遍历的元素
         * @param callback 回调函数，返回 true 停止遍历，和 jQUery.each 相反
         */
         each<T>(collection: ArrayLike<T>, callback: (this: T, indexInArray: number, value: T) => any): Lay;
@@ -302,7 +330,8 @@ declare namespace Layui {
          * lay.elem('div', {id: 'test'}) // <div id="test"></div>
          * ```
          */
-        elem<K extends keyof HTMLElementTagNameMap>(elemName: K, attr?: Record<string, any>): HTMLElementTagNameMap[K];
+        elem<K extends keyof HTMLElementTagNameMap>(tagName: K, attr?: Record<string, any>): HTMLElementTagNameMap[K];
+        elem(tagName: string, attr?: Record<string, any>): HTMLElement;
         /**
          * 当前页面body是否存在滚动条
          */
@@ -432,7 +461,7 @@ declare namespace Layui {
          * @since 2.9.2
          */
         touchSwipe(
-            elem: string | HTMLElement | JQuery,
+            elem: string | Element | JQuery,
             options: {
                 onTouchStart(e: TouchEvent, state: LayTouchSwipeState): void;
                 onTouchMove(e: TouchEvent, state: LayTouchSwipeState): void;

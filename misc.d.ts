@@ -11,7 +11,11 @@ declare namespace Layui {
         ? never
         : KeyType]: ObjectType[KeyType];
     };
+    type PlainObject<T = any> = {
+        [key: string]: T;
+    }
 
+    type Selector = string;
     type ExportsCallback = (this: Layui, fn: (app: string, exports: object) => void) => void;
 
     /**

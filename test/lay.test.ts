@@ -15,6 +15,16 @@ function layTest() {
   layui.lay.options('.a');
   layui.lay.options('.a', 'id');
 
+  lay()
+  lay(window)
+  lay(document)
+  lay(document.documentElement)
+  lay([document.body, document.body])
+  lay(lay.elem('select'))
+  lay((lay()))
+  lay($('div'))
+  lay('div')
+  lay('.touchEventsSupported')
   const ll = layui.lay(document.body);
   ll.addClass('abc a', false);
   ll.addClass('abc b', true);
@@ -37,6 +47,8 @@ function layTest() {
   layui.lay('#abc').on('click', function(e) {
       console.log(this, e);
   });
+  lay(window).on('resize', e => {})
+  lay(document).on('load', e => {})
   layui.laypage.on(document.getElementById('abc'), 'click', e => {
       console.log(e);
   });

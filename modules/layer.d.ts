@@ -46,7 +46,14 @@ declare namespace Layui {
      * @param layero 当前层的 jQuery 对象 
      */
     type LayerCallbackPrompt = (value: string, index: number, layero: JQuery) => void;
-    type LayerType = 0 | 1 | 2 | 3 | 4;
+    type layerTypeMap = {
+        0: 'dialog',
+        1: 'page',
+        2: 'iframe',
+        3: 'loading',
+        4: 'tips'
+    }
+    type LayerType = keyof layerTypeMap;
     type LayerIndex = number;
     /**
      * 弹层选项
@@ -529,7 +536,7 @@ declare namespace Layui {
          * - 2 多行文本输入框
          * @default 0
          */
-        formType?: number;
+        formType?: 0 | 1 | 2;
         /**
          * 输入框初始值
          * @default ''
@@ -817,7 +824,7 @@ declare namespace Layui {
          * @param type 关闭的弹层类型，不传则关闭全部
          * @param callback 关闭所有层后执行回调
          */
-        closeAll(type?: 'dialog' | 'page' | 'iframe' | 'loading' | 'tips', callback?: () => any): void;
+        closeAll(type?: layerTypeMap[keyof layerTypeMap], callback?: () => any): void;
         /**
          * 关闭所有层
          * @param callback  关闭所有层后执行回调
@@ -829,7 +836,7 @@ declare namespace Layui {
          * @param callback 关闭后执行的回调(2.9.0)
          * @since 2.8.0
          */
-        closeLast(type?: MaybeArray<'dialog' | 'page' | 'iframe' | 'loading' | 'tips'>, callback?: AnyFn): void;
+        closeLast(type?: layerTypeMap[keyof layerTypeMap] | Array<layerTypeMap[keyof layerTypeMap]>, callback?: AnyFn): void;
         /**
          * 重新定义层的样式
          * @param index 打开弹层时返回的唯一索引
