@@ -76,11 +76,11 @@ interface Layui {
      * @see https://layui.dev/docs/2/base.html#api
      * @since 2.6.8
      * @example
-```js
-layui._isArray([1,6]); // true	
-layui._isArray($('div')); // true
-layui._isArray(document.querySelectorAll('div')); // true
-```
+     * ```js
+     * layui._isArray([1,6]); // true	
+     * layui._isArray($('div')); // true
+     * layui._isArray(document.querySelectorAll('div')); // true
+     * ```
      */
     _isArray(obj: any): boolean;
     /**
@@ -89,11 +89,11 @@ layui._isArray(document.querySelectorAll('div')); // true
      * @see https://layui.dev/docs/2/base.html#api
      * @since 2.6.9
      * @example
-```js
-layui._isArray([1,6]); // true	
-layui._isArray($('div')); // true
-layui._isArray(document.querySelectorAll('div')); // true
-```
+     * ```js
+     * layui._isArray([1,6]); // true	
+     * layui._isArray($('div')); // true
+     * layui._isArray(document.querySelectorAll('div')); // true
+     * ```
      */
     isArray(obj: any): boolean;
     /**
@@ -104,11 +104,11 @@ layui._isArray(document.querySelectorAll('div')); // true
      * @see https://layui.dev/docs/2/base.html#api
      * @since 2.6.8
      * @example
- ```js
-layui._typeof([]); // array 
-layui._typeof({}); // object 
-layui._typeof(new Date()); // date
-```
+     * ```js
+     * layui._typeof([]); // array 
+     * layui._typeof({}); // object 
+     * layui._typeof(new Date()); // date
+     * ```
      */
     _typeof(operand: any): string;
     /**
@@ -118,11 +118,11 @@ layui._typeof(new Date()); // date
      * @see https://layui.dev/docs/2/base.html#api
      * @since 2.6.9
      * @example
- ```js
-layui._typeof([]); // array 
-layui._typeof({}); // object 
-layui._typeof(new Date()); // date
-```
+     * ```js
+     * layui._typeof([]); // array 
+     * layui._typeof({}); // object 
+     * layui._typeof(new Date()); // date
+     * ```
      */
     typeof(operand: any): string;
     /**
@@ -150,26 +150,26 @@ layui._typeof(new Date()); // date
      * @param settings 存储的json对象数据
      * @see https://layui.dev/docs/2/base.html#api
      * @example
-```js
-// 【增】：向 test 表插入一个 nickname 字段，如果该表不存在，则自动建立。
-layui.data('test', {
-  key: 'nickname',
-  value: '张三'
-});
- 
-// 【删】：删除 test 表的 nickname 字段
-layui.data('test', {
-  key: 'nickname',
-  remove: true
-});
-layui.data('test', null); // 删除 test 表
-  
-// 【改】：同【增】，会覆盖已经存储的数据
-  
-// 【查】：向 test 表读取全部的数据
-var localTest = layui.data('test');
-console.log(localTest.nickname); // 获得“张三”
-```
+     * ```js
+     * // 【增】：向 test 表插入一个 nickname 字段，如果该表不存在，则自动建立。
+     * layui.data('test', {
+     *   key: 'nickname',
+     *   value: '张三'
+     * });
+     * 
+     * // 【删】：删除 test 表的 nickname 字段
+     * layui.data('test', {
+     *   key: 'nickname',
+     *   remove: true
+     * });
+     * layui.data('test', null); // 删除 test 表
+     * 
+     * // 【改】：同【增】，会覆盖已经存储的数据
+     * 
+     * // 【查】：向 test 表读取全部的数据
+     * var localTest = layui.data('test');
+     * console.log(localTest.nickname); // 获得“张三”
+     * ```
      */
     data(tableName: string, settings?: { key: string; value?: any; remove?: boolean } | null): any;
     /**
@@ -178,26 +178,26 @@ console.log(localTest.nickname); // 获得“张三”
      * @param settings 存储的json对象数据
      * @see https://layui.dev/docs/2/base.html#api
      * @example
-```js
-// 【增】：向 test 表插入一个 nickname 字段，如果该表不存在，则自动建立。
-layui.sessionData('test', {
-  key: 'nickname',
-  value: '张三'
-});
- 
-// 【删】：删除 test 表的 nickname 字段
-layui.sessionData('test', {
-  key: 'nickname',
-  remove: true
-});
-layui.sessionData('test', null); // 删除 test 表
-  
-// 【改】：同【增】，会覆盖已经存储的数据
-  
-// 【查】：向 test 表读取全部的数据
-var localTest = layui.sessionData('test');
-console.log(localTest.nickname); // 获得“张三”
-```
+     * ```js
+     * // 【增】：向 test 表插入一个 nickname 字段，如果该表不存在，则自动建立。
+     * layui.sessionData('test', {
+     *   key: 'nickname',
+     *   value: '张三'
+     * });
+     * 
+     * // 【删】：删除 test 表的 nickname 字段
+     * layui.sessionData('test', {
+     *   key: 'nickname',
+     *   remove: true
+     * });
+     * layui.sessionData('test', null); // 删除 test 表
+     * 
+     * // 【改】：同【增】，会覆盖已经存储的数据
+     * 
+     * // 【查】：向 test 表读取全部的数据
+     * var localTest = layui.sessionData('test');
+     * console.log(localTest.nickname); // 获得“张三”
+     * ```
      */
     sessionData(tableName: string, settings?: { key: string; value?: any; remove?: boolean } | null): any;
     /**
@@ -209,65 +209,20 @@ console.log(localTest.nickname); // 获得“张三”
      */
     define(mods: string[] | string, callback: Layui.ExportsCallback): any;
     /**
-     *  扩展一个 layui 模块,挂载到layui上
+     *  扩展一个 layui 模块，挂载到layui上
      * @param callback 回调函数：通过回调中参数 export 来挂载模块到 layui
      * 模块加载完毕的回调函数，它返回一个 exports 参数，用于输出该模块的接口。
      * 其参数 exports 是一个函数，它接受两个参数，第 1 个参数为模块名，第 2 个参数为模块接口。
      */
     define(callback: Layui.ExportsCallback): any;
     /**
-     * 获取浏览器信息：内置属性
-     * @param key 获取浏览器信息
+     * 获取浏览器信息
      * @see https://layui.dev/docs/2/base.html#api
      */
-    device(key: 'android' | 'ie' | 'ios' | 'mobile' | 'weixin'): boolean;
-    /**
-     * 获取浏览器信息:根据指定的key
-     * @param key 属性
-     * @see https://layui.dev/docs/2/base.html#api
-     */
-    device(key: string): any;
-    /**
-     * 获取浏览器信息：系统
-     * @param key
-     * @see https://layui.dev/docs/2/base.html#api
-     */
-    device(key: 'os'): string;
-    /**
-     * 获取浏览器信息:全部
-     * @see https://layui.dev/docs/2/base.html#api
-     */
-    device(): {
-        /**
-         * 当前浏览器所在的底层操作系统，如：Windows、Linux、Mac 等
-         */
-        os: string;
-        /**
-         * 当前浏览器是否为 ie6-11 的版本，如果不是 ie 浏览器，则为 false
-         */
-        ie: boolean;
-        /**
-         * 当前浏览器是否为微信 App 环境
-         */
-        weixin: boolean;
-        /**
-         * 当前浏览器是否为安卓系统环境
-         */
-        android: boolean;
-        /**
-         * 当前浏览器是否为 IOS 系统环境
-         */
-        ios: boolean;
-        /**
-         * 当前浏览器是否为移动设备环境
-         * @since v2.5.7
-         */
-        mobile: boolean;
-        [index: string]: any;
-    };
+    device<K extends PropertyKey>(key?: K): K extends string ? Layui.deviceReturn & Record<K, boolean | string | undefined> : Layui.deviceReturn;
     /**
      * 对象（Array、Object、DOM 对象等）遍历，可用于取代 for 语句
-     * @param collection Array对象
+     * @param collection Array 对象
      * @param callback 回调函数，返回 true 停止遍历，和 jQUery.each 相反
      * @see https://layui.dev/docs/2/base.html#api
      */
@@ -281,19 +236,19 @@ console.log(localTest.nickname); // 获得“张三”
      * @param fn 回调函数
      * @see https://layui.dev/docs/2/base.html#api
      * @example
-```js
-// 实例一：按照select后边括号内容filter来匹配，比如filter空或没有括号则可匹配到
-layui.onevent("form", "select()", console.log);
-layui.event("form","select()",[1,2,3]);
-
-// 实例二：{*}可匹配全部filter
-layui.onevent("form", "select(xx)", console.log)
-layui.event("form","select({*})",[1,2,3]);
-
-// 实例三：filter严格匹配
-layui.onevent("form", "select(xx)", console.log);
-layui.event("form","select(xx)",[1,2,3]);
-```
+     * ```js
+     * // 实例一：按照select后边括号内容filter来匹配，比如filter空或没有括号则可匹配到
+     * layui.onevent("form", "select()", console.log);
+     * layui.event("form","select()",[1,2,3]);
+     * 
+     * // 实例二：{*}可匹配全部filter
+     * layui.onevent("form", "select(xx)", console.log)
+     * layui.event("form","select({*})",[1,2,3]);
+     * 
+     * // 实例三：filter严格匹配
+     * layui.onevent("form", "select(xx)", console.log);
+     * layui.event("form","select(xx)",[1,2,3]);
+     * ```
      */
     event(modName: string, events: string, params?: any, fn?: (...arg: any) => any): any;
     /**
@@ -301,7 +256,7 @@ layui.event("form","select(xx)",[1,2,3]);
      * @param options
      * @see https://layui.dev/docs/2/base.html#api
      */
-    extend(options: {[index: string]: string }): Layui;
+    extend(options: { [index: string]: string }): Layui;
     /**
      * 用于获取模块对应的 define 回调函数
      * @param modName 模块名
@@ -318,10 +273,10 @@ layui.event("form","select(xx)",[1,2,3]);
     /**
      * 向控制台打印一些异常信息，目前只返回了 error方法
      * @example
-```js
-layui.hint().error('出错啦');
-layui.hint().error('出错啦','warn');
-```
+     * ```js
+     * layui.hint().error('出错啦');
+     * layui.hint().error('出错啦','warn');
+     * ```
      */
     hint(): { error: (msg: any, type?: string | 'log' | 'info' | 'error' | 'warn' | 'debug') => void };
     /**
@@ -351,15 +306,14 @@ layui.hint().error('出错啦','warn');
      * 用于移除模块相关事件的监听
      * 如：`layui.off('select(filter)', 'form')`，那么 `form.on('select(filter)', callback)` 的事件将会被移除。
      * @param events  事件名
-     * @param modName 模块名,比如 `layer,table,form` 等
+     * @param modName 模块名，比如 `layer,table,form` 等
      * @see https://layui.dev/docs/2/base.html#api
      */
     off(events: string, modName: string): Layui;
-
     /**
      * 禁止使用，请传入 callback
      * @param events 事件名
-     * @param modName 模块名,比如 `layer,table,form` 等
+     * @param modName 模块名，比如 `layer,table,form` 等
      * @see https://layui.dev/docs/2/base.html#api
      */
     on(events: string, modName: string): Layui;
@@ -370,9 +324,9 @@ layui.hint().error('出错啦','warn');
      * @param callback 回调函数
      * @see https://layui.dev/docs/2/base.html#api
      * @example
-```js
-layui.on("select(filter)","form",console.log);
-```
+     * ```js
+     * layui.on("select(filter)","form",console.log);
+     * ```
      */
     on(events: string, modName: string, callback: (obj: any) => any): (...arg: any) => any;
     /**
@@ -453,16 +407,16 @@ layui.on("select(filter)","form",console.log);
      * @param callback 回调函数，从 layui 2.6 开始，首个参数是 callback 函数，则表示引用所有内置模块到 `layui.xx`
      * @param exports 无任何用途，可不传
      */
-    use(callback: (this: Layui, module: { config: object; time: number }) => any, exports?: any[]): { v: string };
+    use(callback: (this: Layui, module: { config: Layui.PlainObject; time: number }) => any, exports?: any[]): { v: string };
     /**
      * 弃用某模块，以便重新扩展新的同名模块
      * @param modules 模块名称，支持数组，可同时弃用多个模块
      * @example layui.disuse('table')
      * @since 2.7.0
      */
-    disuse(modules: keyof Layui.LayuiModuleMap | Array<keyof Layui.LayuiModuleMap>): any;
+    disuse(modules: Layui.MaybeArray<Layui.LiteralStringUnion<keyof Layui.LayuiModuleMap>>): any;
     /**
-     * 防抖，函数按指定毫秒延时执行
+     * 防抖
      * @param fn 
      * @param wait
      * @see https://layui.dev/docs/2/base.html#api
@@ -470,7 +424,7 @@ layui.on("select(filter)","form",console.log);
      */
     debounce<T extends (...args: any[]) => any>(fn: T, wait: number): T;
     /**
-     * 节流，限制函数在指定毫秒内不重复执行
+     * 节流
      * @param fn
      * @param wait
      * @see https://layui.dev/docs/2/base.html#api
@@ -485,9 +439,33 @@ declare namespace Layui {
     type Fn = () => void;
     type AnyFn = (...args: any[]) => any;
     type ArgumentsType<T> = T extends (...args: infer U) => any ? U : never;
-    type ExportsCallback = (this: Layui, fn: (app: string, exports: object) => void) => void;
     type MaybeArray<T> = T | T[];
-    type MaybePromise<T> = T | Promise<T>;
+    type MaybePromise<T> = T | Promise<T> | JQuery.Deferred<T>;
+    export type Primitive =
+        | null
+        | undefined
+        | string
+        | number
+        | boolean
+        | symbol
+        | bigint;
+    type LiteralUnion<
+        LiteralType,
+        BaseType extends Primitive,
+    > = LiteralType | (BaseType & Record<never, never>);
+    type LiteralStringUnion<T> = LiteralUnion<T, string>;
+    type OmitIndexSignature<ObjectType> = {
+        [KeyType in keyof ObjectType as {} extends Record<KeyType, unknown>
+        ? never
+        : KeyType]: ObjectType[KeyType];
+    };
+    type PlainObject<T = any> = {
+        [key: string]: T;
+    }
+
+
+    type Selector = string;
+    type ExportsCallback = (this: Layui, fn: (app: string, exports: object) => void) => void;
 
     /**
      * 全局属性
@@ -509,16 +487,6 @@ declare namespace Layui {
          * 设定扩展的 layui 模块的所在目录，一般用于外部模块扩展
          */
         base?: string;
-    }
-
-    /**
-     * 地址中的参数和路径信息
-     */
-    interface UrlHash {
-        hash: string;
-        href?: string;
-        path: string[];
-        search: { [index: string]: string };
     }
 
     /**
@@ -632,6 +600,44 @@ declare namespace Layui {
         tree: Tree;
         upload: Upload;
         util: Util;
+    }
+
+    /**
+     * 地址中的参数和路径信息
+     */
+    interface UrlHash {
+        hash: string;
+        href?: string;
+        path: string[];
+        search: { [index: string]: string };
+    }
+
+    interface deviceReturn {
+        /**
+         * 当前浏览器所在的底层操作系统，如：Windows、Linux、Mac 等
+         */
+        os: string;
+        /**
+         * 当前浏览器是否为 ie6-11 的版本，如果不是 ie 浏览器，则为 false
+         */
+        ie: boolean;
+        /**
+         * 当前浏览器是否为微信 App 环境
+         */
+        weixin: boolean;
+        /**
+         * 当前浏览器是否为安卓系统环境
+         */
+        android: boolean;
+        /**
+         * 当前浏览器是否为 iOS 系统环境
+         */
+        ios: boolean;
+        /**
+         * 当前浏览器是否为移动设备环境
+         * @since v2.5.7
+         */
+        mobile: boolean;
     }
 }
 // modules/carousel.d.ts
@@ -1272,7 +1278,7 @@ declare namespace Layui {
          * }
          * ```
          */
-        templet?: string | ((d: object) => string);
+        templet?: string | ((d: any) => string);
         /**
          * 自定义组件内容，从而替代默认的菜单结构
          */
@@ -1858,7 +1864,7 @@ declare namespace Layui {
          * 对元素遍历
          * @param fn 回调函数，返回 `true` 则停止遍历，和 jQuery 相反
          */
-        each(fn?: (this: TElement, index: number, elem: TElement) => any): this;
+        each(fn: (this: TElement, index: number, elem: TElement) => any): this;
         /**
          * 查找子元素
          * @param selector 选择器
@@ -1893,14 +1899,42 @@ declare namespace Layui {
          * @param fn 回调
          * @since 2.9.11 新增 options
          */
-        off<K extends keyof HTMLElementEventMap>(eventName: K, fn: (this: TElement, e: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): this;
+        off<K extends keyof HTMLElementEventMap>(
+            eventName: K,
+            fn: (this: TElement, e: HTMLElementEventMap[K]) => any,
+            options?: boolean | EventListenerOptions
+        ): this;
+        off<K extends keyof DocumentEventMap>(
+            eventName: K,
+            fn: (this: TElement, e: DocumentEventMap[K]) => any,
+            options?: boolean | EventListenerOptions
+        ): this;
+        off<K extends keyof WindowEventMap>(
+            eventName: K,
+            fn: (this: TElement, e: WindowEventMap[K]) => any,
+            options?: boolean | EventListenerOptions
+        ): this;
         /**
          * 事件绑定，注意：只支持内置事件，不支持自定义事件
          * @param eventName 事件名 比如click，自定事件会绑定失败
          * @param fn 回调
          * @since 2.9.11 新增 options
          */
-        on<K extends keyof HTMLElementEventMap>(eventName: K, fn: (this: TElement, e: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): this;
+        on<K extends keyof HTMLElementEventMap>(
+            eventName: K,
+            fn: (this: TElement, e: HTMLElementEventMap[K]) => any,
+            options?: boolean | AddEventListenerOptions
+        ): this;
+        on<K extends keyof DocumentEventMap>(
+            eventName: K,
+            fn: (this: TElement, e: DocumentEventMap[K]) => any,
+            options?: boolean | AddEventListenerOptions
+        ): this;
+        on<K extends keyof WindowEventMap>(
+            eventName: K,
+            fn: (this: TElement, e: WindowEventMap[K]) => any,
+            options?: boolean | AddEventListenerOptions
+        ): this;
         /**
          * 移除元素
          * @param elem 实际是 removeChild(elem)
@@ -2002,17 +2036,26 @@ declare namespace Layui {
         offset?: [offsetX: number, offsetY: number]
     }
 
-    interface LayOnClickOutsideOpsions {
+    type LayOnClickOutsideScope = HTMLElement | Document | Window;
+    type LayOnClickOutsideScopeEventMap<SElement> = SElement extends Window
+        ? WindowEventMap
+        : SElement extends Document
+        ? DocumentEventMap
+        : SElement extends HTMLElement
+        ? HTMLElementEventMap
+        : never;
+    type LayOnClickOutsideEventMap<SElement> = Pick<LayOnClickOutsideScopeEventMap<SElement>, 'click' | 'mousedown' | 'mouseup' | 'touchstart' | 'touchend' | 'pointerdown' | 'pointerup'>;
+    interface LayOnClickOutsideOpsions<E extends keyof LayOnClickOutsideEventMap<S>, S extends LayOnClickOutsideScope> {
         /**
          * 监听的事件类型
          * @default 'pointerdown''
          */
-        event?: string;
+        event?: E;
         /**
          * 监听范围
          * @default document
          */
-        scope?: HTMLElement | Document | Window;
+        scope?: S;
         /**
          * 忽略监听的元素或选择器字符串
          */
@@ -2029,7 +2072,15 @@ declare namespace Layui {
          * 查找 DOM 作为返回实例的操作对象
          * @param selector 选择器
          */
-        (selector?: string | HTMLElement | JQuery): Lay;
+        (window: Window): Lay<Window>;
+        <T extends keyof HTMLElementTagNameMap>(selector: T): Lay<HTMLElementTagNameMap[T]>;
+        <T extends keyof SVGElementTagNameMap>(selector: T): Lay<SVGElementTagNameMap[T]>;
+        <T extends globalThis.Element = HTMLElement>(selector: Layui.Selector): Lay<T>;
+        (element: HTMLSelectElement): Lay<HTMLSelectElement>;
+        <T extends globalThis.Element>(element_or_elementArray: T | ArrayLike<T>): Lay<T>;
+        <T>(selection: Lay<T>): Lay<T>;
+        <T extends Layui.PlainObject>(object: T): Lay<T>;
+        <T = HTMLElement>(): Lay<T>;
         /**
          * 版本
          */
@@ -2077,7 +2128,7 @@ declare namespace Layui {
         stope(event: Event | JQuery.Event): void;
         /**
         * 对象（Array、Object、DOM 对象等）遍历，可用于取代 for 语句
-        * @param collection Array对象
+        * @param collection 集合，可以是数组或对象等可遍历的元素
         * @param callback 回调函数，返回 true 停止遍历，和 jQUery.each 相反
         */
         each<T>(collection: ArrayLike<T>, callback: (this: T, indexInArray: number, value: T) => any): Lay;
@@ -2103,7 +2154,8 @@ declare namespace Layui {
          * lay.elem('div', {id: 'test'}) // <div id="test"></div>
          * ```
          */
-        elem<K extends keyof HTMLElementTagNameMap>(elemName: K, attr?: object): HTMLElementTagNameMap[K];
+        elem<K extends keyof HTMLElementTagNameMap>(tagName: K, attr?: Record<string, any>): HTMLElementTagNameMap[K];
+        elem(tagName: string, attr?: Record<string, any>): HTMLElement;
         /**
          * 当前页面body是否存在滚动条
          */
@@ -2233,7 +2285,7 @@ declare namespace Layui {
          * @since 2.9.2
          */
         touchSwipe(
-            elem: string | HTMLElement | JQuery,
+            elem: string | Element | JQuery,
             options: {
                 onTouchStart(e: TouchEvent, state: LayTouchSwipeState): void;
                 onTouchMove(e: TouchEvent, state: LayTouchSwipeState): void;
@@ -2247,17 +2299,20 @@ declare namespace Layui {
          * @param options
          * @return 返回一个停止事件监听的函数
          */
-        onClickOutside(
+        onClickOutside<
+            E extends keyof LayOnClickOutsideEventMap<S> = 'pointerdown',
+            S extends LayOnClickOutsideScope = Document
+        >(
             target: HTMLElement,
-            handler: (e: MouseEvent) => void,
-            options?: LayOnClickOutsideOpsions
+            handler: (e: LayOnClickOutsideEventMap<S>[E]) => void,
+            options?: LayOnClickOutsideOpsions<E, S>
         ): Fn;
         /**
          * 判断一个对象是否具有某个自身的属性，而不考虑继承的属性
          * @param obj 对象
          * @param key 属性名
          */
-        hasOwn<O, K extends PropertyKey, V = unknown>(obj: O, prop: K): obj is O & Record<K, V>;
+        hasOwn<O, K extends PropertyKey, V = unknown>(obj: O, key: K): obj is O & Record<K, V>;
     }
 }
 
@@ -2521,7 +2576,7 @@ declare namespace Layui {
          * theme: ['#FF5722', '#FF5723'] // 定义主色和辅色 （2.8.4）
          * ```
          */
-        theme?: MaybeArray<string | 'molv' | 'grid' | 'circle'>;
+        theme?: MaybeArray<LiteralStringUnion<'molv' | 'grid' | 'circle'>>;
         /**
          * 是否显示公历节日
          * @default false
@@ -2677,6 +2732,13 @@ declare namespace Layui {
          */
         render(options: LayDateOptions): LaydateReturn;
         /**
+         * 重载
+         * @param id 组件渲染时定义的 id 属性值
+         * @param options 基础参数
+         * @since 2.8.0
+         */
+        reload(id: string, options?: Partial<LayDateOptions>): void;
+        /**
          * 配置基础路径
          * 
          * 如果你不是采用 layui 或者普通 script 标签方式加载的 laydate.js
@@ -2785,7 +2847,7 @@ declare namespace Layui {
          * @param id 实例元素（一般为 textarea）的id值
          * @param options 编辑器的可配置项
          */
-        build(id: string, options: Partial<LayEditOptions>): any;
+        build(id: string, options?: Partial<LayEditOptions>): any;
         /**
          * 设置编辑器的全局属性
          * @param options
@@ -2862,7 +2924,14 @@ declare namespace Layui {
      * @param layero 当前层的 jQuery 对象 
      */
     type LayerCallbackPrompt = (value: string, index: number, layero: JQuery) => void;
-    type LayerType = 0 | 1 | 2 | 3 | 4;
+    type layerTypeMap = {
+        0: 'dialog',
+        1: 'page',
+        2: 'iframe',
+        3: 'loading',
+        4: 'tips'
+    }
+    type LayerType = keyof layerTypeMap;
     type LayerIndex = number;
     /**
      * 弹层选项
@@ -2888,7 +2957,7 @@ declare namespace Layui {
          * title :'标题'
          * title: ['文本', 'font-size:18px;']  // 指定文本样式
          */
-        title?: string | boolean | string[];
+        title?: string | boolean | [text: string, style: string];
         /**
          * 弹层内容。 可传入的值比较灵活，支持以下使用场景：
          * 
@@ -2939,7 +3008,7 @@ declare namespace Layui {
          * skin: 'layui-layer-molv' // 内置墨绿主题
          * skin: 'layui-layer-win10' // 内置 Windows 10 风格主题(2.8.0)
          */
-        skin?: string;
+        skin?: 'layui-layer-lan' | 'layui-layer-molv' | 'layui-layer-win10' | (string & {});
         /**
          * 设置弹层的宽高，其值支持以下可选类型：支持以下可选类型：
          * - 若为 `array` 类型，则可同时设置宽高
@@ -3030,7 +3099,7 @@ declare namespace Layui {
          * `title: false` 时强制为 2
          *  @default 1
          */
-        closeBtn?: string | boolean | number;
+        closeBtn?: 0 | 1 | 2 | boolean;
         /**
          * 弹层的遮罩
          * @default 0.3
@@ -3039,7 +3108,7 @@ declare namespace Layui {
          * shade: 0  // 不显示遮罩
          * shade: [0.8, '#393D49'] // 设置透明度和遮罩颜色
          */
-        shade?: string | boolean | number | [number, string];
+        shade?: boolean | number | [opacity: number, bgColor: string];
         /**
          * 是否点击遮罩时关闭弹层，当遮罩存在时有效
          * @default false
@@ -3081,7 +3150,7 @@ declare namespace Layui {
          * - `anim: 'slideRight'`  从左边缘往右
          * @default 0
          */
-        anim?: number | string;
+        anim?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 'slideDown' | 'slideLeft' | 'slideRight' | 'slideUp' | (string & {}));
         /**
          * 是否开启弹层关闭时的动画
          * @default true
@@ -3345,7 +3414,7 @@ declare namespace Layui {
          * - 2 多行文本输入框
          * @default 0
          */
-        formType?: number;
+        formType?: 0 | 1 | 2;
         /**
          * 输入框初始值
          * @default ''
@@ -3547,7 +3616,7 @@ declare namespace Layui {
          * @param end 关闭后的回调
          * @see https://layui.dev/docs/2/layer/#msg
          */
-        msg(content: string, options?: Omit<LayerOptions, 'type' | 'skin' | 'title' | 'resize' | 'end' | 'removeFocus'>, end?: LayerCallbackEnd): LayerIndex;
+        msg(content: string, options?: Omit<LayerOptions, 'type' | 'skin' | 'title' | 'resize' | 'end'>, end?: LayerCallbackEnd): LayerIndex;
         /**
          * 提示框
          * @param content 提示内容
@@ -3561,13 +3630,13 @@ declare namespace Layui {
          * @param options 基础属性选项
          * @see https://layui.dev/docs/2/layer/#load
          */
-        load(icon?: 0 | 1 | 2, options?: Omit<LayerOptions, 'type' | 'resize' | 'removeFocus'>): LayerIndex;
+        load(icon?: 0 | 1 | 2, options?: Omit<LayerOptions, 'type' | 'resize'>): LayerIndex;
         /**
          * 加载层
          * @param options 基础属性选项
          * @see https://layui.dev/docs/2/layer/#load
          */
-        load(options?: Omit<LayerOptions, 'type' | 'resize' | 'removeFocus'>): LayerIndex;
+        load(options?: Omit<LayerOptions, 'type' | 'resize'>): LayerIndex;
         /**
          * tips 层
          * @param content 显示的内容
@@ -3575,7 +3644,7 @@ declare namespace Layui {
          * @param options 基础属性选项
          * @see https://layui.dev/docs/2/layer/#tips
          */
-        tips(content?: string, referenceEl?: string | HTMLElement | JQuery, options?: Omit<LayerOptions, 'type' | 'content' | 'closeBtn' | 'resize' | 'removeFocus'>): LayerIndex;
+        tips(content?: string, referenceEl?: string | HTMLElement | JQuery, options?: Omit<LayerOptions, 'type' | 'content' | 'closeBtn' | 'resize'>): LayerIndex;
         /**
          * 输入层
          * @param options 参数
@@ -3633,7 +3702,7 @@ declare namespace Layui {
          * @param type 关闭的弹层类型，不传则关闭全部
          * @param callback 关闭所有层后执行回调
          */
-        closeAll(type?: 'dialog' | 'page' | 'iframe' | 'loading' | 'tips', callback?: () => any): void;
+        closeAll(type?: layerTypeMap[keyof layerTypeMap], callback?: () => any): void;
         /**
          * 关闭所有层
          * @param callback  关闭所有层后执行回调
@@ -3645,7 +3714,7 @@ declare namespace Layui {
          * @param callback 关闭后执行的回调(2.9.0)
          * @since 2.8.0
          */
-        closeLast(type?: MaybeArray<'dialog' | 'page' | 'iframe' | 'loading' | 'tips'>, callback?: AnyFn): void;
+        closeLast(type?: layerTypeMap[keyof layerTypeMap] | Array<layerTypeMap[keyof layerTypeMap]>, callback?: AnyFn): void;
         /**
          * 重新定义层的样式
          * @param index 打开弹层时返回的唯一索引
@@ -4351,7 +4420,7 @@ declare namespace Layui {
         /**
          * 该属性不存在，只是提示你：可以用 d.xxx 使用当前行中的任意数据属性
          */
-        '你可以用 d.xx 来使用当前行的其他属性': never;
+        '可以用 d.xx 来使用当前行的其他属性': never;
         [index: string]: any;
     }
 
@@ -4584,7 +4653,7 @@ declare namespace Layui {
          * 开启分页，PageOptions 时排除 jump 和 elem
          * @default false
          */
-        page?: boolean | Omit<LayPageOptions, 'elem | jump'>;
+        page?: boolean | Omit<LayPageOptions, 'elem' | 'jump'>;
         /**
          * 开启分页区域的自定义模板，用法同 toolbar 属性
          * @since 2.7.0
@@ -4773,7 +4842,7 @@ declare namespace Layui {
     /**
      * table 公共事件参数
      */
-    interface TableOnCommon {
+    interface TableOnCommon<TOptions, TSetRowOptions> {
         /**
          * 当前行元素的 jQUery 对象
          */
@@ -4782,7 +4851,7 @@ declare namespace Layui {
          * 对应的表格实例配置项
          * @since 2.8.0
          */
-        config: Required<TableOptions>;
+        config: Required<TOptions>;
         /**
          * 当前操作的行数据
          */
@@ -4809,12 +4878,12 @@ declare namespace Layui {
         /**
          * 设置行选中状态
          */
-        setRowChecked(opts: TableSetRowCheckedOptions): void;
+        setRowChecked(opts: TSetRowOptions): void;
     }
     /**
      * 点击table中checkbox后回调参数的类型
      */
-    interface TableOnCheckbox extends TableOnCommon {
+    interface TableOnCheckbox<TOptions = TableOptions, TSetRowOptions = TableSetRowCheckedOptions> extends TableOnCommon<TOptions, TSetRowOptions> {
         /**
          * 当前选中状态
          */
@@ -4833,7 +4902,7 @@ declare namespace Layui {
     /**
      * Table 单选事件
      */
-    interface TableOnRadio extends TableOnCommon {
+    interface TableOnRadio<TOptions = TableOptions, TSetRowOptions = TableSetRowCheckedOptions> extends TableOnCommon<TOptions, TSetRowOptions> {
         /**
          * 当前选中状态
          */
@@ -4849,8 +4918,8 @@ declare namespace Layui {
      * 点击尾部分页栏自定义模板后回调参数的类型
      * @since 2.7.0
      */
-    interface TableOnPagebar {
-        config: TableOptions;
+    interface TableOnPagebar<TOptions = TableOptions> {
+        config: TOptions;
         /**
          * lay-event 属性值
          */
@@ -4860,8 +4929,8 @@ declare namespace Layui {
     /**
      * 点击table上边工具栏后回调参数的类型
      */
-    interface TableOnToolbar {
-        config: TableOptions;
+    interface TableOnToolbar<TOptions = TableOptions> {
+        config: TOptions;
         /**
          * lay-event 属性值
          */
@@ -4871,7 +4940,7 @@ declare namespace Layui {
     /**
      * 点击table中工具列后回调参数的类型
      */
-    interface TableOnTool extends TableOnCommon {
+    interface TableOnTool<TOptions = TableOptions, TSetRowOptions = TableSetRowCheckedOptions> extends TableOnCommon<TOptions, TSetRowOptions> {
         /**
          * lay-event 属性值
          */
@@ -4887,7 +4956,7 @@ declare namespace Layui {
      * 双击table中工具列后回调参数的类型
      * @since 2.7.0
      */
-    interface TableOnToolDouble extends TableOnCommon {
+    interface TableOnToolDouble<TOptions = TableOptions, TSetRowOptions = TableSetRowCheckedOptions> extends TableOnCommon<TOptions, TSetRowOptions> {
         /**
          * lay-event 属性值
          */
@@ -4902,7 +4971,7 @@ declare namespace Layui {
     /**
      * 点击table中行后回调参数的类型
      */
-    interface TableOnRow extends TableOnCommon {
+    interface TableOnRow<TOptions = TableOptions, TSetRowOptions = TableSetRowCheckedOptions> extends TableOnCommon<TOptions, TSetRowOptions>{
         /**
          * jQuery 事件对象
          */
@@ -4912,7 +4981,7 @@ declare namespace Layui {
     /**
      * 双击table中行后回调参数的类型
      */
-    interface TableOnRowDouble extends TableOnCommon {
+    interface TableOnRowDouble<TOptions = TableOptions, TSetRowOptions = TableSetRowCheckedOptions> extends TableOnCommon<TOptions, TSetRowOptions> {
         /**
          * jQuery 事件对象
          */
@@ -4922,7 +4991,7 @@ declare namespace Layui {
     /**
      * 点击table中单元格编辑后回调参数的类型
      */
-    interface TableOnEdit extends TableOnCommon {
+    interface TableOnEdit<TOptions = TableOptions, TSetRowOptions = TableSetRowCheckedOptions> extends TableOnCommon<TOptions, TSetRowOptions> {
         /**
          * 字段名
          */
@@ -4970,7 +5039,7 @@ declare namespace Layui {
      * 列拖拽宽度后的事件
      * @since 2.8.0
      */
-    interface TableOnColResized {
+    interface TableOnColResized<TOptions = TableOptions> {
         /**
          * 获取当前列属性配置项
          */
@@ -4978,23 +5047,23 @@ declare namespace Layui {
         /**
          * 获取当前表格基础属性配置项
          */
-        config: TableOptions;
+        config: TOptions;
     }
 
     /**
      * 列筛选（显示或隐藏）后的事件
      * @since 2.8.0
      */
-    interface TableOnColToggled {
+    interface TableOnColToggled<TOptions = TableOptions> {
         col: TableColumnOptions;
-        config: TableOptions;
+        config: TOptions;
     }
 
     /**
      * 行右键菜单事件，需设置属性 `defaultContextmenu:false` 才生效
      * @since 2.8.0
      */
-    interface TableOnRowContextmenu extends TableOnCommon {
+    interface TableOnRowContextmenu<TOptions = TableOptions, TSetRowOptions = TableSetRowCheckedOptions> extends TableOnCommon<TOptions, TSetRowOptions> {
         /**
          * jQuery 事件对象
          */
@@ -5005,7 +5074,7 @@ declare namespace Layui {
      * 表头自定义元素工具事件，点击表头单元格中带有 lay-event 属性的自定义元素触发
      * @since 2.8.8
      */
-    interface TableOnColTool {
+    interface TableOnColTool<TOptions = TableOptions> {
         /**
          * 获取当前列属性配置项
          */
@@ -5013,7 +5082,7 @@ declare namespace Layui {
         /**
          * 获取当前表格基础属性配置项
          */
-        config: TableOptions;
+        config: TOptions;
         /**
          * 获得自定义元素对应的 lay-event 属性值
          */
@@ -5021,45 +5090,45 @@ declare namespace Layui {
     }
 
     type TableFilter = string;
-    type TableEventMap = {
-        toolbar(this: HTMLElement, obj: TableOnToolbar): void;
+    type TableEventMap<TOptions = TableOptions, TSetRowOptions = TableSetRowCheckedOptions> = {
+        toolbar(this: HTMLElement, obj: TableOnToolbar<TOptions>): void;
         sort: (this: HTMLElement, obj: TableOnSort) => void;
         /**
          * @param obj
          * @since 2.8.8
          */
-        colTool(this: HTMLElement, obj: TableOnColTool): void;
+        colTool(this: HTMLElement, obj: TableOnColTool<TOptions>): void;
         /**
          * @param obj
          * @since 2.8.0
          */
-        colResized(this: HTMLElement, obj: TableOnColResized): void;
+        colResized(this: HTMLElement, obj: TableOnColResized<TOptions>): void;
         /**
          * @param obj
          * @since 2.8.0
          */
-        colToggled(this: HTMLElement, obj: TableOnColToggled): void;
-        row(this: HTMLTableRowElement, obj: TableOnRow): void;
-        rowDouble(this: HTMLTableRowElement, obj: TableOnRowDouble): void;
+        colToggled(this: HTMLElement, obj: TableOnColToggled<TOptions>): void;
+        row(this: HTMLTableRowElement, obj: TableOnRow<TOptions, TSetRowOptions>): void;
+        rowDouble(this: HTMLTableRowElement, obj: TableOnRowDouble<TOptions, TSetRowOptions>): void;
         /**
          * @param obj
          * @since 2.8.0
          */
-        rowContextmenu(this: HTMLTableRowElement, obj: TableOnRowContextmenu): void;
-        edit(this: HTMLTableCellElement, obj: TableOnEdit): void;
-        tool(this: HTMLElement, obj: TableOnTool): void;
+        rowContextmenu(this: HTMLTableRowElement, obj: TableOnRowContextmenu<TOptions, TSetRowOptions>): void;
+        edit(this: HTMLTableCellElement, obj: TableOnEdit<TOptions, TSetRowOptions>): void;
+        tool(this: HTMLElement, obj: TableOnTool<TOptions, TSetRowOptions>): void;
         /**
          * @param obj
          * @since 2.7.0
          */
-        toolDouble(this: HTMLElement, obj: TableOnToolDouble): void;
-        checkbox(this: HTMLInputElement, obj: TableOnCheckbox): void;
-        radio(this: HTMLInputElement, obj: TableOnRadio): void;
+        toolDouble(this: HTMLElement, obj: TableOnToolDouble<TOptions, TSetRowOptions>): void;
+        checkbox(this: HTMLInputElement, obj: TableOnCheckbox<TOptions, TSetRowOptions>): void;
+        radio(this: HTMLInputElement, obj: TableOnRadio<TOptions, TSetRowOptions>): void;
         /**
          * @param obj
          * @since 2.7.0
          */
-        pagebar(this: HTMLElement, obj: TableOnPagebar): void;
+        pagebar(this: HTMLElement, obj: TableOnPagebar<TOptions>): void;
     };
 
     interface TablecheckStatusReturn {
@@ -5128,7 +5197,7 @@ declare namespace Layui {
          * @param callback 回调
          * @param cols 列配置项，默认为当前表格的 cols 参数值
          */
-        eachCols(id: string, callback:(index: string, colDef: TableColumnOptions) => void, cols?: Array<Array<TableColumnOptions>>): void;
+        eachCols(id: string, callback: (index: string, colDef: TableColumnOptions) => void, cols?: Array<Array<TableColumnOptions>>): void;
         /**
          * 获取表格当前选中行相关数据
          * @param id table 渲染时的 id 属性值
@@ -5389,7 +5458,7 @@ declare namespace Layui {
          * - cs 开启搜索，且匹配时区分大小写(2.7+)
          * @default false
          */
-        showSearch?: boolean;
+        showSearch?: boolean | 'cs';
         /**
          * 定义左右穿梭框宽度
          */
@@ -5538,7 +5607,7 @@ declare namespace Layui {
     interface TreeOperateData {
         data: any;
         elem: JQuery;
-        type: 'add' | 'update' | 'del' | string;
+        type: LiteralStringUnion<'add' | 'update' | 'del'>;
     }
 
     type TreeReloadReturn = Pick<Tree, 'config' | 'reload' | 'getChecked' | 'setChecked'>;
@@ -5922,8 +5991,8 @@ declare namespace Layui {
         icon?: string;
         /**
          * 设置根节点的 pid 属性值
-         * @deprecated 2.8.2 已移除，请使用 {@link TreeTableTreeOptionsData.rootPid|TreeTableTreeOptionsData.rootPid}
-         * @see {@link TreeTableTreeOptionsData.rootPid|TreeTableTreeOptionsData.rootPid}
+         * @deprecated 2.8.2 已移除，请使用 {@link TreeTableTreeOptionsForData.rootPid|TreeTableTreeOptionsForData.rootPid}
+         * @see {@link TreeTableTreeOptionsForData.rootPid|TreeTableTreeOptionsForData.rootPid}
          */
         rootId?: string;
     }
@@ -5958,298 +6027,6 @@ declare namespace Layui {
          */
         callback?: TreeTableTreeOptionsForCallback;
     }
-
-    /**
-     * treeTable 公共事件参数
-     */
-    interface TreeTableOnCommon {
-        /**
-         * 当前行元素的 jQUery 对象
-         */
-        tr: JQuery;
-        /**
-         * 对应的表格实例配置项
-         * @since 2.8.0
-         */
-        config: Required<TreeTableOptions>;
-        /**
-         * 当前操作的行数据
-         */
-        data: Record<string, any>;
-        /**
-         * 当前行缓存数据，包含特定字段
-         * @since 2.8.8
-         */
-        dataCache: Record<string, any>;
-        /**
-         * 当前行索引
-         */
-        index: number | string;
-        /**
-         * 删除当前行
-         */
-        del(): void;
-        /**
-         * 更新当前行
-         * @param fields 要更新的列字段对象
-         * @param related 更新其他包含自定义模板并可能存在关联的列视图(2.7.4)
-         */
-        update(fields: Record<string, any>, related?: boolean | ((field: string, index: string | number) => void)): void;
-        /**
-         * 设置行选中状态
-         */
-        setRowChecked(opts: TreeTableSetRowCheckedOptions): void;
-    }
-    /**
-     * 点击table中checkbox后回调参数的类型
-     */
-    interface TreeTableOnCheckbox extends TreeTableOnCommon {
-        /**
-         * 当前选中状态
-         */
-        checked: true;
-        /**
-         * 若触发的是全选，则为：all；若触发的是单选，则为：one
-         */
-        type: 'all' | 'one';
-        /**
-         * 获取当前列的配置信息
-         * @since 2.8.3
-         */
-        getCol(): TableColumnOptions;
-    }
-
-    /**
-     * Table 单选事件
-     */
-    interface TreeTableOnRadio extends TreeTableOnCommon {
-        /**
-         * 当前选中状态
-         */
-        checked: true;
-        /**
-         * 获取当前列的配置信息
-         * @since 2.8.3
-         */
-        getCol(): TableColumnOptions;
-    }
-
-    /**
-     * 点击尾部分页栏自定义模板后回调参数的类型
-     * @since 2.7.0
-     */
-    interface TreeTableOnPagebar {
-        config: TreeTableOptions;
-        /**
-         * lay-event 属性值
-         */
-        event: string;
-    }
-
-    /**
-     * 点击table上边工具栏后回调参数的类型
-     */
-    interface TreeTableOnToolbar {
-        config: TreeTableOptions;
-        /**
-         * lay-event 属性值
-         */
-        event: string;
-    }
-
-    /**
-     * 点击table中工具列后回调参数的类型
-     */
-    interface TreeTableOnTool extends TreeTableOnCommon {
-        /**
-         * lay-event 属性值
-         */
-        event: string;
-        /**
-         * 获取当前列的配置信息
-         * @since 2.8.3
-         */
-        getCol(): TableColumnOptions;
-    }
-
-    /**
-     * 双击table中工具列后回调参数的类型
-     * @since 2.7.0
-     */
-    interface TreeTableOnToolDouble extends TreeTableOnCommon {
-        /**
-         * lay-event 属性值
-         */
-        event: string;
-        /**
-         * 获取当前列的配置信息
-         * @since 2.8.3
-         */
-        getCol(): TableColumnOptions;
-    }
-
-    /**
-     * 点击table中行后回调参数的类型
-     */
-    interface TreeTableOnRow extends TreeTableOnCommon {
-        /**
-         * jQuery 事件对象
-         */
-        e: JQuery.Event;
-    }
-
-    /**
-     * 双击table中行后回调参数的类型
-     */
-    interface TreeTableOnRowDouble extends TreeTableOnCommon {
-        /**
-         * jQuery 事件对象
-         */
-        e: JQuery.Event;
-    }
-
-    /**
-     * 点击table中单元格编辑后回调参数的类型
-     */
-    interface TreeTableOnEdit extends TreeTableOnCommon {
-        /**
-         * 字段名
-         */
-        field: string;
-        /**
-         * 当前单元格元素的 jQuery 对象
-         */
-        td: JQuery;
-        /**
-         * 当前单元格的值
-         */
-        value: string;
-        /**
-         * 字段修改前的旧值
-         * @since 2.8.0
-         */
-        oldValue: string;
-        /**
-         * 重新编辑
-         * @since 2.8.0
-         */
-        reedit(): void;
-        /**
-         * 获取当前列表头配置信息
-         * @since 2.8.0
-         */
-        getCol(): TableColumnOptions;
-    }
-
-    /**
-     * 点击table中列标题排序后回调参数的类型
-     */
-    interface TreeTableOnSort {
-        /**
-         * 当前排序的字段名
-         */
-        field: string;
-        /**
-         * 当前排序类型：desc（降序）、asc（升序）、null（空对象，默认排序）
-         */
-        type: null | 'desc' | 'asc';
-    }
-
-    /**
-     * 列拖拽宽度后的事件
-     * @since 2.8.0
-     */
-    interface TreeTableOnColResized {
-        /**
-         * 获取当前列属性配置项
-         */
-        col: TableColumnOptions;
-        /**
-         * 获取当前表格基础属性配置项
-         */
-        config: TreeTableOptions;
-    }
-
-    /**
-     * 列筛选（显示或隐藏）后的事件
-     * @since 2.8.0
-     */
-    interface TreeTableOnColToggled {
-        col: TableColumnOptions;
-        config: TreeTableOptions;
-    }
-
-    /**
-     * 行右键菜单事件，需设置属性 `defaultContextmenu:false` 才生效
-     * @since 2.8.0
-     */
-    interface TreeTableOnRowContextmenu extends TreeTableOnCommon {
-        /**
-         * jQuery 事件对象
-         */
-        e: JQuery.Event;
-    }
-
-    /**
-     * 表头自定义元素工具事件，点击表头单元格中带有 lay-event 属性的自定义元素触发
-     * @since 2.8.8
-     */
-    interface TreeTableOnColTool {
-        /**
-         * 获取当前列属性配置项
-         */
-        col: TableColumnOptions;
-        /**
-         * 获取当前表格基础属性配置项
-         */
-        config: TreeTableOptions;
-        /**
-         * 获得自定义元素对应的 lay-event 属性值
-         */
-        event: string;
-    }
-
-    type TreeTableEventMap = {
-        toolbar(this: HTMLElement, obj: TreeTableOnToolbar): void;
-        sort: (this: HTMLElement, obj: TreeTableOnSort) => void;
-        /**
-         * @param obj
-         * @since 2.8.8
-         */
-        colTool(this: HTMLElement, obj: TreeTableOnColTool): void;
-        /**
-         * @param obj
-         * @since 2.8.0
-         */
-        colResized(this: HTMLElement, obj: TreeTableOnColResized): void;
-        /**
-         * @param obj
-         * @since 2.8.0
-         */
-        colToggled(this: HTMLElement, obj: TreeTableOnColToggled): void;
-        row(this: HTMLTableRowElement, obj: TreeTableOnRow): void;
-        rowDouble(this: HTMLTableRowElement, obj: TreeTableOnRowDouble): void;
-        /**
-         * @param obj
-         * @since 2.8.0
-         */
-        rowContextmenu(this: HTMLTableRowElement, obj: TreeTableOnRowContextmenu): void;
-        edit(this: HTMLTableCellElement, obj: TreeTableOnEdit): void;
-        tool(this: HTMLElement, obj: TreeTableOnTool): void;
-        /**
-         * @param obj
-         * @since 2.7.0
-         */
-        toolDouble(this: HTMLElement, obj: TreeTableOnToolDouble): void;
-        checkbox(this: HTMLInputElement, obj: TreeTableOnCheckbox): void;
-        radio(this: HTMLInputElement, obj: TreeTableOnRadio): void;
-        /**
-         * @param obj
-         * @since 2.7.0
-         */
-        pagebar(this: HTMLElement, obj: TreeTableOnPagebar): void;
-    };
-
 
     interface TreeTableOptions extends TableOptions {
         tree?: TreeTableTreeOptions;
@@ -6339,7 +6116,7 @@ declare namespace Layui {
 
     /**
      * treeTable
-     *
+     * @see https://layui.dev/docs/2/treeTable
      * @since 2.8.0
      */
     interface TreeTable extends Omit<Table, 'setRowChecked' | 'updateRow'> {
@@ -6484,7 +6261,7 @@ declare namespace Layui {
         /**
          * 表格事件
          * 
-         * `table.on('event(filter)', callback);`
+         * `treeTable.on('event(filter)', callback);`
          * 
          * - 参数 event(filter) 是事件的特定结构。 event 为事件名，支持的事件见下表。filter 为元素属性 lay-filter 对应的值
          * - 参数 callback 为事件执行时的回调函数，并返回一个包含各项成员的 object 类型的参数
@@ -6509,8 +6286,8 @@ declare namespace Layui {
          * @param callback 事件回调参数
          * @see https://layui.dev/docs/2/table/#table.on
          */
-        on<K extends keyof TreeTableEventMap>(event: `${K}(${TableFilter})`, callback: TreeTableEventMap[K]): void;
-        on<K extends keyof TreeTableEventMap>(event: K, callback: TreeTableEventMap[K]): void;
+        on<K extends keyof TableEventMap<TreeTableOptions, TreeTableSetRowCheckedOptions>>(event: `${K}(${TableFilter})`, callback: TableEventMap<TreeTableOptions, TreeTableSetRowCheckedOptions>[K]): void;
+        on<K extends keyof TableEventMap<TreeTableOptions, TreeTableSetRowCheckedOptions>>(event: K, callback: TableEventMap<TreeTableOptions, TreeTableSetRowCheckedOptions>[K]): void;
         on<K extends string>(event: `${K}(${TableFilter})`, callback: AnyFn): void;
         /**
          * @internal
@@ -6649,7 +6426,7 @@ declare namespace Layui {
          * @since 2.9.11+ 新增支持 Promise
          * @param obj 回调参数(工具对象)
          */
-        before?(this: UploadOptionsThis, obj: UploadCallbackArg): void | boolean | JQueryDeferred<boolean> | Promise<boolean>;
+        before?(this: UploadOptionsThis, obj: UploadCallbackArg): void | MaybePromise<boolean>;
         /**
          * 上传后的回调
          * @param res 服务端response json
@@ -6706,20 +6483,21 @@ declare namespace Layui {
     interface UploadCallbackArg {
         /**
          * 预览
-         * @param callback index索引，file文件，result 文件base64编码
+         * @param callback index索引，file文件，result 文件 base64 编码
          */
         preview(callback: (index: string, file: File, result: string) => void): void;
         /**
-         * 上传单个文件    <br/>&nbsp;
+         * 上传单个文件
+         * 
          * 对上传失败的单个文件重新上传，一般在某个事件中使用
-         * @param index 索引  (选择文件时自动生成的：new Date().getTime()+'-'+i)
+         * @param index 索引 (选择文件时自动生成的：new Date().getTime()+'-'+i)
          * @param file 文件
          */
         upload(index: string, file: Blob): void;
         /**
          * 追加文件到队列, 比如 choose 回调中将每次选择的文件追加到文件队列
          */
-        pushFile(): { [index: string]: File };
+        pushFile(): Record<string, File>;
         /**
          * 重置文件和文件名
          * @param index 被重置的文件索引 (选择文件时自动生成的：new Date().getTime()+'-'+i)
@@ -6738,7 +6516,7 @@ declare namespace Layui {
         /**
          * 参数信息
          */
-        config: { [index: string]: any };
+        config: Record<string, any>;
         /**
          * 重载该实例，支持重载全部基础参数
          * @param options 基础参数
@@ -6918,7 +6696,7 @@ declare namespace Layui {
          * @param type  bar1、bar2、top
          * @deprecated 2.8.0 已废弃，请使用 {@link UtilBarOptions.on|on}
          */
-        click?(type: string | 'bar1' | 'bar2' | 'top'): void;
+        click?(type: LiteralStringUnion<'bar1' | 'bar2' | 'top'>): void;
     }
 
     /**
@@ -6932,7 +6710,7 @@ declare namespace Layui {
         /**
          * 打开页面的方式或窗口 name
          */
-        target?: string | '_blank' | '_parent' | '_self' | '_top';
+        target?: LiteralStringUnion<'_blank' | '_parent' | '_self' | '_top'>;
         /**
          * 打开的页面内容。若设置了 url 属性，则该属性无效
          */
@@ -6987,6 +6765,10 @@ declare namespace Layui {
          */
         timer: number;
     }
+
+    type TypeToTriggeredEventMap<TElement> = JQuery.TypeToTriggeredEventMap<TElement, undefined, any, any>
+
+    type TriggerEvent<TElement> = keyof Layui.OmitIndexSignature<TypeToTriggeredEventMap<TElement>>;
 
     /**
      * 工具集
@@ -7053,13 +6835,23 @@ declare namespace Layui {
          * 
          * @param time 毫秒数或日期对象
          * @param format 默认：yyyy-MM-dd HH:mm:ss
-         * @param option 参数选项 {customMeridiem: function(hours, minutes){ return hours < 12 ? '上午' : '下午'; }}
+         * @param option 参数选项
+         * @example
+         * ```js
+         * customMeridiem: function(hours, minutes){ 
+         *   return hours < 12 ? '上午' : '下午'; 
+         * }
+         * ```
          */
-        toDateString(time: number | Date, format?: string, option?: { customMeridiem?: (hours: number, minutes: number) => string }): string;
+        toDateString(
+            time: number | Date,
+            format?: string,
+            option?: { customMeridiem?: (hours: number, minutes: number) => string }
+        ): string;
         /**
          * 数字前置补零
          * @param num 数字
-         * @param length 补 0 后的长度
+         * @param length 补 0 后的长度，默认 2
          */
         digit(num: number | string, length?: number): string;
         /**
@@ -7073,19 +6865,36 @@ declare namespace Layui {
          */
         unescape(str: any): string;
         /**
-         * 批量处理事件
-         * @param attr 绑定需要监听事件的元素属性
-         * @param obj 事件回调链
-         * @deprecated 2.8.0 已弃用,请使用 {@link Util.on|util.on}
-         * @see {@link Util.event|util.on}
-         */
-        event(attr: string, obj: { [index: string]: (othis: JQuery) => any }): any;
-        /**
          * 打开浏览器新标签页
          * @param options 属性配置项
          * @since 2.8.0
          */
         openWin(options: UtilOpenWinOptions): void;
+        /**
+         * 批量处理事件
+         * @param attr 绑定需要监听事件的元素属性
+         * @param obj 事件集合
+         * @since 2.5.0
+         * @deprecated 2.8.0 已弃用,请使用 {@link Util.on|util.on}
+         * @see {@link Util.event|util.on}
+         */
+        event(attr: string, obj: { [index: string]: (othis: JQuery) => any }, eventType?: TriggerEvent<HTMLBodyElement>): void;
+        /**
+         * 批量事件处理
+         * @param attr 触发事件的元素属性名，默认值 'lay-on'
+         * @param events 事件集合
+         * @param trigger 事件触发的方式，默认值 'click'
+         * @returns 返回当前 events 参数设置的事件集合
+         * @since 2.8.0
+         * @since 2.9.0 事件处理函数新增第二个参数 e 事件对象；新增事件集合返回值；
+         */
+        on<TEventType extends TriggerEvent<TElement> = 'click', TElement = HTMLBodyElement>(
+            attr: string,
+            events: {
+                [attrValue: string]: (othis: JQuery, e?: TypeToTriggeredEventMap<TElement>[TEventType]) => any
+            },
+            trigger?: TEventType,
+        ): typeof events;
         /**
          * 批量事件处理
          * @param attr 触发事件的元素属性名，默认值 'lay-on'
@@ -7094,26 +6903,48 @@ declare namespace Layui {
          * - elem 触发事件的委托元素，默认值 body
          * - trigger 事件触发的方式，默认值 'click'
          * @returns 返回当前 events 参数设置的事件集合
-         * @since 2.8.0
-         * @since 2.9.0 增加 options 参数选项
+         * @since 2.9.0
          */
-        on(
-            attr: string, 
-            events: { [index: string]: (othis: JQuery, e: JQuery.Event) => any }, 
-            options?: { trigger?: string; elem?: string | Element | JQuery }
-        ): Record<string, any>;
+        on<TEventType extends TriggerEvent<TElement> = 'click', TElement = HTMLBodyElement>(
+            attr: string,
+            events: {
+                [attrValue: string]: (othis: JQuery, e: TypeToTriggeredEventMap<TElement>[TEventType]) => any
+            },
+            options?: {
+                trigger?: TEventType | TriggerEvent<TElement>;
+                elem?: string | TElement | JQuery<TElement>
+            },
+        ): typeof events
         /**
          * 批量事件处理
          * @param events 事件集合
-         * @param options 参数选项
+         * @param trigger 事件触发的方式，默认值 'click'
+         * @returns 返回当前 events 参数设置的事件集合
+         * @since 2.9.0
+         */
+        on<TEventType extends TriggerEvent<TElement> = 'click', TElement = HTMLBodyElement>(
+            events: {
+                [attrValue: string]: (othis: JQuery, e: TypeToTriggeredEventMap<TElement>[TEventType]) => any
+            },
+            trigger?: TEventType,
+        ): typeof events
+        /**
+         * 批量事件处理
+         * @param events 事件集合
+         * @param options 参数的更多选项
          * - elem 触发事件的委托元素，默认值 body
          * - trigger 事件触发的方式，默认值 'click'
          * @returns 返回当前 events 参数设置的事件集合
          * @since 2.9.0
          */
-        on(
-            events: { [index: string]: (othis: JQuery, e: JQuery.Event) => any }, 
-            options?: { trigger?: string; elem?: string | Element | JQuery }
-        ): Record<string, any>;
+        on<TEventType extends TriggerEvent<TElement> = 'click', TElement = HTMLBodyElement>(
+            events: {
+                [attrValue: string]: (othis: JQuery, e: TypeToTriggeredEventMap<TElement>[TEventType]) => any
+            },
+            options?: {
+                trigger?: TEventType | TriggerEvent<TElement>;
+                elem?: string | TElement | JQuery<TElement>
+            },
+        ): typeof events;
     }
 }
