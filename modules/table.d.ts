@@ -483,7 +483,7 @@ declare namespace Layui {
          * 开启分页，PageOptions 时排除 jump 和 elem
          * @default false
          */
-        page?: boolean | Omit<LayPageOptions, 'elem | jump'>;
+        page?: boolean | Omit<LayPageOptions, 'elem' | 'jump'>;
         /**
          * 开启分页区域的自定义模板，用法同 toolbar 属性
          * @since 2.7.0
@@ -672,7 +672,7 @@ declare namespace Layui {
     /**
      * table 公共事件参数
      */
-    interface TableOnCommon {
+    interface TableOnCommon<TOptions, TSetRowOptions> {
         /**
          * 当前行元素的 jQUery 对象
          */
@@ -681,7 +681,7 @@ declare namespace Layui {
          * 对应的表格实例配置项
          * @since 2.8.0
          */
-        config: Required<TableOptions>;
+        config: Required<TOptions>;
         /**
          * 当前操作的行数据
          */
@@ -708,12 +708,12 @@ declare namespace Layui {
         /**
          * 设置行选中状态
          */
-        setRowChecked(opts: TableSetRowCheckedOptions): void;
+        setRowChecked(opts: TSetRowOptions): void;
     }
     /**
      * 点击table中checkbox后回调参数的类型
      */
-    interface TableOnCheckbox extends TableOnCommon {
+    interface TableOnCheckbox<TOptions = TableOptions, TSetRowOptions = TableSetRowCheckedOptions> extends TableOnCommon<TOptions, TSetRowOptions> {
         /**
          * 当前选中状态
          */
@@ -732,7 +732,7 @@ declare namespace Layui {
     /**
      * Table 单选事件
      */
-    interface TableOnRadio extends TableOnCommon {
+    interface TableOnRadio<TOptions = TableOptions, TSetRowOptions = TableSetRowCheckedOptions> extends TableOnCommon<TOptions, TSetRowOptions> {
         /**
          * 当前选中状态
          */
@@ -748,8 +748,8 @@ declare namespace Layui {
      * 点击尾部分页栏自定义模板后回调参数的类型
      * @since 2.7.0
      */
-    interface TableOnPagebar {
-        config: TableOptions;
+    interface TableOnPagebar<TOptions = TableOptions> {
+        config: TOptions;
         /**
          * lay-event 属性值
          */
@@ -759,8 +759,8 @@ declare namespace Layui {
     /**
      * 点击table上边工具栏后回调参数的类型
      */
-    interface TableOnToolbar {
-        config: TableOptions;
+    interface TableOnToolbar<TOptions = TableOptions> {
+        config: TOptions;
         /**
          * lay-event 属性值
          */
@@ -770,7 +770,7 @@ declare namespace Layui {
     /**
      * 点击table中工具列后回调参数的类型
      */
-    interface TableOnTool extends TableOnCommon {
+    interface TableOnTool<TOptions = TableOptions, TSetRowOptions = TableSetRowCheckedOptions> extends TableOnCommon<TOptions, TSetRowOptions> {
         /**
          * lay-event 属性值
          */
@@ -786,7 +786,7 @@ declare namespace Layui {
      * 双击table中工具列后回调参数的类型
      * @since 2.7.0
      */
-    interface TableOnToolDouble extends TableOnCommon {
+    interface TableOnToolDouble<TOptions = TableOptions, TSetRowOptions = TableSetRowCheckedOptions> extends TableOnCommon<TOptions, TSetRowOptions> {
         /**
          * lay-event 属性值
          */
@@ -801,7 +801,7 @@ declare namespace Layui {
     /**
      * 点击table中行后回调参数的类型
      */
-    interface TableOnRow extends TableOnCommon {
+    interface TableOnRow<TOptions = TableOptions, TSetRowOptions = TableSetRowCheckedOptions> extends TableOnCommon<TOptions, TSetRowOptions>{
         /**
          * jQuery 事件对象
          */
@@ -811,7 +811,7 @@ declare namespace Layui {
     /**
      * 双击table中行后回调参数的类型
      */
-    interface TableOnRowDouble extends TableOnCommon {
+    interface TableOnRowDouble<TOptions = TableOptions, TSetRowOptions = TableSetRowCheckedOptions> extends TableOnCommon<TOptions, TSetRowOptions> {
         /**
          * jQuery 事件对象
          */
@@ -821,7 +821,7 @@ declare namespace Layui {
     /**
      * 点击table中单元格编辑后回调参数的类型
      */
-    interface TableOnEdit extends TableOnCommon {
+    interface TableOnEdit<TOptions = TableOptions, TSetRowOptions = TableSetRowCheckedOptions> extends TableOnCommon<TOptions, TSetRowOptions> {
         /**
          * 字段名
          */
@@ -869,7 +869,7 @@ declare namespace Layui {
      * 列拖拽宽度后的事件
      * @since 2.8.0
      */
-    interface TableOnColResized {
+    interface TableOnColResized<TOptions = TableOptions> {
         /**
          * 获取当前列属性配置项
          */
@@ -877,23 +877,23 @@ declare namespace Layui {
         /**
          * 获取当前表格基础属性配置项
          */
-        config: TableOptions;
+        config: TOptions;
     }
 
     /**
      * 列筛选（显示或隐藏）后的事件
      * @since 2.8.0
      */
-    interface TableOnColToggled {
+    interface TableOnColToggled<TOptions = TableOptions> {
         col: TableColumnOptions;
-        config: TableOptions;
+        config: TOptions;
     }
 
     /**
      * 行右键菜单事件，需设置属性 `defaultContextmenu:false` 才生效
      * @since 2.8.0
      */
-    interface TableOnRowContextmenu extends TableOnCommon {
+    interface TableOnRowContextmenu<TOptions = TableOptions, TSetRowOptions = TableSetRowCheckedOptions> extends TableOnCommon<TOptions, TSetRowOptions> {
         /**
          * jQuery 事件对象
          */
@@ -904,7 +904,7 @@ declare namespace Layui {
      * 表头自定义元素工具事件，点击表头单元格中带有 lay-event 属性的自定义元素触发
      * @since 2.8.8
      */
-    interface TableOnColTool {
+    interface TableOnColTool<TOptions = TableOptions> {
         /**
          * 获取当前列属性配置项
          */
@@ -912,7 +912,7 @@ declare namespace Layui {
         /**
          * 获取当前表格基础属性配置项
          */
-        config: TableOptions;
+        config: TOptions;
         /**
          * 获得自定义元素对应的 lay-event 属性值
          */
@@ -920,45 +920,45 @@ declare namespace Layui {
     }
 
     type TableFilter = string;
-    type TableEventMap = {
-        toolbar(this: HTMLElement, obj: TableOnToolbar): void;
+    type TableEventMap<TOptions = TableOptions, TSetRowOptions = TableSetRowCheckedOptions> = {
+        toolbar(this: HTMLElement, obj: TableOnToolbar<TOptions>): void;
         sort: (this: HTMLElement, obj: TableOnSort) => void;
         /**
          * @param obj
          * @since 2.8.8
          */
-        colTool(this: HTMLElement, obj: TableOnColTool): void;
+        colTool(this: HTMLElement, obj: TableOnColTool<TOptions>): void;
         /**
          * @param obj
          * @since 2.8.0
          */
-        colResized(this: HTMLElement, obj: TableOnColResized): void;
+        colResized(this: HTMLElement, obj: TableOnColResized<TOptions>): void;
         /**
          * @param obj
          * @since 2.8.0
          */
-        colToggled(this: HTMLElement, obj: TableOnColToggled): void;
-        row(this: HTMLTableRowElement, obj: TableOnRow): void;
-        rowDouble(this: HTMLTableRowElement, obj: TableOnRowDouble): void;
+        colToggled(this: HTMLElement, obj: TableOnColToggled<TOptions>): void;
+        row(this: HTMLTableRowElement, obj: TableOnRow<TOptions, TSetRowOptions>): void;
+        rowDouble(this: HTMLTableRowElement, obj: TableOnRowDouble<TOptions, TSetRowOptions>): void;
         /**
          * @param obj
          * @since 2.8.0
          */
-        rowContextmenu(this: HTMLTableRowElement, obj: TableOnRowContextmenu): void;
-        edit(this: HTMLTableCellElement, obj: TableOnEdit): void;
-        tool(this: HTMLElement, obj: TableOnTool): void;
+        rowContextmenu(this: HTMLTableRowElement, obj: TableOnRowContextmenu<TOptions, TSetRowOptions>): void;
+        edit(this: HTMLTableCellElement, obj: TableOnEdit<TOptions, TSetRowOptions>): void;
+        tool(this: HTMLElement, obj: TableOnTool<TOptions, TSetRowOptions>): void;
         /**
          * @param obj
          * @since 2.7.0
          */
-        toolDouble(this: HTMLElement, obj: TableOnToolDouble): void;
-        checkbox(this: HTMLInputElement, obj: TableOnCheckbox): void;
-        radio(this: HTMLInputElement, obj: TableOnRadio): void;
+        toolDouble(this: HTMLElement, obj: TableOnToolDouble<TOptions, TSetRowOptions>): void;
+        checkbox(this: HTMLInputElement, obj: TableOnCheckbox<TOptions, TSetRowOptions>): void;
+        radio(this: HTMLInputElement, obj: TableOnRadio<TOptions, TSetRowOptions>): void;
         /**
          * @param obj
          * @since 2.7.0
          */
-        pagebar(this: HTMLElement, obj: TableOnPagebar): void;
+        pagebar(this: HTMLElement, obj: TableOnPagebar<TOptions>): void;
     };
 
     interface TablecheckStatusReturn {

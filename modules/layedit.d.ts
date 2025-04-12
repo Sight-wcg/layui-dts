@@ -51,7 +51,7 @@ declare namespace Layui {
          * @param id 实例元素（一般为 textarea）的id值
          * @param options 编辑器的可配置项
          */
-        build(id: string, options: Partial<LayEditOptions>): any;
+        build(id: string, options?: Partial<LayEditOptions>): any;
         /**
          * 设置编辑器的全局属性
          * @param options
