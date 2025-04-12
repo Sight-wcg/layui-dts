@@ -250,7 +250,7 @@ declare namespace Layui {
         /**
          * 该属性不存在，只是提示你：可以用 d.xxx 使用当前行中的任意数据属性
          */
-        '你可以用 d.xx 来使用当前行的其他属性': never;
+        '可以用 d.xx 来使用当前行的其他属性': never;
         [index: string]: any;
     }
 
@@ -1027,7 +1027,7 @@ declare namespace Layui {
          * @param callback 回调
          * @param cols 列配置项，默认为当前表格的 cols 参数值
          */
-        eachCols(id: string, callback:(index: string, colDef: TableColumnOptions) => void, cols?: Array<Array<TableColumnOptions>>): void;
+        eachCols(id: string, callback: (index: string, colDef: TableColumnOptions) => void, cols?: Array<Array<TableColumnOptions>>): void;
         /**
          * 获取表格当前选中行相关数据
          * @param id table 渲染时的 id 属性值

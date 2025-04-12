@@ -225,8 +225,8 @@ declare namespace Layui {
         icon?: string;
         /**
          * 设置根节点的 pid 属性值
-         * @deprecated 2.8.2 已移除，请使用 {@link TreeTableTreeOptionsData.rootPid|TreeTableTreeOptionsData.rootPid}
-         * @see {@link TreeTableTreeOptionsData.rootPid|TreeTableTreeOptionsData.rootPid}
+         * @deprecated 2.8.2 已移除，请使用 {@link TreeTableTreeOptionsForData.rootPid|TreeTableTreeOptionsForData.rootPid}
+         * @see {@link TreeTableTreeOptionsForData.rootPid|TreeTableTreeOptionsForData.rootPid}
          */
         rootId?: string;
     }
@@ -642,7 +642,7 @@ declare namespace Layui {
 
     /**
      * treeTable
-     *
+     * @see https://layui.dev/docs/2/treeTable
      * @since 2.8.0
      */
     interface TreeTable extends Omit<Table, 'setRowChecked' | 'updateRow'> {
