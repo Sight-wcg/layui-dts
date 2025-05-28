@@ -184,16 +184,5 @@ function utilTest() {
         data: 1,
         now: 1
       })
-
-      interface tt{
-        a: string;
-        b: number;
-        [id:string]: any
-      }
-
-      var te: keyof tt = ''; 
-
-      console.log(te);
-      
   });
 }

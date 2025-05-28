@@ -1,31 +1,21 @@
 declare namespace Layui {
     // utils
+    type Primitive = null | undefined | string | number | boolean | symbol | bigint;
     type Fn = () => void;
     type AnyFn = (...args: any[]) => any;
     type ArgumentsType<T> = T extends (...args: infer U) => any ? U : never;
     type MaybeArray<T> = T | T[];
     type MaybePromise<T> = T | Promise<T> | JQuery.Deferred<T>;
-    export type Primitive =
-        | null
-        | undefined
-        | string
-        | number
-        | boolean
-        | symbol
-        | bigint;
-    type LiteralUnion<
-        LiteralType,
-        BaseType extends Primitive,
-    > = LiteralType | (BaseType & Record<never, never>);
-    type LiteralStringUnion<T> = LiteralUnion<T, string>;
+    type PlainObject<T = any> = {
+        [key: string]: T;
+    }
     type OmitIndexSignature<ObjectType> = {
         [KeyType in keyof ObjectType as {} extends Record<KeyType, unknown>
         ? never
         : KeyType]: ObjectType[KeyType];
     };
-    type PlainObject<T = any> = {
-        [key: string]: T;
-    }
+    type LiteralUnion<LiteralType, BaseType extends Primitive> = LiteralType | (BaseType & Record<never, never>);
+    type LiteralStringUnion<T> = LiteralUnion<T, string>;
 
 
     type Selector = string;
@@ -44,7 +34,7 @@ declare namespace Layui {
          */
         version?: boolean;
         /**
-         * 用于开启调试模式，默认 false，如果设为 true，则JS模块的节点会保留在页面
+         * 用于开启调试模式，默认 false，如果设为 true，则 JS 模块的节点会保留在页面
          */
         debug?: boolean;
         /**
@@ -58,34 +48,15 @@ declare namespace Layui {
      */
     interface CacheData {
         base: string;
-        builtin: Modules;
-        /*
-          // 仅包含layui.use指定的模块或者导入全部模块
-          ,callback:{
-              carousel: Function
-              ,code: Function
-              ,colorpicker: Function
-              ,dropdown: Function
-              ,element:Function
-              ,flow: Function
-              ,form: Function
-              ,jquery: Function
-              ,lay: Function
-              ,laydate: Function
-              ,layedit: Function
-              ,layer: Function
-              ,laypage: Function
-              ,laytpl: Function
-              ,"layui.all": Function
-              ,rate: Function
-              ,slider: Function
-              ,table: Function
-              ,transfer:Function
-              ,tree: Function
-              ,upload: Function
-              ,util: Function
-              [index:string]:Function
-          }*/
+        builtin: {
+            [T in keyof BuiltinModules]: string;
+        };
+        /**
+         * 记录模块回调
+         */
+        callback: {
+            [T in keyof GlobalModules]: AnyFn
+        };
         /**
          * layui.js所在目录，如果是 script 单独引入 layui.js，无需设定该参数
          */
@@ -93,40 +64,17 @@ declare namespace Layui {
         /**
          * 记录模块自定义事件
          */
-        event: { [index: string]: { [index: string]: Array<(...arg: any) => any> } };
+        event: Record<string, Record<string, Array<AnyFn>>>;
         host: string;
         /**
          * 记录模块物理路径
          */
-        modules: { [index: string]: string };
+        modules: ModulesPathMap;
         /**
-         *  记录模块加载状态
+         * 记录模块加载状态
          */
         status: {
-            carousel: boolean;
-            code: boolean;
-            colorpicker: boolean;
-            dropdown: boolean;
-            element: boolean;
-            flow: boolean;
-            form: boolean;
-            jquery: boolean;
-            lay: boolean;
-            laydate: boolean;
-            layedit: boolean;
-            layer: boolean;
-            laypage: boolean;
-            laytpl: boolean;
-            'layui.all': boolean;
-            rate: boolean;
-            slider: boolean;
-            table: boolean;
-            treeTable: boolean;
-            transfer: boolean;
-            tree: boolean;
-            upload: boolean;
-            util: boolean;
-            [index: string]: boolean;
+            [T in keyof GlobalModules]: boolean;
         };
         /**
          *  符合规范的模块请求最长等待秒数
@@ -138,9 +86,13 @@ declare namespace Layui {
     /**
      * 内置模块名和外置名称映射
      */
-    type Modules = { [T in keyof LayuiModuleMap]: string };
+    type ModulesPathMap = { [T in keyof GlobalModules]: string };
 
-    interface LayuiModuleMap {
+    interface GlobalModules extends Omit<BuiltinModules, 'all'>{
+        [index:string]: any;
+    }
+    interface BuiltinModules {
+        all: any;
         carousel: Carousel;
         code: Code;
         colorpicker: ColorPicker;

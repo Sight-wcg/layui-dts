@@ -1,4 +1,4 @@
-// Type definitions for layui-src 2.9.25
+// Type definitions for layui-src 2.9.26
 // Project: https://github.com/layui/layui/releases/tag/v2.9.25
 // Definitions by: javabitar <https://github.com/javabitar>
 // Definitions by: sight <https://github.com/Sight-wcg>

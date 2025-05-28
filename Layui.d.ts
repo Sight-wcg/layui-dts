@@ -1,33 +1,6 @@
-interface Layui {
+interface Layui extends Layui.GlobalModules {
     // -----------------Static members of layui-------------------------------------
     $: JQueryStatic;
-    carousel: Layui.Carousel;
-    code: Layui.Code;
-    colorpicker: Layui.ColorPicker;
-    dropdown: Layui.Dropdown;
-    element: Layui.Element;
-    flow: Layui.Flow;
-    form: Layui.Form;
-    /**
-     * @deprecated 2.8.0 已移除
-     */
-    global: {};
-    jquery: JQueryStatic;
-    lay: Layui.LayStatic;
-    laydate: Layui.Laydate;
-    layedit: Layui.Layedit;
-    layer: Layui.Layer;
-    laypage: Layui.Laypage;
-    laytpl: Layui.Laytpl;
-    'layui.all': string;
-    rate: Layui.Rate;
-    slider: Layui.Slider;
-    table: Layui.Table;
-    treeTable: Layui.TreeTable;
-    transfer: Layui.Transfer;
-    tree: Layui.Tree;
-    upload: Layui.Upload;
-    util: Layui.Util;
     /**
      * 版本号 
      */
@@ -42,7 +15,7 @@ interface Layui {
     /**
      * 内置模块名和外置名称映射
      */
-    modules: Layui.Modules;
+    modules: Layui.ModulesPathMap;
     /**
      * 对象是否为泛数组结构
      * @param obj 如 Array、NodeList、jQuery 对象等
@@ -355,9 +328,9 @@ interface Layui {
      * @param callback 回调函数
      * @param exports 数组，存储对 mods 解析后加载的模块
      */
-    use<K extends keyof Layui.LayuiModuleMap>(
+    use<K extends keyof Layui.GlobalModules>(
         mods: K,
-        callback: (this: Layui, module: Layui.LayuiModuleMap[K]) => any,
+        callback: (this: Layui, module: Layui.GlobalModules[K]) => any,
         exports?: any[],
     ): { v: string };
     /**
@@ -388,7 +361,7 @@ interface Layui {
      * @example layui.disuse('table')
      * @since 2.7.0
      */
-    disuse(modules: Layui.MaybeArray<Layui.LiteralStringUnion<keyof Layui.LayuiModuleMap>>): any;
+    disuse(modules: Layui.MaybeArray<Layui.LiteralStringUnion<keyof Layui.GlobalModules>>): any;
     /**
      * 防抖
      * @param fn 
@@ -405,4 +378,8 @@ interface Layui {
      * @since 2.8.3
      */
     throttle<T extends (...args: any[]) => any>(fn: T, wait: number): T;
+    /**
+     * @deprecated 2.8.0 已移除
+     */
+    global: Record<string, any>;
 }
