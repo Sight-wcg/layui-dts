@@ -35,6 +35,7 @@ declare namespace Layui {
          * @default false
          */
         disabled?: boolean;
+        [index: string]: any;
     }
 
     interface TreeCheckData {
