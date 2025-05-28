@@ -48,7 +48,7 @@ declare namespace Layui {
         elem: JQuery;
         /**
          * 前的 tab 项 ID
-         * @sinc 2.9.11
+         * @since 2.9.11
          */
         id: string;
     }
