@@ -1385,7 +1385,7 @@ declare namespace Layui {
         elem: JQuery;
         /**
          * 前的 tab 项 ID
-         * @sinc 2.9.11
+         * @since 2.9.11
          */
         id: string;
     }
@@ -2674,7 +2674,7 @@ declare namespace Layui {
          * 而是采用 requirejs 等其它方式引用 laydate
          * 那么你需要设置基础路径，以便加载 `laydate.css`
          *  
-         * @deprecate 2.8.0 之后不再提供独立版本
+         * @deprecated 2.8.0 之后不再提供独立版本
          */
         path: string;
         /**

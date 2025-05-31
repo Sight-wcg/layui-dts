@@ -1,4 +1,7 @@
 ### layui 2.9x TypeScript 类型声明文件(WIP 🚧)
 
-基于 https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/layui-src 修改， 尚未测试。
-待测试完善后同步到上游。
+这个仓库仅用于开发和测试
+
+### 致谢
+
+感谢 @javabitar，此项目基于 [@types/layui-src](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/layui-src)
