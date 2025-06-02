@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "layui-dts-scripts",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "npm install && cd ../ && node ./scripts/build.js"
+  },
+  "type": "module",
+  "devDependencies": {
+    "tinyglobby": "^0.2.12"
+  }
+}

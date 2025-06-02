@@ -5,7 +5,7 @@ rollupDts();
 
 function getFiles(){
     const files = globSync('**/*.d.ts', {
-        ignore: ['node_modules', 'test', 'dist'],
+        ignore: ['node_modules', 'test', 'dist', 'scripts'],
         onlyFiles: true,
         expandDirectories: false,
     })
