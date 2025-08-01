@@ -1,7 +1,7 @@
 {
   "private":"true",
   "name": "layui-dts",
-  "version": "0.0.1",
+  "version": "2.11.5",
   "type": "module",
   "license": "MIT",
   "dependencies": {

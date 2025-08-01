@@ -62,7 +62,13 @@ declare namespace Layui {
          * 返回 false 阻止切换
          * @since 2.9.16
          */
-        tabBeforeChange(this: HTMLElement, data: Pick<ElementEventParam, 'elem'> & { to: Omit<ElementEventParam, 'elem'>; from: Omit<ElementEventParam, 'elem'> }): void | boolean;
+        tabBeforeChange(
+            this: HTMLElement,
+            data: Pick<ElementEventParam, "elem"> & {
+                to: Omit<ElementEventParam, "elem">;
+                from: Omit<ElementEventParam, "elem">;
+            },
+        ): undefined | boolean;
         /**
          * tab 删除事件
          */
@@ -72,7 +78,7 @@ declare namespace Layui {
          * 返回 false 取消关闭操作
          * @since 2.9.11+
          */
-        tabBeforeDelete(this: HTMLElement, data: ElementEventParam): void | boolean;
+        tabBeforeDelete(this: HTMLElement, data: ElementEventParam): undefined | boolean;
         /**
          * 导航栏点击事件
          * @param othis 点击元素的 jQuery 对象
@@ -85,7 +91,7 @@ declare namespace Layui {
          * - `content` 折叠面板内容元素
          * - `show` 折叠面板是否展开，true 为展开状态，false 为收起状态
          */
-        collapse(this: HTMLElement, data: { title: JQuery, content: JQuery, show: boolean }): void;
+        collapse(this: HTMLElement, data: { title: JQuery; content: JQuery; show: boolean }): void;
     }
     /**
      * 元素操作
@@ -94,7 +100,7 @@ declare namespace Layui {
         config: Record<string, any>;
         /**
          * 全局设置
-         * @param options 选项 
+         * @param options 选项
          */
         set(options: Record<string, any>): this;
         /**
@@ -104,6 +110,7 @@ declare namespace Layui {
          */
         on<K extends keyof ElementEventMap>(event: `${K}(${TableFilter})`, callback: ElementEventMap[K]): void;
         on<K extends keyof ElementEventMap>(event: K, callback: ElementEventMap[K]): void;
+        // eslint-disable-next-line @definitelytyped/no-unnecessary-generics
         on<K extends string>(event: `${K}(${TableFilter})`, callback: AnyFn): void;
         /**
          * 用于新增一个Tab选项
@@ -153,7 +160,7 @@ declare namespace Layui {
          * @since 自 2.9.16+ {@link filter} 支持 jQuery 对象
          * @deprecated 已废弃，使用 {@link Element.render|render}
          */
-        init(type?: 'tab' | 'nav' | 'breadcrumb' | 'progress' | 'collapse', filter?: string | JQuery): void;
+        init(type?: "tab" | "nav" | "breadcrumb" | "progress" | "collapse", filter?: string | JQuery): void;
         /**
          * Element 渲染方法，用于重新渲染 Element 组件
          * @param type 渲染类型，未指定时将重新渲染页面内所有类型的 Element 组件
@@ -170,6 +177,6 @@ declare namespace Layui {
          * @see https://layui.dev/docs/2/progress/- 进度条
          * @see https://layui.dev/docs/2/nav/#separator- 面包屑
          */
-        render(type?: 'tab' | 'nav' | 'breadcrumb' | 'progress' | 'collapse', filter?: string | JQuery): void;
+        render(type?: "tab" | "nav" | "breadcrumb" | "progress" | "collapse", filter?: string | JQuery): void;
     }
 }

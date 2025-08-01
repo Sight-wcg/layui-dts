@@ -1,10 +1,3 @@
-// Type definitions for layui-src 2.9.26
-// Project: https://github.com/layui/layui/releases/tag/v2.9.25
-// Definitions by: javabitar <https://github.com/javabitar>
-// Definitions by: sight <https://github.com/Sight-wcg>
-// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
-// Minimum TypeScript Version: 4.7
-
 /// <reference types="jquery" />
 /// <reference path="modules/carousel.d.ts" />
 /// <reference path="modules/code.d.ts" />
@@ -40,12 +33,12 @@ declare const layer: Layui.Layer;
 declare const LAYUI_GLOBAL: { dir: string };
 
 interface Window {
-  layui: Layui;
-  lay: Layui.LayStatic;
-  layer: Layui.Layer;
-  /**
-   * 动态加载等特殊场景设置 layui 目录
-   * @since 2.6.6
-   */
-  LAYUI_GLOBAL: { dir: string };
+    layui: Layui;
+    lay: Layui.LayStatic;
+    layer: Layui.Layer;
+    /**
+     * 动态加载等特殊场景设置 layui 目录
+     * @since 2.6.6
+     */
+    LAYUI_GLOBAL: { dir: string };
 }

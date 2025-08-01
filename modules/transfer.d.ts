@@ -51,7 +51,7 @@ declare namespace Layui {
          * - cs 开启搜索，且匹配时区分大小写(2.7+)
          * @default false
          */
-        showSearch?: boolean | 'cs';
+        showSearch?: boolean | "cs";
         /**
          * 定义左右穿梭框宽度
          */
@@ -85,7 +85,7 @@ declare namespace Layui {
          * @param obj {elem, data, index} 当前穿梭框对象、数据项、索引，如果数据来自左边，index 为 0，否则为 1
          * @since 2.9.3
          */
-        dblclick?(obj: { elem: JQuery; data: object; index: number }): boolean | void;
+        dblclick?(obj: { elem: JQuery; data: object; index: number }): boolean | undefined;
     }
 
     interface TransferReturn {

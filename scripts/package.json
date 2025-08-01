@@ -3,7 +3,8 @@
   "name": "layui-dts-scripts",
   "version": "0.0.1",
   "scripts": {
-    "build": "npm install && cd ../ && node ./scripts/build.js"
+    "build": "npm install && cd ../ && node ./scripts/build.js",
+    "update": "cd ../ &&node ./scripts/update.js"
   },
   "type": "module",
   "devDependencies": {

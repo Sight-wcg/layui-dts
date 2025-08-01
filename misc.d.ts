@@ -6,17 +6,18 @@ declare namespace Layui {
     type ArgumentsType<T> = T extends (...args: infer U) => any ? U : never;
     type MaybeArray<T> = T | T[];
     type MaybePromise<T> = T | Promise<T> | JQuery.Deferred<T>;
+    // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
     type PlainObject<T = any> = {
         [key: string]: T;
-    }
+    };
     type OmitIndexSignature<ObjectType> = {
-        [KeyType in keyof ObjectType as {} extends Record<KeyType, unknown>
-        ? never
-        : KeyType]: ObjectType[KeyType];
+        [
+            KeyType in keyof ObjectType as {} extends Record<KeyType, unknown> ? never
+                : KeyType
+        ]: ObjectType[KeyType];
     };
     type LiteralUnion<LiteralType, BaseType extends Primitive> = LiteralType | (BaseType & Record<never, never>);
     type LiteralStringUnion<T> = LiteralUnion<T, string>;
-
 
     type Selector = string;
     type ExportsCallback = (this: Layui, fn: (app: string, exports: object) => void) => void;
@@ -55,7 +56,7 @@ declare namespace Layui {
          * 记录模块回调
          */
         callback: {
-            [T in keyof GlobalModules]: AnyFn
+            [T in keyof GlobalModules]: AnyFn;
         };
         /**
          * layui.js所在目录，如果是 script 单独引入 layui.js，无需设定该参数
@@ -88,8 +89,8 @@ declare namespace Layui {
      */
     type ModulesPathMap = { [T in keyof GlobalModules]: string };
 
-    interface GlobalModules extends Omit<BuiltinModules, 'all'>{
-        [index:string]: any;
+    interface GlobalModules extends Omit<BuiltinModules, "all"> {
+        [index: string]: any;
     }
     interface BuiltinModules {
         all: any;
@@ -107,7 +108,7 @@ declare namespace Layui {
         layer: Layer;
         laypage: Laypage;
         laytpl: Laytpl;
-        'layui.all': string;
+        "layui.all": string;
         rate: Rate;
         slider: Slider;
         table: Table;
